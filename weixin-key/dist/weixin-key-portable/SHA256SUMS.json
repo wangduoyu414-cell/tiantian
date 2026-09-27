@@ -1,0 +1,86 @@
+﻿[
+    {
+        "path":  "imgkey-probe.exe",
+        "sha256":  "B945FC3615FE3010E4F0753D50837577BE25B116DF0C04FC1E31D6479BBC3BD1"
+    },
+    {
+        "path":  "material-probe.exe",
+        "sha256":  "DE920C1F5B83A5ABDF7385357A775C1C11327332849CB96DF14F66D1FEDE7251"
+    },
+    {
+        "path":  "observe.ps1",
+        "sha256":  "927E8B43238F3982A9A1EA227124D8C5227AA9FF21B181516A692E28756284F3"
+    },
+    {
+        "path":  "README.md",
+        "sha256":  "30CA8379C127C3109CC74C3E51A9C6749135EFF87B98B44C967393ADBC06EF69"
+    },
+    {
+        "path":  "SHA256SUMS.json",
+        "sha256":  "B95AC866214FE52EA575598A64A80FD126529ED2A9BB7D22AD0F8361A4B2BBD7"
+    },
+    {
+        "path":  "weixin-key.exe",
+        "sha256":  "CA97CE7DEA2952AF1034556A72A5401ADC4CE2015929F4FEBD9B36221C60C284"
+    },
+    {
+        "path":  "docs\\AGENT_WORKFLOW.md",
+        "sha256":  "495E3E0A891553A61D05BF769D725D07C5946420A8D3A61AB90012C911FC1A87"
+    },
+    {
+        "path":  "skills\\skills\\wechat-export\\SKILL.md",
+        "sha256":  "A9BC7A10C86C04038D816B65F90991ED3E61D48554A23136ED508BAE1DAFDD7E"
+    },
+    {
+        "path":  "skills\\skills\\wechat-export\\scripts\\capture-key.ps1",
+        "sha256":  "865997709C9B76249D88AF2487D0D8B64C2C2E0EA1BB10753B311E34AC52B5DF"
+    },
+    {
+        "path":  "skills\\skills\\wechat-export\\scripts\\ensure-imgkey.ps1",
+        "sha256":  "AD9C1A84065E2069A76BE05B5F817BEBA19620CE08B91F88834712987B33A69D"
+    },
+    {
+        "path":  "skills\\skills\\wechat-export\\scripts\\export.ps1",
+        "sha256":  "28645AA8F43A24FC689665E14D8773FC655AE150FA7785979B08C5B194335358"
+    },
+    {
+        "path":  "skills\\wechat-export\\SKILL.md",
+        "sha256":  "4F238735613CA72CE9608CB76379D522B01C222034F0355EB6411AE9E642FD6A"
+    },
+    {
+        "path":  "skills\\wechat-export\\scripts\\capture-key.ps1",
+        "sha256":  "30340F80A4E28C18267EA5653757558DC7C53B281A2B6EA5F942B588E8AD325F"
+    },
+    {
+        "path":  "skills\\wechat-export\\scripts\\ensure-imgkey.ps1",
+        "sha256":  "C223B38E1AAFF6275BB2F41D80A0EE262EA3BB46D185A92BB2A55D0161691820"
+    },
+    {
+        "path":  "skills\\wechat-export\\scripts\\export.ps1",
+        "sha256":  "DB81D0E8C047B8C8B2A2E5BCF501CD44B476300427E0C353A53DE5F6F3DEC21D"
+    },
+    {
+        "path":  "strategies\\README.md",
+        "sha256":  "E31A6E7696E520A888875CED954BC4504F0AFCA668D0C36EF7A7B696B025EA2B"
+    },
+    {
+        "path":  "strategies\\weixin-4.1.13.65.json",
+        "sha256":  "21C07D92CBBB213E955B068B110E0ABE09E22A7C61FA8C09124CA97F62B0220A"
+    },
+    {
+        "path":  "strategies\\weixin-4.1.15.13.json",
+        "sha256":  "3DA4C8E44C97641E4E805668D8C9CF0792554AD2B4A1C94939062C458EEE3CE2"
+    },
+    {
+        "path":  "strategies\\strategies\\README.md",
+        "sha256":  "E31A6E7696E520A888875CED954BC4504F0AFCA668D0C36EF7A7B696B025EA2B"
+    },
+    {
+        "path":  "strategies\\strategies\\weixin-4.1.13.65.json",
+        "sha256":  "21C07D92CBBB213E955B068B110E0ABE09E22A7C61FA8C09124CA97F62B0220A"
+    },
+    {
+        "path":  "strategies\\strategies\\weixin-4.1.15.13.json",
+        "sha256":  "3DA4C8E44C97641E4E805668D8C9CF0792554AD2B4A1C94939062C458EEE3CE2"
+    }
+]

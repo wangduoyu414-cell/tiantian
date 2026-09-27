@@ -1,0 +1,30 @@
+{
+  "weixin_version": "4.1.15.13",
+  "module_sha256": "10F8E995453E2DA46D4F2B5080CD6DA1F13CC5147746ADC119CEAE38CB039DE5",
+  "verified_on": "2026-09-27",
+  "material": {
+    "layout": "ptr-zero-len32-cap47",
+    "static_probe": "two-59byte-shapes",
+    "static_probe_rvas": [3566373, 3575276],
+    "db_kdf": "pbkdf2-sha512-256000",
+    "capture_evidence": "bounded passive probe hit 20/20 DBs on real account wxid_4o1u6ibnjhtn12_ee32; DPAPI cache written; offline verify 20/20 zero-derivation"
+  },
+  "message_db": {
+    "page_size": 4096,
+    "reserve": 80,
+    "table_naming": "Msg_ + md5(username)",
+    "sender_resolution": "per-db Name2Id rowid; empty username (rowid 35 observed) = system placeholder",
+    "compressed_content": "zstd-nodict (WCDB_CT=4)",
+    "schema": "17-column v4.1",
+    "export_evidence": "23385 messages, 165 conversations, direction unknown only on system placeholders"
+  },
+  "image_dat": {
+    "container": "v2 (07 08 56 32)",
+    "head_encryption": "aes-128-ecb, len field @6:10",
+    "tail_encryption": "single-byte xor, len field @10:14, derive from jpg tail; account-global 0x29 observed",
+    "key_source": "process-memory lazy-load; found after user opened chat images; imgkey-probe recovers in seconds",
+    "img_key_note": "key value lives in DPAPI-protected operator notes, never in this file",
+    "wxgf": "full-size images are often wxgf (SharpP) containers; decrypt fine, need ffmpeg wxgf support to view"
+  },
+  "notes": "First version with second-machine end-to-end evidence: capture, cache, offline reuse, full export with decrypted images."
+}

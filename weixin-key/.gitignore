@@ -1,0 +1,51 @@
+# Build artifacts
+/weixin-key
+/weixin-key.exe
+/weixin-key-test
+/weixin-key-test.exe
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.test
+*.out
+
+# Secrets / capture artifacts — NEVER commit
+PASS_PHRASE*
+SALT_KEY_MAP*
+VERIFIED_KEYS*
+captures/
+logs/
+decrypt_out/
+wechat-key-lab/
+**/PASS_PHRASE*
+**/SALT_KEY_MAP*
+**/VERIFIED_KEYS*
+
+# Local config (may hold keys)
+/config.json
+.config.json*
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Go
+vendor/
+coverage.out
+coverage.html
+*.prof
+*.pprof
+/tmp/
+/bin/
+/dist/
+/.build/
+# Public, checksum-pinned runtime embedded in the Windows executable.
+!/internal/sqliteengine/bin/sqlite3mc_x64.dll

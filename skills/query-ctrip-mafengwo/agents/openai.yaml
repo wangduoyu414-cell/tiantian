@@ -1,0 +1,4 @@
+interface:
+  display_name: "携程与马蜂窝按需查询"
+  short_description: "按需查询携程与马蜂窝资料、房型票价及规则，返回来源与未证实项"
+  default_prompt: "使用 $query-ctrip-mafengwo 按给定条件查询携程或马蜂窝，返回所需信息、适用条件、来源与缺口。"

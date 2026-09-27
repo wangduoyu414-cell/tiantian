@@ -38,7 +38,7 @@ description: 从本机微信(Weixin 4.1+, Windows)提取并导出本人账号的
 
 ### 0. 准备
 
-便携包时:`dist/` 下已有 exe,无需 Go。源码时:
+便携包时:`dist/` 下已有 exe,无需 Go。**路径约定**:本文命令里的 `scripts/`、`strategies/` 是仓库根相对路径;便携包里 `observe.ps1` 在根目录、`strategies/` 同级。源码时:
 
 ```bash
 go build -trimpath -o weixin-key.exe ./cmd/weixin-key

@@ -1,4 +1,4 @@
-# capture-key.ps1 — 有界被动取钥 + 缓存写入 + 离线复核(SKILL.md 第 4 步)
+﻿# capture-key.ps1 — 有界被动取钥 + 缓存写入 + 离线复核(SKILL.md 第 4 步)
 # 全部参数显式传入;任何一个验证门不过都非零退出。
 param(
     [Parameter(Mandatory)] [string]$ProbeExe,      # material-probe.exe

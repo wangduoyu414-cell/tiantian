@@ -1,4 +1,4 @@
-# export.ps1 — 导出 + 人话验收(SKILL.md 第 6、7 步)
+﻿# export.ps1 — 导出 + 人话验收(SKILL.md 第 6、7 步)
 param(
     [Parameter(Mandatory)] [string]$CliExe,        # weixin-key.exe
     [Parameter(Mandatory)] [string]$ConfigPath,

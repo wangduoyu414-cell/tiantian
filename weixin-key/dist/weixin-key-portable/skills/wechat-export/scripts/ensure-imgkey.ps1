@@ -1,4 +1,4 @@
-# ensure-imgkey.ps1 — 图片密钥:扫描 → 未驻留则提示用户 → 重扫(SKILL.md 第 5 步)
+﻿# ensure-imgkey.ps1 — 图片密钥:扫描 → 未驻留则提示用户 → 重扫(SKILL.md 第 5 步)
 # 成功时把密钥放进调用方环境变量 WECHAT_CLI_IMGKEY_HEX(不落盘)。
 param(
     [Parameter(Mandatory)] [string]$ImgkeyProbeExe, # imgkey-probe.exe

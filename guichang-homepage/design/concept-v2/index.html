@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061641">
+<meta name="format-detection" content="telephone=no">
+<title>样张 v3 · 资质墙与服务网络</title>
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+:root{
+  --navy:#0B2A71; --navy-d:#071A4A; --navy-dd:#040C26; --sky:#3A82BE; --ink:#16213E;
+  --paper:#F2EDE3; --paper2:#FBF8F1; --gold:#C9A35B; --gold-hi:#F1D596; --gold-lo:#94702F; --signal:#D65A35;
+  --serif:"Noto Serif SC","Songti SC","STSong",serif;
+  --cond:"Barlow Condensed","DIN Alternate","Arial Narrow",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --foil:linear-gradient(100deg,#94702F 0%,#E9C982 22%,#FFF1C6 34%,#C9A35B 48%,#8B6526 62%,#E9C982 80%,#B8914C 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;background:var(--navy-dd)}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+ul{list-style:none}
+
+.kicker{display:flex;align-items:center;gap:10px;font:500 11px/1 var(--mono);letter-spacing:.18em}
+.kicker i{flex:0 0 26px;height:1px;background:currentColor;opacity:.55}
+.h2{font:900 30px/1.24 var(--serif);letter-spacing:.02em;margin-top:14px}
+.foil{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ───────── 资质：证书筑墙 ───────── */
+.qw{position:relative;height:330svh;background:var(--navy-dd)}
+.qw-stage{position:sticky;top:0;height:100svh;overflow:hidden;color:#fff;
+  background:radial-gradient(110% 62% at 50% 46%,#183C8C 0%,#0B2A71 36%,#061641 74%,#030a20 100%)}
+.qw-scene{position:absolute;inset:0;perspective:1000px;perspective-origin:50% 42%}
+.qw-wall{position:absolute;left:50%;top:52%;transform-style:preserve-3d;
+  transform:translate(-50%,-50%) rotateX(22deg) rotateY(-24deg) rotateZ(-7deg)}
+.qw-col{position:absolute;top:0;transform-style:preserve-3d;will-change:transform;animation:qw-up var(--dur) linear infinite}
+.qw-col.down{animation-name:qw-down}
+@keyframes qw-up{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,calc(var(--h) * -1),0)}}
+@keyframes qw-down{from{transform:translate3d(0,calc(var(--h) * -1),0)}to{transform:translate3d(0,0,0)}}
+.qc{position:absolute;left:0;padding:3px;background:#fbfaf6;border-radius:2px;will-change:transform,opacity;
+  box-shadow:0 16px 30px -12px rgba(0,0,0,.6),0 0 calc(var(--g,0) * 30px) calc(var(--g,0) * 5px) rgba(241,213,150,calc(var(--g,0) * .95))}
+.qc img{width:100%;height:100%;object-fit:cover}
+.qc.top{background:linear-gradient(135deg,#F1D596,#C9A35B 45%,#94702F)}
+.qc::after{content:"";position:absolute;inset:3px;background:linear-gradient(115deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.35) 50%,rgba(255,255,255,0) 60%) 0 0/300% 100% no-repeat;
+  animation:qc-sheen 7s ease-in-out infinite;animation-delay:var(--sd,0s);mix-blend-mode:soft-light}
+@keyframes qc-sheen{0%,70%{background-position:120% 0}100%{background-position:-120% 0}}
+.qw-shade{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,10,32,.94) 0%,rgba(3,10,32,.55) 24%,rgba(3,10,32,0) 40%,rgba(3,10,32,0) 56%,rgba(3,10,32,.82) 76%,rgba(3,10,32,.97) 100%)}
+.qw-dim{position:absolute;inset:0;background:rgba(3,10,32,.6);opacity:calc(var(--c,0) * .9);pointer-events:none}
+
+.qw-head{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 22px);padding:0 22px;z-index:4}
+.qw-brand{display:flex;align-items:center;gap:10px;margin-bottom:30px;opacity:.9}
+.qw-brand .mk{width:86px;height:22px;background:var(--foil);-webkit-mask:url(../../assets/img/gc-logo-mask.png) left center/contain no-repeat;mask:url(../../assets/img/gc-logo-mask.png) left center/contain no-repeat}
+.qw-brand small{font:500 10px/1 var(--mono);letter-spacing:.14em;color:rgba(241,213,150,.6);border-left:1px solid rgba(241,213,150,.3);padding-left:10px}
+.qw-head .kicker{color:var(--gold-hi)}
+.qw-head .h2{color:#fff}
+.qw-hint{margin-top:12px;font-size:13px;line-height:1.7;color:rgba(255,255,255,.62);transition:opacity .4s}
+
+.qw-crown{position:absolute;left:50%;top:50%;width:min(80vw,440px);aspect-ratio:1.32;z-index:3;pointer-events:none;
+  opacity:var(--c,0);transform:translate(-50%,calc(-50% + (1 - var(--c,0)) * 70px)) scale(calc(.86 + var(--c,0) * .14))}
+.qw-crown .rs{position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);opacity:.5}
+.qw-crown .rs svg{width:100%;height:100%;animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.qw-crown figure{position:absolute;width:66%;pointer-events:auto}
+.qw-crown figure .pic{padding:4px;background:linear-gradient(135deg,#FFF1C6,#C9A35B 40%,#94702F 70%,#E9C982);box-shadow:0 34px 60px -24px rgba(0,0,0,.9),0 0 0 6px rgba(241,213,150,.1)}
+.qw-crown figure img{width:100%;height:auto;background:#fff}
+.qw-crown figure:nth-of-type(1){left:0;top:2%;transform:rotate(-5deg)}
+.qw-crown figure:nth-of-type(2){right:0;bottom:0;transform:rotate(4deg)}
+.qw-crown figcaption{display:flex;align-items:center;gap:8px;margin-top:9px;font:700 13px/1.2 var(--serif);color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.qw-crown figcaption em{flex:none;font:500 9.5px/1 var(--mono);font-style:normal;letter-spacing:.06em;color:#1a1204;background:var(--foil);padding:4px 6px;border-radius:2px}
+.qw-crown figure:nth-of-type(1) figcaption{margin:0 0 9px}
+.qw-crown figure:nth-of-type(2) figcaption{justify-content:flex-end}
+.qw-crown .pic{position:relative}
+.qw-crown .badge{position:absolute;left:-9%;bottom:-13%;width:46%;aspect-ratio:1;filter:drop-shadow(0 8px 14px rgba(0,0,0,.55))}
+.qw-crown .badge svg{width:100%;height:100%;display:block}
+
+.qw-foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 20px);padding:0 22px;z-index:4}
+.qw-num{display:flex;align-items:flex-end;gap:12px}
+.qw-num b{font:600 96px/.78 var(--cond);letter-spacing:-.01em;width:1em;text-align:right;font-variant-numeric:tabular-nums}
+.qw-num .lb{padding-bottom:4px}
+.qw-num .lb span{display:block;font:700 16px/1.3 var(--serif)}
+.qw-num .lb small{display:block;margin-top:4px;font:500 10px/1 var(--mono);letter-spacing:.12em;color:rgba(241,213,150,.7)}
+.qw-num .ip{margin-left:auto;text-align:right;padding-bottom:4px;opacity:var(--s,0);transform:translateY(calc((1 - var(--s,0)) * 10px))}
+.qw-num .ip b{display:block;font:600 34px/.9 var(--cond);min-width:0;color:var(--gold-hi)}
+.qw-num .ip span{font-size:11px;color:rgba(255,255,255,.62)}
+.qw-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:16px;border-top:1px solid rgba(241,213,150,.22);
+  opacity:var(--s,0);transform:translateY(calc((1 - var(--s,0)) * 14px))}
+.qw-stats li{padding-top:11px}
+.qw-stats li+li{padding-left:14px;border-left:1px solid rgba(241,213,150,.14)}
+.qw-stats b{font:600 26px/1 var(--cond);color:#fff}
+.qw-stats span{display:block;margin-top:5px;font-size:11.5px;color:rgba(255,255,255,.6)}
+.qw-cta{display:flex;align-items:center;justify-content:space-between;width:100%;height:48px;margin-top:16px;padding:0 20px;border-radius:999px;
+  color:var(--gold-hi);font-size:14px;letter-spacing:.04em;background:rgba(241,213,150,.1);border:1px solid rgba(241,213,150,.42);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:var(--s,0);pointer-events:none}
+.qw-cta.on{pointer-events:auto}
+.qw-cta i{font-style:normal;font-family:var(--mono)}
+
+/* ───────── 服务网络：点阵地图 ───────── */
+.nw{position:relative;background:var(--paper);padding:76px 0 70px;overflow:hidden}
+.nw::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(11,42,113,.07) 1px,transparent 1px);background-size:18px 18px}
+.wrap{position:relative;padding:0 22px;max-width:1180px;margin:0 auto}
+.nw .kicker{color:var(--gold-lo)}
+.nw .h2{color:var(--navy)}
+.nw-lead{margin-top:12px;font-size:14px;line-height:1.8;color:#4b5573}
+.nw-viz{margin:22px -22px 0}
+.nw-map{position:relative;width:100%;aspect-ratio:70.6/50}
+.nw-viz .nw-legend{padding:0 22px}
+.nw-map canvas,.nw-map svg{position:absolute;inset:0;width:100%;height:100%}
+.nw-fx .arc{fill:none;stroke:url(#arcGrad);stroke-linecap:round}
+.nw-fx .comet{fill:#FFF1C6;filter:url(#glow)}
+.nw-fx .nd{cursor:pointer}
+.nw-fx .nd .hit{fill:transparent}
+.nw-fx .nd .ring{fill:var(--paper2);stroke:var(--gold-lo);stroke-width:1.2;vector-effect:non-scaling-stroke;transition:r .3s}
+.nw-fx .nd .core{fill:var(--navy)}
+.nw-fx .nd.sel .ring{fill:var(--gold-hi);stroke:var(--navy)}
+.nw-fx .pulse{fill:none;stroke:var(--gold);stroke-width:1.2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;animation:pulse 2.8s cubic-bezier(.2,.6,.3,1) infinite}
+.nw-fx .pulse.b{animation-delay:1.4s}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(3.6);opacity:0}}
+.nw-fx .hq .star{fill:url(#starGrad);stroke:var(--navy);stroke-width:1;vector-effect:non-scaling-stroke}
+.nw-fx text{font-family:var(--serif);font-weight:700;fill:var(--navy);paint-order:stroke;stroke:var(--paper);stroke-linejoin:round}
+.nw-fx text.hq{fill:#1a1204}
+.nw-fx .lbl{opacity:0;transition:opacity .5s}
+.nw-map.on .lbl{opacity:1}
+.nw-inset rect{fill:rgba(251,248,241,.7);stroke:rgba(11,42,113,.45);stroke-width:1;vector-effect:non-scaling-stroke}
+.nw-inset .dash{stroke:rgba(11,42,113,.7);stroke-width:1.3;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.nw-inset text{font-family:var(--sans);fill:rgba(11,42,113,.75)}
+.nw-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:11px;color:#6b7390}
+.nw-legend span{display:inline-flex;align-items:center;gap:6px}
+.nw-legend i{display:inline-block;width:9px;height:9px;border-radius:50%}
+.nw-legend .l1{background:var(--navy);box-shadow:0 0 0 2px var(--gold-hi)}
+.nw-legend .l2{background:var(--paper2);border:1.5px solid var(--gold-lo)}
+.nw-legend .l3{width:16px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi))}
+.nw-card{position:relative;display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--paper2);
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 10px 30px -18px rgba(11,42,113,.45);border:1px solid rgba(11,42,113,.08)}
+.nw-card .pin{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--gold-hi);font:700 15px/1 var(--serif)}
+.nw-card b{display:block;font:700 15px/1.3 var(--serif);color:var(--navy)}
+.nw-card span{display:block;margin-top:3px;font-size:12.5px;line-height:1.55;color:#5a6380}
+.nw-card.flash{animation:flash .5s ease}
+@keyframes flash{0%{transform:translateY(4px);opacity:.4}100%{transform:none;opacity:1}}
+.nw-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:22px;border-top:1px solid rgba(11,42,113,.14)}
+.nw-stats li{padding-top:14px}
+.nw-stats li+li{padding-left:14px;border-left:1px solid rgba(11,42,113,.1)}
+.nw-stats b{font:600 38px/.9 var(--cond);color:var(--navy)}
+.nw-stats b sup{font-size:.5em;vertical-align:.9em;color:var(--gold-lo)}
+.nw-stats b small{font-size:.5em;margin-left:2px}
+.nw-stats span{display:block;margin-top:6px;font-size:12px;color:#5a6380}
+.nw-note{margin-top:14px;font:400 10.5px/1.6 var(--mono);color:#8a90a6;letter-spacing:.02em}
+
+/* ───────── 证书查看器 ───────── */
+.vw{position:fixed;inset:0;z-index:60;display:none;flex-direction:column;background:rgba(3,9,28,.97);color:#fff}
+.vw.on{display:flex;animation:fade .25s ease}
+@keyframes fade{from{opacity:0}}
+.vw-top{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 12px) 16px 6px}
+.vw-top b{font:500 12px/1 var(--mono);letter-spacing:.12em;color:var(--gold-hi)}
+.vw-x{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);font-size:20px;line-height:40px}
+.vw-track{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.vw-track::-webkit-scrollbar{display:none}
+.vw-s{flex:0 0 100%;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 22px 18px}
+.vw-s .pic{max-width:100%;padding:4px;background:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.9)}
+.vw-s img{max-width:100%;max-height:58svh;width:auto;height:auto}
+.vw-s .meta{width:100%;max-width:520px;margin-top:18px}
+.vw-s .meta em{font:500 10px/1 var(--mono);font-style:normal;letter-spacing:.08em;color:#1a1204;background:var(--foil);padding:4px 7px;border-radius:2px}
+.vw-s .meta b{display:block;margin-top:10px;font:700 18px/1.35 var(--serif)}
+.vw-s .meta span{display:block;margin-top:5px;font-size:12.5px;color:rgba(255,255,255,.6)}
+.vw-dots{display:flex;justify-content:center;gap:5px;padding:0 0 calc(env(safe-area-inset-bottom) + 18px)}
+.vw-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.22);transition:all .2s}
+.vw-dots i.on{width:16px;border-radius:3px;background:var(--gold-hi)}
+
+.end{background:var(--paper2);padding:40px 22px calc(env(safe-area-inset-bottom) + 40px);text-align:center;font-size:12px;line-height:1.8;color:#7a8199}
+.end b{display:block;font:700 14px/1.6 var(--serif);color:var(--navy);margin-bottom:6px}
+
+@media (min-width:900px){
+  .qw-head{left:6vw;right:auto;width:min(40vw,520px);top:13vh;padding:0}
+  .qw-brand{margin-bottom:48px}
+  .h2{font-size:clamp(30px,3.1vw,46px);text-wrap:balance}
+  .qw-foot{left:6vw;right:auto;width:min(40vw,520px);bottom:9vh;padding:0}
+  .qw-wall{left:66%}
+  .qw-crown{left:67%;width:min(36vw,520px)}
+  .qw-shade{background:linear-gradient(90deg,rgba(3,10,32,.96) 0%,rgba(3,10,32,.8) 30%,rgba(3,10,32,0) 52%),linear-gradient(180deg,rgba(3,10,32,.6) 0%,rgba(3,10,32,0) 22%,rgba(3,10,32,0) 80%,rgba(3,10,32,.7) 100%)}
+  .nw{padding:120px 0 110px}
+  .nw .grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);grid-template-areas:"head viz" "info viz";column-gap:56px;align-items:center}
+  .nw-head{grid-area:head;align-self:end}.nw-info{grid-area:info;align-self:start}.nw-viz{grid-area:viz;margin:0}
+  .nw-viz .nw-legend{padding:0}
+  .nw-lead{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+  .qw-col,.qc::after,.qw-crown .rs svg,.nw-fx .pulse{animation:none}
+}
+</style>
+</head>
+<body>
+
+<section class="qw" id="quals">
+  <div class="qw-stage">
+    <div class="qw-scene"><div class="qw-wall" id="wall"></div></div>
+    <div class="qw-shade"></div>
+    <div class="qw-dim" id="dim"></div>
+    <div class="qw-crown" id="crown">
+      <div class="rs" data-rosette></div>
+      <figure data-cert="gaoxin"><figcaption><em>国家级</em>国家高新技术企业</figcaption><div class="pic"><img src="../../assets/img/cert/gc-gaoxin.jpg" alt="高新技术企业证书" width="846" height="538"></div></figure>
+      <figure data-cert="zjtx"><div class="pic"><img src="../../assets/img/cert/gc-zjtx.jpg" alt="北京市专精特新中小企业证书" width="846" height="559"><span class="badge" data-badge></span></div><figcaption>北京市专精特新中小企业<em>省级</em></figcaption></figure>
+    </div>
+    <header class="qw-head">
+      <div class="qw-brand"><span class="mk" aria-label="贵昌集团"></span><small>样张 v3</small></div>
+      <p class="kicker"><span>№ 02</span><i></i><span>资质</span></p>
+      <h2 class="h2">资质，<br>是进入<span class="foil">政企采购</span>的门槛</h2>
+      <p class="qw-hint" id="hint">往上滑，看 31 张证书一张张砌成门槛</p>
+    </header>
+    <footer class="qw-foot" id="foot">
+      <div class="qw-num">
+        <b class="foil" id="qn">0</b>
+        <div class="lb"><span>项资质认证</span><small>贵昌集团 · 晟帆国旅</small></div>
+        <div class="ip"><b>+7</b><span>项知识产权</span></div>
+      </div>
+      <ul class="qw-stats">
+        <li><b>7</b><span>准入许可</span></li>
+        <li><b>15</b><span>体系认证</span></li>
+        <li><b>2</b><span>国家及省级认定</span></li>
+      </ul>
+      <button class="qw-cta" id="cta" type="button"><span>查看全部证书原件</span><i>31 →</i></button>
+    </footer>
+  </div>
+</section>
+
+<section class="nw" id="network">
+  <div class="wrap grid">
+    <div class="nw-head">
+      <p class="kicker"><span>№ 01</span><i></i><span>服务网络</span></p>
+      <h2 class="h2">总部北京，<br>服务网络通达全国</h2>
+      <p class="nw-lead">20 余家分公司、子公司及办事处，从北京丰台出发，服务已落地 10 个省市。</p>
+    </div>
+    <div class="nw-viz">
+      <figure class="nw-map" id="nwMap">
+        <canvas aria-hidden="true"></canvas>
+        <svg class="nw-fx" viewBox="-1.2 -0.5 70.6 50" preserveAspectRatio="xMidYMid meet" role="img" aria-label="服务网络示意图">
+          <defs>
+            <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#94702F"/><stop offset=".55" stop-color="#C9A35B"/><stop offset="1" stop-color="#E9C982"/></linearGradient>
+            <linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1D596"/><stop offset=".5" stop-color="#C9A35B"/><stop offset="1" stop-color="#94702F"/></linearGradient>
+            <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation=".35" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <g class="arcs"></g><g class="comets"></g><g class="nodes"></g><g class="nw-inset"></g>
+        </svg>
+      </figure>
+      <div class="nw-legend"><span><i class="l1"></i>总部</span><span><i class="l2"></i>已服务地区（点按查看）</span><span><i class="l3"></i>服务线路</span></div>
+    </div>
+    <div class="nw-info">
+      <div class="nw-card" id="nwCard"><div class="pin">京</div><div><b>北京 · 总部</b><span>丰台区新华双创园 · 机关、高校、医院与央国企客户集中</span></div></div>
+      <ul class="nw-stats">
+        <li><b>20<sup>+</sup></b><span>分支机构</span></li>
+        <li><b>10</b><span>省市服务落地</span></li>
+        <li><b>2<small>h</small></b><span>应急送达</span></li>
+      </ul>
+      <p class="nw-note">示意图。服务地区按现有客户项目标注；20 余个分支机构的具体位置待补充。</p>
+    </div>
+  </div>
+</section>
+
+<div class="end"><b>样张 v3 · 只做了资质与服务网络两块</b>方向确认后，客户墙、业务、名片按同一思路重做</div>
+
+<div class="vw" id="vw" role="dialog" aria-modal="true" aria-label="证书原件">
+  <div class="vw-top"><b id="vwIdx">01 / 31</b><button class="vw-x" id="vwX" type="button" aria-label="关闭">×</button></div>
+  <div class="vw-track" id="vwTrack"></div>
+  <div class="vw-dots" id="vwDots"></div>
+</div>
+
+<script src="map-data.js"></script>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const smooth = t => t * t * (3 - 2 * t);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rng = s => () => (s = (s * 16807) % 2147483647) / 2147483647;
+
+  // 31 张证书：g 分组（lic 准入许可 / sys 体系认证 / rec 认定 / ip 知识产权），w/h 为缩略图尺寸
+  const GC = '贵昌集团', SF = '晟帆国旅';
+  const CERTS = [
+    ['gaoxin', 'rec', '高新技术企业证书', '国家级认定', GC, 'gc-gaoxin', 300, 191],
+    ['zjtx', 'rec', '北京市“专精特新”中小企业', '省级认定', GC, 'gc-zjtx', 300, 198],
+    ['shipin', 'lic', '食品经营许可证', '行政许可', GC, 'gc-shipin', 300, 202],
+    ['yiliao', 'lic', '医疗器械经营许可证', '行政许可', GC, 'gc-yiliao', 300, 204],
+    ['yiliao2', 'lic', '第二类医疗器械经营备案凭证', '行政备案', GC, 'gc-yiliao-beian', 207, 300],
+    ['icp', 'lic', '增值电信业务经营许可证', '行政许可', GC, 'gc-icp', 206, 300],
+    ['dengbao', 'lic', '信息系统安全等级保护备案证明', '公安备案', GC, 'gc-dengbao', 300, 191],
+    ['mice', 'lic', '会务会展服务企业资质证书（一级）', '行业最高等级', SF, 'sf-mice', 226, 320],
+    ['travel', 'lic', '旅行社业务经营许可证', '行政许可', SF, 'sf-travel', 320, 221],
+    ['iso9001', 'sys', '质量管理体系认证证书', '体系认证', GC, 'gc-iso9001', 206, 300],
+    ['iso14001', 'sys', '环境管理体系认证证书', '体系认证', GC, 'gc-iso14001', 206, 300],
+    ['iso45001', 'sys', '职业健康安全管理体系认证证书', '体系认证', GC, 'gc-iso45001', 207, 300],
+    ['iso22000', 'sys', '食品安全管理体系认证证书', '体系认证', GC, 'gc-iso22000', 226, 300],
+    ['haccp', 'sys', 'HACCP 体系认证证书', '体系认证', GC, 'gc-haccp', 207, 300],
+    ['iso27001', 'sys', '信息安全管理体系认证证书', '体系认证', GC, 'gc-iso27001', 208, 300],
+    ['iso27701', 'sys', '隐私信息管理体系认证证书', '体系认证', GC, 'gc-iso27701', 206, 300],
+    ['iso28000', 'sys', '供应链安全管理体系认证证书', '体系认证', GC, 'gc-iso28000', 203, 300],
+    ['trace', 'sys', '可追溯管理体系认证证书', '体系认证', GC, 'gc-trace', 198, 300],
+    ['shengxian', 'sys', '生鲜农产品配送管理体系认证证书', '体系认证', GC, 'gc-shengxian', 300, 298],
+    ['chuji', 'sys', '初级生鲜食品配送管理体系认证证书', '体系认证', GC, 'gc-chuji', 267, 300],
+    ['shouhou', 'sys', '售后服务认证证书（五星级）', '体系认证', GC, 'gc-shouhou', 297, 300],
+    ['sf9001', 'sys', '质量管理体系认证证书', '体系认证', SF, 'sf-iso9001', 225, 320],
+    ['sf14001', 'sys', '环境管理体系认证证书', '体系认证', SF, 'sf-iso14001', 225, 320],
+    ['sf45001', 'sys', '职业健康安全管理体系认证证书', '体系认证', SF, 'sf-iso45001', 224, 320],
+    ['patent1', 'ip', '发明专利证书', '知识产权', GC, 'gc-patent1', 224, 300],
+    ['patent2', 'ip', '发明专利证书', '知识产权', GC, 'gc-patent2', 217, 300],
+    ['soft1', 'ip', '计算机软件著作权登记证书', '知识产权', GC, 'gc-soft1', 221, 300],
+    ['soft2', 'ip', '计算机软件著作权登记证书', '知识产权', GC, 'gc-soft2', 207, 300],
+    ['tm1', 'ip', '注册商标 · 稻草森林', '知识产权', GC, 'gc-tm-daocao', 211, 300],
+    ['tm2', 'ip', '注册商标 · 菱克', '知识产权', GC, 'gc-tm-lingke', 210, 300],
+    ['tm3', 'ip', '注册商标 · 一叶扁舟', '知识产权', GC, 'gc-tm-yiye', 210, 300],
+  ].map(([id, g, name, lv, who, img, w, h]) => ({ id, g, name, lv, who, img, w, h }));
+  const IMG = '../../assets/img/cert/';
+
+  /* ── 防伪纹（与站点同一套生成方式） ── */
+  function ringBand(c, R, a, n, layers, pts) {
+    let d = '';
+    for (let k = 0; k < layers; k++) {
+      const ph = k * 2 * Math.PI / layers;
+      for (let i = 0; i <= pts; i++) {
+        const t = i / pts * 2 * Math.PI, r = R + a * Math.sin(n * t + ph);
+        d += (i ? 'L' : 'M') + (c + r * Math.cos(t)).toFixed(1) + ' ' + (c + r * Math.sin(t)).toFixed(1);
+      }
+    }
+    return d;
+  }
+  $('[data-rosette]').innerHTML = '<svg viewBox="0 0 600 600" aria-hidden="true">' +
+    [[282, 7, 72, 5, 1400, .5], [236, 26, 28, 14, 700, .32], [170, 18, 40, 8, 700, .26]]
+      .map(([R, a, n, L, p, o]) => `<path d="${ringBand(300, R, a, n, L, p)}" fill="none" stroke="#F1D596" stroke-opacity="${o}" stroke-width=".7"/>`).join('') + '</svg>';
+
+  // 金色认定徽章（品牌样式，不仿任何机关印章）
+  $('[data-badge]').innerHTML = `<svg viewBox="0 0 200 200" aria-hidden="true">
+    <defs><linearGradient id="bdg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1C6"/><stop offset=".35" stop-color="#E9C982"/><stop offset=".7" stop-color="#B8914C"/><stop offset="1" stop-color="#8B6526"/></linearGradient>
+    <path id="bdr" d="M100 100 m-70 0 a70 70 0 1 1 140 0 a70 70 0 1 1 -140 0"/></defs>
+    <circle cx="100" cy="100" r="96" fill="url(#bdg)"/><circle cx="100" cy="100" r="88" fill="#0B2A71"/>
+    <circle cx="100" cy="100" r="84" fill="none" stroke="#E9C982" stroke-width="1.2"/><circle cx="100" cy="100" r="56" fill="none" stroke="#E9C982" stroke-width="1"/>
+    <path d="${ringBand(100, 74, 3, 36, 3, 500)}" fill="none" stroke="#E9C982" stroke-opacity=".35" stroke-width=".6"/>
+    <text font-family="JetBrains Mono, monospace" font-size="10.5" fill="#F1D596"><textPath href="#bdr" startOffset="0" textLength="432" lengthAdjust="spacing">SPECIALIZED · REFINED · DISTINCTIVE · INNOVATIVE ·</textPath></text>
+    <text x="100" y="94" text-anchor="middle" font-family="Noto Serif SC, serif" font-weight="900" font-size="25" fill="#F1D596">专精特新</text>
+    <text x="100" y="122" text-anchor="middle" font-family="Noto Serif SC, serif" font-weight="700" font-size="15" letter-spacing="4" fill="#E9C982">省级认定</text></svg>`;
+
+  /* ── 资质：证书筑墙 ── */
+  const sec = $('#quals'), wall = $('#wall'), crown = $('#crown'), dim = $('#dim'), foot = $('#foot');
+  const qn = $('#qn'), hint = $('#hint'), cta = $('#cta');
+  const DUR = .13, TOTAL_QUAL = CERTS.filter(c => c.g !== 'ip').length;
+  let tiles = [];
+  // 与 CSS 里 .qw-wall 的 rotateX(22deg) rotateY(-24deg) rotateZ(-7deg) 一致
+  const WALL_ROT = [22, -24, -7];
+  function wallMatrix() {
+    const [ax, ay, az] = WALL_ROT.map(d => d * Math.PI / 180);
+    const Rx = [[1, 0, 0], [0, Math.cos(ax), -Math.sin(ax)], [0, Math.sin(ax), Math.cos(ax)]];
+    const Ry = [[Math.cos(ay), 0, Math.sin(ay)], [0, 1, 0], [-Math.sin(ay), 0, Math.cos(ay)]];
+    const Rz = [[Math.cos(az), -Math.sin(az), 0], [Math.sin(az), Math.cos(az), 0], [0, 0, 1]];
+    const mul = (A, B) => A.map((r, i) => B[0].map((_, j) => r.reduce((s, _, k) => s + A[i][k] * B[k][j], 0)));
+    return mul(mul(Rx, Ry), Rz);
+  }
+
+  function buildWall() {
+    const desk = innerWidth >= 900;
+    const cfg = desk ? { cols: 7, tw: 150, gap: 20 } : { cols: 5, tw: 104, gap: 13 };
+    const r = rng(11), order = CERTS.slice().sort(() => r() - .5);
+    const cols = Array.from({ length: cfg.cols }, () => ({ items: [], h: 0 }));
+    order.forEach(c => {
+      const col = cols.reduce((a, b) => (b.h < a.h ? b : a));
+      const th = Math.round(cfg.tw * c.h / c.w);
+      col.items.push({ c, y: col.h, th });
+      col.h += th + cfg.gap;
+    });
+    const H = Math.max(...cols.map(c => c.h)), Wd = cfg.cols * cfg.tw + (cfg.cols - 1) * cfg.gap;
+    wall.style.width = Wd + 'px'; wall.style.height = H + 'px';
+    wall.innerHTML = ''; tiles = [];
+    const rr = rng(29);
+    // 散落位置先在屏幕空间里取（铺满视野、远近不一），再用墙面旋转的逆矩阵换回墙面坐标
+    const R = wallMatrix(), vwid = innerWidth, vhei = innerHeight;
+    const toLocal = (X, Y, Z) => [R[0][0] * X + R[1][0] * Y + R[2][0] * Z, R[0][1] * X + R[1][1] * Y + R[2][1] * Z, R[0][2] * X + R[1][2] * Y + R[2][2] * Z];
+    cols.forEach((col, ci) => {
+      const el = document.createElement('div');
+      el.className = 'qw-col' + (ci % 2 ? ' down' : '');
+      el.style.left = ci * (cfg.tw + cfg.gap) + 'px';
+      el.style.width = cfg.tw + 'px';
+      el.style.setProperty('--h', col.h + 'px');
+      el.style.setProperty('--dur', (col.h / (desk ? 15 : 11)).toFixed(1) + 's');
+      el.style.animationDelay = (-rr() * 20).toFixed(1) + 's';
+      for (let copy = -1; copy <= 1; copy++) {
+        col.items.forEach(it => {
+          const t = document.createElement('figure');
+          const top = it.y + copy * col.h;
+          t.className = 'qc' + (it.c.g === 'rec' ? ' top' : '');
+          t.style.cssText = `top:${top}px;width:${cfg.tw}px;height:${it.th}px;--sd:${(rr() * 7).toFixed(1)}s`;
+          t.dataset.cert = it.c.id;
+          t.innerHTML = `<img src="${IMG}s/${it.c.img}.jpg" alt="" loading="${copy === 0 ? 'eager' : 'lazy'}" decoding="async">`;
+          el.appendChild(t);
+          // 从下往上砌：越靠下越早落位
+          const yc = clamp((top + it.th / 2) / H, -0.4, 1.4);
+          const s = .03 + .42 * clamp((1.25 - yc) / 1.5) + rr() * .045;
+          const Z = -300 - Math.pow(rr(), .8) * 2300, f = (1000 - Z) / 1000;
+          const X = (rr() - .5) * vwid * 1.15 * f + (desk ? vwid * .16 * f : 0), Y = (rr() - .58) * vhei * .95 * f;
+          const [lx, ly, lz] = toLocal(X, Y, Z);
+          const ox = ci * (cfg.tw + cfg.gap) + cfg.tw / 2 - Wd / 2, oy = top + it.th / 2 - H / 2;
+          tiles.push({
+            el: t, s, copy, qual: it.c.g !== 'ip',
+            sx: lx - ox, sy: ly - oy, sz: lz,
+            rx: (rr() - .5) * 70, ry: (rr() - .5) * 90, rz: (rr() - .5) * 60, g: -1,
+          });
+        });
+      }
+      wall.appendChild(el);
+    });
+    lastP = -1; tick();
+  }
+
+  let lastP = -1, raf = 0;
+  function progress() {
+    const r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
+    return clamp(-r.top / total);
+  }
+  function render(p) {
+    for (const t of tiles) {
+      const l = clamp((p - t.s) / DUR), k = 1 - ease(l);
+      t.el.style.transform = k > .001
+        ? `translate3d(${(t.sx * k).toFixed(1)}px,${(t.sy * k).toFixed(1)}px,${(t.sz * k).toFixed(1)}px) rotateX(${(t.rx * k).toFixed(1)}deg) rotateY(${(t.ry * k).toFixed(1)}deg) rotateZ(${(t.rz * k).toFixed(1)}deg)`
+        : 'none';
+      t.el.style.opacity = (.32 + .68 * clamp(l * 1.8)).toFixed(3);
+      const g = Math.round(clamp(1 - Math.abs(p - (t.s + DUR)) / .028) * 20) / 20;
+      if (g !== t.g) { t.g = g; t.el.style.setProperty('--g', g); }
+    }
+    // 计数跟着墙面砌筑的进度走（墙从下往上砌，屏幕上的进度比中间那一份副本更早可见）
+    qn.textContent = Math.round(TOTAL_QUAL * smooth(clamp((p - .06) / .46)));
+    const c = smooth(clamp((p - .6) / .15)), s = smooth(clamp((p - .74) / .14));
+    crown.style.setProperty('--c', c.toFixed(3));
+    dim.style.setProperty('--c', c.toFixed(3));
+    foot.style.setProperty('--s', s.toFixed(3));
+    cta.classList.toggle('on', s > .6);
+    hint.style.opacity = (1 - clamp(p / .12)).toFixed(2);
+    foot.querySelector('.ip').style.setProperty('--s', smooth(clamp((p - .44) / .1)).toFixed(2));
+  }
+  function tick() {
+    raf = 0;
+    const p = reduce ? 1 : progress();
+    if (Math.abs(p - lastP) < 1e-4) return;
+    lastP = p; render(p);
+  }
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
+  let rw = innerWidth;
+  addEventListener('resize', () => { if (Math.abs(innerWidth - rw) > 40) { rw = innerWidth; buildWall(); mapResize(); } else { lastP = -1; tick(); } });
+  buildWall();
+
+  /* ── 证书查看器 ── */
+  const vw = $('#vw'), track = $('#vwTrack'), dots = $('#vwDots'), idx = $('#vwIdx');
+  const VORDER = ['rec', 'lic', 'sys', 'ip'].flatMap(g => CERTS.filter(c => c.g === g));
+  track.innerHTML = VORDER.map(c => `<div class="vw-s"><div class="pic"><img data-src="${IMG}${c.img}.jpg" alt="${c.name}"></div>
+    <div class="meta"><em>${c.lv}</em><b>${c.name}</b><span>持证单位：${c.who === GC ? '贵昌集团有限公司' : '北京晟帆国际旅行社有限公司'}</span></div></div>`).join('');
+  dots.innerHTML = VORDER.map(() => '<i></i>').join('');
+  const slides = [...track.children], dotEls = [...dots.children];
+  function loadNear(i) { for (let k = i - 1; k <= i + 1; k++) { const im = slides[k] && slides[k].querySelector('img[data-src]'); if (im) { im.src = im.dataset.src; im.removeAttribute('data-src'); } } }
+  function setIdx(i) { idx.textContent = String(i + 1).padStart(2, '0') + ' / ' + VORDER.length; dotEls.forEach((d, k) => d.classList.toggle('on', k === i)); loadNear(i); }
+  track.addEventListener('scroll', () => { const i = Math.round(track.scrollLeft / track.clientWidth); setIdx(clamp(i, 0, VORDER.length - 1)); }, { passive: true });
+  function openViewer(id) {
+    const i = Math.max(0, VORDER.findIndex(c => c.id === id));
+    vw.classList.add('on'); document.documentElement.style.overflow = 'hidden';
+    requestAnimationFrame(() => { track.scrollLeft = i * track.clientWidth; setIdx(i); });
+  }
+  $('#vwX').onclick = () => { vw.classList.remove('on'); document.documentElement.style.overflow = ''; };
+  cta.onclick = () => openViewer('gaoxin');
+  document.addEventListener('click', e => { const f = e.target.closest('[data-cert]'); if (f && !vw.contains(f)) openViewer(f.dataset.cert); });
+
+  /* ── 服务网络：点阵地图 ── */
+  const D = window.CN_DOTS, fig = $('#nwMap'), cv = fig.querySelector('canvas'), svg = fig.querySelector('svg');
+  const VB = { x: -1.2, y: -.5, w: 70.6, h: 50 };
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+  const C = D.city, BJ = C.bj;
+  const SERVED = [
+    ['tj', '天津', '已有服务项目', 1.3, .55, 'start'],
+    ['he', '河北', '已有服务项目', -.4, 2.6, 'end'],
+    ['sx', '山西', '同煤大唐塔山煤矿有限公司等', -1.3, 1.2, 'end'],
+    ['ln', '辽宁', '已有服务项目', 1.3, 1.7, 'start'],
+    ['jl', '吉林', '吉林工程职业学院等', 1.2, -.8, 'start'],
+    ['sh', '上海', '上海滴水湖学校等', 1.4, .6, 'start'],
+    ['sn', '陕西', '西安市轨道交通集团有限公司等', -1.4, .6, 'end'],
+    ['sc', '四川', '四川大学工会委员会等', -1.4, .6, 'end'],
+    ['gd', '广东', '广州水投城市服务有限公司等', 1.4, .6, 'start'],
+  ];
+  const dotsArr = [];
+  for (let r = 0; r < D.rows; r++) for (let c = 0; c < D.cols; c++) {
+    const l = +D.lv[r * D.cols + c];
+    if (l) dotsArr.push({ x: c + .5, y: r + .5, l });
+  }
+  dotsArr.push({ x: C.diaoyu[0], y: C.diaoyu[1], l: 1 }, { x: C.chiwei[0], y: C.chiwei[1], l: 1 });
+  const jr = rng(5);
+  dotsArr.forEach(d => {
+    let h = Math.exp(-((d.x - BJ[0]) ** 2 + (d.y - BJ[1]) ** 2) / (2 * 3.6 ** 2));
+    SERVED.forEach(([k]) => { const p = C[k]; h = Math.max(h, .78 * Math.exp(-((d.x - p[0]) ** 2 + (d.y - p[1]) ** 2) / (2 * 2.3 ** 2))); });
+    d.h = h; d.t0 = Math.hypot(d.x - BJ[0], d.y - BJ[1]) * 24 + jr() * 140;
+  });
+  const T_DOTS = Math.max(...dotsArr.map(d => d.t0)) + 480;
+
+  // 线路、彗星、节点、标注
+  const gArcs = svg.querySelector('.arcs'), gComets = svg.querySelector('.comets'), gNodes = svg.querySelector('.nodes'), gInset = svg.querySelector('.nw-inset');
+  const arcs = SERVED.map(([k], i) => {
+    const p = C[k], mx = (BJ[0] + p[0]) / 2, my = (BJ[1] + p[1]) / 2, dx = p[0] - BJ[0], dy = p[1] - BJ[1], L = Math.hypot(dx, dy);
+    let nx = -dy / L, ny = dx / L; if (ny > 0) { nx = -nx; ny = -ny; }
+    const bulge = Math.min(7, L * .3 + .6);
+    const path = mk('path', { class: 'arc', d: `M${BJ[0]} ${BJ[1]} Q${(mx + nx * bulge).toFixed(2)} ${(my + ny * bulge).toFixed(2)} ${p[0]} ${p[1]}` }, gArcs);
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = path.style.strokeDashoffset = len;
+    const comet = mk('circle', { class: 'comet', r: .42, cx: BJ[0], cy: BJ[1], opacity: 0 }, gComets);
+    return { path, len, comet, ph: i * .137 };
+  });
+  const lblSize = [];
+  function label(x, y, txt, anchor, cls) {
+    const t = mk('text', { x, y, 'text-anchor': anchor, class: 'lbl' + (cls ? ' ' + cls : '') }, gNodes);
+    t.textContent = txt; lblSize.push(t); return t;
+  }
+  SERVED.forEach(([k, name, info, dx, dy, anchor]) => {
+    const p = C[k], g = mk('g', { class: 'nd', 'data-k': k, transform: `translate(${p[0]} ${p[1]})` }, gNodes);
+    mk('circle', { class: 'hit', r: 2.4 }, g); mk('circle', { class: 'ring', r: .9 }, g); mk('circle', { class: 'core', r: .42 }, g);
+    label(p[0] + dx, p[1] + dy, name, anchor);
+  });
+  const hq = mk('g', { class: 'nd hq sel', 'data-k': 'bj', transform: `translate(${BJ[0]} ${BJ[1]})` }, gNodes);
+  mk('circle', { class: 'pulse', r: 1 }, hq); mk('circle', { class: 'pulse b', r: 1 }, hq); mk('circle', { class: 'hit', r: 2.6 }, hq);
+  const star = Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? .62 : 1.45; return (i ? 'L' : 'M') + (r * Math.cos(a)).toFixed(3) + ' ' + (r * Math.sin(a)).toFixed(3); }).join('') + 'Z';
+  mk('path', { class: 'star', d: star }, hq);
+  label(BJ[0] - 1.5, BJ[1] - 2.3, '北京 · 总部', 'end', 'hq');
+
+  // 南海诸岛小框
+  const IN = D.inset, iw = 8.4, ih = iw / IN.aspect, ix = 68.7 - iw, iy = 49.1 - ih;
+  mk('rect', { x: ix, y: iy, width: iw, height: ih, rx: .3 }, gInset);
+  const ipx = IN.pitch * iw;
+  for (let r = 0; r < IN.rows; r++) for (let c = 0; c < IN.cols; c++) {
+    const l = +IN.lv[r * IN.cols + c]; if (!l) continue;
+    mk('circle', { cx: (ix + IN.ox * iw + (c + .5) * ipx).toFixed(3), cy: (iy + IN.oy * ih + (r + .5) * ipx).toFixed(3), r: (l === 2 ? .36 : .24) * ipx, fill: 'rgba(11,42,113,.55)' }, gInset);
+  }
+  IN.parts.forEach(([kind, cx, cy, len, ang]) => {
+    const x = ix + cx * iw, y = iy + cy * ih;
+    if (kind === 'isle') mk('circle', { cx: x, cy: y, r: .13, fill: 'rgba(11,42,113,.7)' }, gInset);
+    else { const L = Math.max(len * iw, .32) / 2; mk('line', { class: 'dash', x1: x - Math.cos(ang) * L, y1: y - Math.sin(ang) * L, x2: x + Math.cos(ang) * L, y2: y + Math.sin(ang) * L }, gInset); }
+  });
+  const insetLbl = mk('text', { x: ix + iw - .5, y: iy + ih - .6, 'text-anchor': 'end' }, gInset); insetLbl.textContent = '南海诸岛';
+
+  // 点阵画在 canvas 上
+  const ctx = cv.getContext('2d');
+  let scale = 1, dpr = 1, started = 0, mapRaf = 0;
+  function mapResize() {
+    const r = fig.getBoundingClientRect();
+    dpr = Math.min(2.5, devicePixelRatio || 1);
+    cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+    scale = Math.min(r.width / VB.w, r.height / VB.h);
+    const fs = Math.max(1.4, 11.5 / scale);
+    lblSize.forEach(t => { t.setAttribute('font-size', fs.toFixed(2)); t.setAttribute('stroke-width', (3.2 / scale).toFixed(3)); });
+    arcs.forEach(a => { a.path.setAttribute('stroke-width', (1.7 / scale).toFixed(3)); a.comet.setAttribute('r', Math.max(.42, 2.6 / scale).toFixed(3)); });
+    insetLbl.setAttribute('font-size', Math.max(.9, 8 / scale).toFixed(2));
+    drawDots(started ? performance.now() - started : (reduce ? 1e9 : 0));
+  }
+  const easeBack = t => { const s = 1.6; return 1 + (s + 1) * Math.pow(t - 1, 3) + s * Math.pow(t - 1, 2); };
+  function drawDots(t) {
+    const r = fig.getBoundingClientRect(), ox = (r.width - VB.w * scale) / 2, oy = (r.height - VB.h * scale) / 2;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, r.width, r.height);
+    for (const d of dotsArr) {
+      const a = clamp((t - d.t0) / 480); if (a <= 0) continue;
+      const rad = (d.l === 2 ? .35 : .23) * (1 + .28 * d.h) * scale * easeBack(a);
+      if (rad <= 0) continue;
+      ctx.fillStyle = `rgba(11,42,113,${((.3 + .62 * d.h) * clamp(a * 2.5)).toFixed(3)})`;
+      ctx.beginPath(); ctx.arc(ox + (d.x - VB.x) * scale, oy + (d.y - VB.y) * scale, rad, 0, 6.2832); ctx.fill();
+    }
+  }
+  function mapLoop(now) {
+    const t = now - started;
+    if (t < T_DOTS + 60) drawDots(t);
+    arcs.forEach((a, i) => {
+      const k = clamp((t - 700 - i * 110) / 1100);
+      a.path.style.strokeDashoffset = (a.len * (1 - ease(k))).toFixed(2);
+      if (k >= 1) {
+        const ph = ((t / 2600) + a.ph) % 1, pt = a.path.getPointAtLength(a.len * ph);
+        a.comet.setAttribute('cx', pt.x.toFixed(2)); a.comet.setAttribute('cy', pt.y.toFixed(2));
+        a.comet.setAttribute('opacity', (Math.sin(ph * Math.PI) * .95).toFixed(2));
+      }
+    });
+    mapRaf = requestAnimationFrame(mapLoop);
+  }
+  function startMap() {
+    if (started) return;
+    started = performance.now();
+    fig.classList.add('on');
+    if (reduce) { drawDots(1e9); arcs.forEach(a => a.path.style.strokeDashoffset = 0); return; }
+    mapRaf = requestAnimationFrame(mapLoop);
+  }
+  new IntersectionObserver((es, io) => { es.forEach(e => { if (e.isIntersecting) { startMap(); io.disconnect(); } }); }, { threshold: .3 }).observe(fig);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(mapRaf); mapRaf = 0; } else if (started && !reduce && !mapRaf) mapRaf = requestAnimationFrame(mapLoop); });
+  mapResize();
+
+  const card = $('#nwCard');
+  const INFO = Object.fromEntries(SERVED.map(([k, n, info]) => [k, [n, info]]));
+  INFO.bj = ['北京 · 总部', '丰台区新华双创园 · 机关、高校、医院与央国企客户集中'];
+  gNodes.addEventListener('click', e => {
+    const g = e.target.closest('.nd'); if (!g) return;
+    gNodes.querySelectorAll('.nd').forEach(n => n.classList.toggle('sel', n === g));
+    const [n, info] = INFO[g.dataset.k];
+    card.querySelector('.pin').textContent = n[0];
+    card.querySelector('b').textContent = n; card.querySelector('span').textContent = info;
+    card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+  });
+})();
+</script>
+</body>
+</html>

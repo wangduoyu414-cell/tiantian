@@ -1,0 +1,14 @@
+{
+  "_说明": "每种字体只保留这里列出的字符。改了页面文字后，在浏览器控制台运行 tools/collect-serif-chars.js，把结果填进 Noto Serif SC，再运行 python3 tools/fonts.py。",
+  "Noto Serif SC": {
+    "700": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~·“”一万三上专世业东个中书事二五交产京人仁件企会传位体余作供保信值健元克免兑入全八公关册农冬凭出分创初利别到制力办加务化北区医十华单南印参发口可台叶司合吉同后告员周和咨品售商器四团国图场坛城境增备外大天太央套奥好委媒字存学宁安定实客家察对寿小展属山岛川州工市帆师平年广应府康张录彰微心急总息情感慧成我户扁扫承技投护按捐换接政数文新旅日昌明星晟最有服期术机权杆材村板林标校案桥梦械森残每民水河油法注洋津流海湖溯滴潭牌物特环理生用甲电疗疫登的益目省看真知石研社福私科积程税稻空立童第等筑算管类精系级纪线组织经络统绿网考职能自舟航色范草菱营著行表西计认议讯记许设访证识诚询语诸谢财质购贵资赠路轨软辽运追送通道邮部都配采量金钞铁银链长门间队际限陕院险隐集项食餐饮馆首驻高鲜黄（），",
+    "900": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~一专些京付企会位余保入冬创到刻北十千单合和品回地多头奥妥安家小年应急您慧我托执找排接收政新时是有槛正求源物特甜的直程站签精落行要质购资达这进送配采重门障需鲁，"
+  },
+  "Barlow Condensed": {
+    "600": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~·×–—"
+  },
+  "JetBrains Mono": {
+    "400": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~·×–—№★✓",
+    "500": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~·×–—№★✓"
+  }
+}

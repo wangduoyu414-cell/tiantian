@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>会务研学 · 第四步样张</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  :root { --ink: #2a2621; --ink2: #5a5048; --ink3: #8b8073; --paper: #eef0ea; --qing: #2f5f86; --qing-d: #23465a; --cinnabar: #b3362b; --gold: #b58c4c; --serif: "Noto Serif SC", "Songti SC", serif; --brush: "Ma Shan Zheng", "STKaiti", serif; --gutter: clamp(16px, 4vw, 40px); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.7 -apple-system, "PingFang SC", sans-serif; }
+  .ch { max-width: 1320px; margin: 0 auto; padding: 72px var(--gutter) 90px; }
+  .ch-sign { margin: 0 0 10px; display: flex; align-items: center; gap: 10px; color: var(--ink2); font-size: 13px; letter-spacing: .3em; }
+  .ch-sign b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 3px; background: var(--qing); color: #eef3f2; font: 400 18px/1 var(--brush); letter-spacing: 0; }
+  h2 { margin: 0; font: 900 clamp(28px, 3.4vw, 44px)/1.25 var(--serif); letter-spacing: .06em; }
+  .lead { margin: 10px 0 0; color: var(--ink2); max-width: 44em; }
+  .sub { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; margin: 64px 0 18px; font: 700 22px/1.3 var(--serif); letter-spacing: .08em; }
+  .sub::before { content: ''; align-self: center; width: 26px; height: 2px; background: var(--qing); }
+  .sub small { font: 13px/1 -apple-system, sans-serif; color: var(--ink3); letter-spacing: .08em; }
+  .leaf { position: relative; margin: 28px 0 0; padding: 12px; border-radius: 4px; background: #d9ddd3; box-shadow: inset 0 0 0 1px rgba(60, 80, 80, .28), 0 18px 40px -26px rgba(30, 45, 50, .55); }
+  /* 主视觉 */
+  .stage { position: relative; width: 100%; aspect-ratio: 1600 / 760; overflow: hidden; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(60, 80, 80, .35); container-type: inline-size; background: #e6ece9; }
+  .stage .jh-layer { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hit { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 6px; transition: background-color .25s, box-shadow .25s; }
+  .hit:hover, .hit.on { background: rgba(255, 255, 255, .12); box-shadow: 0 0 0 1px rgba(47, 95, 134, .4); }
+  .slip { position: absolute; z-index: 4; writing-mode: vertical-rl; padding: .5em .28em; background: #f6f6f0; box-shadow: 0 0 0 1px rgba(35, 70, 90, .55), 0 0 0 3px #f6f6f0, 0 0 0 4px rgba(35, 70, 90, .3), 0 6px 14px -8px rgba(20, 35, 40, .5); font: 400 clamp(12px, 1.02cqw, 16px)/1.15 var(--brush); color: #1f3d4e; letter-spacing: .22em; cursor: pointer; border: 0; }
+  .slip:hover, .slip.on { background: var(--qing); color: #eef3f2; }
+  .title-slip { position: absolute; z-index: 5; right: 2.4%; top: 5%; display: flex; gap: 8px; align-items: flex-start; pointer-events: none; }
+  .title-slip b { writing-mode: vertical-rl; padding: .6em .4em; background: rgba(246, 247, 240, .94); box-shadow: inset 0 0 0 1px rgba(35, 70, 90, .5), inset 0 0 0 4px rgba(246, 247, 240, .94), inset 0 0 0 5px rgba(35, 70, 90, .3); font: 400 clamp(16px, 1.7cqw, 27px)/1.1 var(--brush); letter-spacing: .3em; color: var(--ink); }
+  .title-slip i { display: grid; place-items: center; width: 2.6cqw; min-width: 24px; aspect-ratio: 1; margin-top: 5.6em; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 clamp(10px, .86cqw, 14px)/1.05 var(--brush); font-style: normal; text-align: center; }
+  /* 推门见客：两扇隔扇门，进入视野时向两边打开 */
+  .doors { position: absolute; inset: 0; z-index: 8; pointer-events: none; perspective: 1100px; }
+  .door { position: absolute; top: 0; bottom: 0; width: 50%; transition: transform 1.8s cubic-bezier(.6, .02, .2, 1), opacity 1.8s ease-in; transform-style: preserve-3d; }
+  .door svg { display: block; width: 100%; height: 100%; }
+  .door.l { left: 0; transform-origin: left center; } .door.r { right: 0; transform-origin: right center; }
+  .open .door.l { transform: rotateY(-108deg); opacity: 0; } .open .door.r { transform: rotateY(108deg); opacity: 0; }
+  .stage .slip, .stage .title-slip { transition: opacity .8s .9s; } .stage:not(.open) .slip, .stage:not(.open) .title-slip { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) { .doors { display: none; } .stage .slip, .stage .title-slip { opacity: 1 !important; transition: none; } }
+  .hint { margin: 10px 2px 0; font-size: 12.5px; color: var(--ink3); }
+  /* 场地卡 */
+  .card { position: absolute; z-index: 20; display: flex; width: 360px; background: #f7f7f1; border-radius: 3px; box-shadow: 0 0 0 1px rgba(35, 70, 90, .32), 0 18px 36px -18px rgba(20, 35, 40, .55); overflow: hidden; }
+  .card[hidden] { display: none; }
+  .card .strip { flex: none; width: 58px; padding: 16px 0 12px; background: var(--qing); color: #eef3f2; display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+  .card .strip b { writing-mode: vertical-rl; font: 400 21px/1.1 var(--brush); letter-spacing: .24em; }
+  .card .strip i { font: 400 11px/1.2 var(--brush); font-style: normal; text-align: center; padding: 4px 3px; border: 1px solid rgba(238, 243, 242, .7); border-radius: 2px; }
+  .card .body { padding: 14px 18px 16px; }
+  .card .meta { margin: 0 0 6px; font-size: 12.5px; color: var(--ink3); letter-spacing: .08em; }
+  .card p { margin: 0 0 10px; font-size: 14px; color: var(--ink2); }
+  .card .fit { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; } .card .fit span { padding: 0 8px; border-radius: 2px; background: rgba(47, 95, 134, .1); color: var(--qing-d); font-size: 12px; }
+  .card .x { position: absolute; right: 8px; top: 4px; border: 0; background: none; font-size: 18px; color: var(--ink3); cursor: pointer; }
+  .b1 { padding: 8px 14px; border: 0; border-radius: 2px; background: var(--cinnabar); color: #f6ead6; font: 13.5px/1.2 inherit; letter-spacing: .08em; cursor: pointer; }
+  .b2 { padding: 8px 14px; border: 1px solid rgba(42, 38, 33, .35); border-radius: 2px; background: transparent; color: var(--ink); font: 13.5px/1.2 inherit; letter-spacing: .08em; cursor: pointer; }
+  /* 六类会议 */
+  .meets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .meet { margin: 0; background: #f7f7f1; border-radius: 3px; box-shadow: 0 0 0 1px rgba(35, 70, 90, .2), 0 14px 30px -24px rgba(20, 35, 40, .6); overflow: hidden; }
+  .meet .pic { position: relative; aspect-ratio: 340 / 212; background: linear-gradient(#e6ebe6, #edece4); border-bottom: 1px solid rgba(35, 70, 90, .16); }
+  .meet .pic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .meet figcaption { padding: 13px 16px 15px; }
+  .meet h4 { margin: 0 0 3px; font: 700 18px/1.3 var(--serif); letter-spacing: .08em; } .meet h4 small { margin-left: 8px; font: 12px/1 -apple-system, sans-serif; color: var(--ink3); letter-spacing: .06em; }
+  .meet p { margin: 0; font-size: 13.5px; color: var(--ink2); }
+  /* 凭什么放心 */
+  .trust { display: grid; grid-template-columns: 360px 1fr; gap: 34px; align-items: start; }
+  .cert { margin: 0; padding: 16px; background: linear-gradient(135deg, #3c2b21, #2a1d16); border-radius: 2px; box-shadow: 0 18px 32px -20px rgba(20, 10, 5, .7); }
+  .cert .mat { padding: 14px; background: #f3efe4; box-shadow: inset 0 0 0 1px #c9a66a; }
+  .cert img { display: block; width: 100%; height: auto; box-shadow: 0 2px 6px rgba(40, 30, 20, .25); }
+  .cert figcaption { margin: 12px 4px 0; color: #efe6d4; }
+  .cert figcaption b { display: block; font: 700 16px/1.4 var(--serif); letter-spacing: .06em; } .cert figcaption span { display: block; margin-top: 4px; font-size: 12.5px; color: #cdbfa6; line-height: 1.6; }
+  .caps { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(35, 70, 90, .18); }
+  .caps li { display: grid; grid-template-columns: 54px 120px 1fr; align-items: center; gap: 16px; padding: 15px 4px; border-bottom: 1px solid rgba(35, 70, 90, .14); }
+  .caps .seal { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 4px; background: var(--qing); color: #eef3f2; font: 400 24px/1 var(--brush); transform: rotate(-3deg); box-shadow: inset 0 0 0 2px var(--qing), inset 0 0 0 3px rgba(238, 243, 242, .7); }
+  .caps li:nth-child(2n) .seal { background: var(--cinnabar); box-shadow: inset 0 0 0 2px var(--cinnabar), inset 0 0 0 3px rgba(246, 234, 214, .7); transform: rotate(2deg); }
+  .caps b { font: 700 17px/1.3 var(--serif); letter-spacing: .1em; } .caps span { font-size: 14px; color: var(--ink2); }
+  .trust-act { display: flex; gap: 12px; margin-top: 18px; }
+  /* 研学 */
+  .studies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .study { margin: 0; background: #f7f7f1; border-radius: 3px; box-shadow: 0 0 0 1px rgba(35, 70, 90, .2), 0 14px 30px -24px rgba(20, 35, 40, .6); overflow: hidden; display: flex; flex-direction: column; }
+  .study .pic { position: relative; aspect-ratio: 340 / 212; background: linear-gradient(#e6ebe6, #edece4); }
+  .study .pic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .study .txt { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 14px 16px 16px; }
+  .study .seal { grid-row: span 3; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 3px; background: var(--qing); color: #eef3f2; font: 400 21px/1 var(--brush); transform: rotate(-3deg); box-shadow: inset 0 0 0 2px var(--qing), inset 0 0 0 3px rgba(238, 243, 242, .7); }
+  .study h4 { margin: 0; font: 700 18px/1.3 var(--serif); letter-spacing: .08em; } .study p { margin: 0; font-size: 13.5px; color: var(--ink2); }
+  .study .go { font-size: 12.5px; color: var(--qing-d); letter-spacing: .04em; }
+  /* 服务流程弹层 */
+  .modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 20px; background: rgba(20, 30, 35, .45); }
+  .modal[hidden] { display: none; }
+  .modal .panel { position: relative; width: min(760px, 100%); max-height: calc(100vh - 40px); overflow: auto; padding: 22px 24px 20px; background: #f7f7f1; border-radius: 4px; box-shadow: 0 30px 60px -20px rgba(10, 20, 25, .6); }
+  .modal h3 { margin: 0; font: 700 21px/1.3 var(--serif); letter-spacing: .06em; } .modal .d { margin: 4px 0 16px; font-size: 12.5px; color: var(--ink3); letter-spacing: .08em; }
+  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .flow section { padding: 12px 14px 10px; border-radius: 3px; background: rgba(47, 95, 134, .06); box-shadow: inset 0 0 0 1px rgba(47, 95, 134, .16); }
+  .flow h5 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font: 700 16px/1.3 var(--serif); letter-spacing: .1em; }
+  .flow h5 i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 3px; background: var(--qing); color: #eef3f2; font: 400 13px/1 var(--brush); font-style: normal; }
+  .flow ul { margin: 0; padding: 0; list-style: none; } .flow li { padding: 4px 0 4px 16px; font-size: 13.5px; color: var(--ink2); position: relative; } .flow li::before { content: ''; position: absolute; left: 2px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .modal .x { position: absolute; right: 10px; top: 8px; border: 0; background: none; font-size: 20px; color: var(--ink3); cursor: pointer; }
+  .note { margin: 18px 0 0; font-size: 12.5px; color: var(--ink3); }
+  @media (max-width: 1000px) { .meets { grid-template-columns: repeat(2, 1fr); } .trust { grid-template-columns: 1fr; } .cert { max-width: 360px; } }
+  @media (max-width: 760px) {
+    .ch { padding-top: 44px; }
+    .leaf { padding: 6px; margin: 22px calc(var(--gutter) * -1 + 6px) 0; }
+    .stage { aspect-ratio: 400 / 860; }
+    .title-slip { right: 3%; top: 2.2%; } .title-slip i { margin-top: 5em; }
+    .card { position: fixed; left: 0 !important; right: 0; top: auto !important; bottom: 0; width: auto; flex-direction: column; border-radius: 12px 12px 0 0; box-shadow: 0 -10px 30px -12px rgba(20, 35, 40, .45); }
+    .card .strip { width: auto; flex-direction: row; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px 12px 0 0; }
+    .card .strip b { writing-mode: horizontal-tb; font-size: 20px; letter-spacing: .1em; } .card .strip i br { display: none; } .card .strip i { margin: 0 34px 0 auto; }
+    .card .body { padding: 12px 16px 22px; } .card .x { color: #eef3f2; top: 8px; right: 10px; }
+    .meets, .studies { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 10px; scrollbar-width: none; }
+    .meet, .study { flex: none; width: 78%; scroll-snap-align: center; }
+    .caps li { grid-template-columns: 46px 1fr; gap: 2px 14px; } .caps li .seal { grid-column: 1; grid-row: span 2; width: 40px; height: 40px; font-size: 21px; } .caps li > b, .caps li > span:not(.seal) { grid-column: 2; }
+    .trust-act { flex-direction: column; } .trust-act button { width: 100%; }
+    .flow { grid-template-columns: 1fr; }
+    .sub { font-size: 21px; } .sub small { flex-basis: 100%; padding-left: 40px; }
+  }
+</style></head>
+<body><div id="defs"></div>
+<section class="ch" id="mice">
+  <header>
+    <p class="ch-sign"><b>叁</b><span>会务研学</span></p>
+    <h2>请进京华会客厅</h2>
+    <p class="lead">工作会议、培训班、论坛、年会、发布会和展览，按规模与主题比选北京的会场与酒店；方案、接待、现场执行一个团队对接。</p>
+  </header>
+  <figure class="leaf">
+    <div class="stage" id="stage"></div>
+    <aside class="card" id="card" hidden></aside>
+  </figure>
+  <p class="hint">点画中的题签，看每处场地适合办什么会。</p>
+
+  <h3 class="sub">能办什么会<small>六类常见会议，规模与形式按需配置</small></h3>
+  <div class="meets" id="meets"></div>
+
+  <h3 class="sub">凭什么放心<small>资质可查，五项能力一个团队负责</small></h3>
+  <div class="trust">
+    <figure class="cert"><div class="mat"><img src="../../assets/img/cert/sf-mice.jpg" alt="会务会展服务企业资质证书（一级）" loading="lazy"></div>
+      <figcaption><b>会务会展服务企业资质证书 · 一级</b><span>企业服务能力测评，证书编号 ZDXY-2024182720，有效期至 2027 年 7 月 25 日，可在证书所列公示平台查询。</span></figcaption></figure>
+    <div>
+      <ul class="caps" id="caps"></ul>
+      <div class="trust-act"><button class="b2" type="button" id="openFlow">查看服务流程</button><button class="b1" type="button">获取会议方案</button></div>
+    </div>
+  </div>
+
+  <h3 class="sub">研学考察<small>把学习、参访和交流排进一段行程</small></h3>
+  <div class="studies" id="studies"></div>
+  <p class="note">场地为示例，按会议规模与需求比选推荐。规模、场次等数据待补充真实信息后再展示。</p>
+  <div class="modal" id="flow" hidden><div class="panel" role="dialog" aria-modal="true" aria-labelledby="flowH"></div></div>
+</section>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script src="../../assets/js/jh/mice.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s), M = JH.MICE, A = JH.ARCH, q = new URLSearchParams(location.search);
+  document.getElementById('defs').innerHTML = A.defs() + M.defs();
+  const mobile = innerWidth <= 760, stage = $('#stage');
+  const VENUE = {
+    yanqi: ['雁栖湖国际会都', '怀柔区', '湖畔的国际会议区，2014 年 APEC 领导人非正式会议在这里举行。', ['高规格会议', '论坛', '会议加团建']],
+    richu: ['日出东方酒店', '怀柔区', '雁栖湖畔的酒店，外形像一轮升起的太阳，会议与住宿可一并安排。', ['会议住宿一体', '中小型会议']],
+    shougang: ['首钢园', '石景山区', '工业遗存改造的园区，北京冬奥会滑雪大跳台就在这里。', ['论坛', '发布会', '主题活动']],
+    cncc: ['国家会议中心', '朝阳区', '奥林匹克公园里的大型会议展览场馆。', ['大型会议', '展览', '论坛']],
+    zgc: ['中关村', '海淀区', '科创企业集中，适合科技主题会议和产业参访。', ['科技会议', '产业对标']],
+    lize: ['丽泽金融商务区', '丰台区', '新兴金融商务区，离公司近，适合中小型会议和培训。', ['会议', '培训']],
+  };
+  // 主视觉
+  const S = M.compose(mobile ? 'mobile' : 'desk', stage.clientWidth / (mobile ? 400 : 1600));
+  // 两扇隔扇门：每扇两开，菱花格心、绦环板、裙板
+  const doorSvg = side => { const P = JH.Pen(), w = S.W / 2, h = S.H; M.doorLeaf(P, 0, w / 2, 0, h); M.doorLeaf(P, w / 2, w, 0, h); return `<svg viewBox="0 ${-h} ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><g class="jh" style="${JH.lineStyle(stage.clientWidth / S.W)}" transform="scale(1 -1)">${P.s()}</g></svg>`; };
+  stage.innerHTML = S.layers.map(l => l.svg).join('') + `<div class="title-slip"><b>京华会客厅</b><i>新楼<br>旧笔</i></div><div class="doors"><div class="door l">${doorSvg('l')}</div><div class="door r">${doorSvg('r')}</div></div>`;
+  const hitEls = {}, slipEls = {};
+  for (const h of S.hits) {
+    const b = document.createElement('button'); b.className = 'hit'; b.type = 'button'; b.setAttribute('aria-label', VENUE[h.id][0]);
+    Object.assign(b.style, { left: (h.x / S.W * 100) + '%', top: (h.y / S.H * 100) + '%', width: (h.w / S.W * 100) + '%', height: (h.h / S.H * 100) + '%' });
+    b.onclick = e => { e.stopPropagation(); openCard(h.id); }; stage.appendChild(b); hitEls[h.id] = b;
+    const [sx, sy] = S.slips[h.id], s = document.createElement('button'); s.className = 'slip'; s.type = 'button'; s.textContent = VENUE[h.id][0];
+    s.style.left = (sx / S.W * 100) + '%'; s.style.top = (sy / S.H * 100) + '%';
+    s.onclick = e => { e.stopPropagation(); openCard(h.id); }; stage.appendChild(s); slipEls[h.id] = s;
+  }
+  // 推门见客：进入视野时开门；?door=0..1 定格在某个开合程度（出图用）
+  const door = q.get('door');
+  if (door != null) { stage.classList.toggle('open', +door >= 1); if (+door < 1) { const d = +door; document.querySelectorAll('.door').forEach(el => { el.style.transition = 'none'; el.style.transform = `rotateY(${el.classList.contains('l') ? -108 * d : 108 * d}deg)`; }); } }
+  else if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) { const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { stage.classList.add('open'); io.disconnect(); } }, { threshold: 0.45 }); io.observe(stage); }
+  else stage.classList.add('open');
+  const mark = id => { for (const k in hitEls) { hitEls[k].classList.toggle('on', k === id); slipEls[k].classList.toggle('on', k === id); } };
+  function openCard(id) {
+    const [name, area, desc, fit] = VENUE[id], c = $('#card'); c.hidden = false;
+    c.innerHTML = `<div class="strip"><b>${name}</b><i>会议<br>场地</i></div><div class="body"><button class="x" type="button" aria-label="关闭">×</button><p class="meta">${area} · 场地示例</p><p>${desc}</p><div class="fit">${fit.map(f => `<span>${f}</span>`).join('')}</div><button class="b1" type="button">按这里定制会议方案</button></div>`;
+    c.querySelector('.x').onclick = () => { c.hidden = true; mark(''); };
+    mark(id);
+    if (mobile) return;
+    const fig = $('.leaf').getBoundingClientRect(), st = stage.getBoundingClientRect(), cw = c.offsetWidth, ch = c.offsetHeight, pad = 18;
+    const rel = r => ({ l: r.left - fig.left, t: r.top - fig.top, r: r.right - fig.left, b: r.bottom - fig.top });
+    const obst = [...Object.values(hitEls).map(e => rel(e.getBoundingClientRect())), rel(stage.querySelector('.title-slip').getBoundingClientRect())];
+    const me = rel(hitEls[id].getBoundingClientRect()), cx = (me.l + me.r) / 2, cy = (me.t + me.b) / 2;
+    const L0 = st.left - fig.left + pad, T0 = st.top - fig.top + pad, L1 = st.right - fig.left - cw - pad, T1 = st.bottom - fig.top - ch - pad;
+    const cands = []; for (let i = 0; i <= 8; i++) for (let j = 0; j <= 4; j++) cands.push([L0 + (L1 - L0) * i / 8, T0 + (T1 - T0) * j / 4]);
+    const over = (l, t) => obst.reduce((a, k) => a + Math.max(0, Math.min(l + cw, k.r) - Math.max(l, k.l)) * Math.max(0, Math.min(t + ch, k.b) - Math.max(t, k.t)), 0);
+    let best = cands[0], bs = Infinity; for (const [l, t] of cands) { const sc = over(l, t) / 40 + Math.hypot(l + cw / 2 - cx, t + ch / 2 - cy); if (sc < bs) { bs = sc; best = [l, t]; } }
+    c.style.left = best[0] + 'px'; c.style.top = best[1] + 'px';
+  }
+  // 六类会议
+  const scene = k => { const L = M[k](), [l, r, b, t] = L.box; return `<svg class="mc" viewBox="${l} ${-t} ${r - l} ${t - b}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="jh" style="${JH.lineStyle(300 / (r - l))}" transform="scale(1 -1)">${L.g}</g></svg>`; };
+  const MEETS = [['vWork', '工作会议', '年度工作会 · 座谈会', '会场布置规范简朴，议程、材料、签到一并安排。'], ['vTrain', '培训班', '干部培训 · 业务培训', '课程、教室、食宿统筹，可与现场教学结合。'], ['vForum', '论坛研讨', '行业论坛 · 专题研讨', '嘉宾邀请与接待、议程把控、会场设备按需配置。'], ['vGala', '年会庆典', '年会 · 表彰 · 庆典', '舞台、节目、灯光音响统一统筹。'], ['vLaunch', '发布会', '成果发布 · 新闻发布', '背景板、媒体区、现场直播按需准备。'], ['vExpo', '展览展示', '展会 · 成果展', '展位设计搭建与现场讲解。']];
+  $('#meets').innerHTML = MEETS.map(([k, t, s, d]) => `<figure class="meet"><div class="pic">${scene(k)}</div><figcaption><h4>${t}<small>${s}</small></h4><p>${d}</p></figcaption></figure>`).join('');
+  // 五项能力
+  const CAPS = [['方', '方案策划', '按主题、人数和预算出方案与报价。'], ['场', '场地比选', '会场、酒店多家比选，实地踏勘后预订。'], ['接', '接待服务', '报名、接送站、住宿餐饮统一安排。'], ['执', '现场执行', '签到、会场搭建、设备调试与议程把控。'], ['保', '安全保障', '医疗应急、保险和安全预案。']];
+  $('#caps').innerHTML = CAPS.map(([s, t, d]) => `<li><span class="seal">${s}</span><b>${t}</b><span>${d}</span></li>`).join('');
+  // 研学
+  const STUDY = [['修', '干部研修', '课程、师资、地点按单位需求定制，课堂学习与现场教学结合。', '可结合：红色教育现场、专题党课', 'vCadre'], ['标', '产业对标', '走进标杆企业与科创园区实地参访，安排交流座谈。', '常去：中关村、亦庄、首钢园', 'vBench'], ['察', '专题考察', '围绕城市更新、数字化转型等主题组织考察调研。', '常去：城市副中心、首钢园、冬奥场馆', 'vSurvey']];
+  $('#studies').innerHTML = STUDY.map(([s, t, d, go, k]) => `<figure class="study"><div class="pic">${scene(k)}</div><figcaption class="txt"><span class="seal">${s}</span><h4>${t}</h4><p>${d}</p><span class="go">${go}</span></figcaption></figure>`).join('');
+  // 服务流程
+  const FLOW = [['前', '会前', ['需求沟通，出方案和预算', '场地、酒店比选与预订', '报名统计与参会通知', '物料设计制作', '交通与接站安排']], ['中', '会中', ['签到与现场引导', '会场搭建与设备调试', '议程与时间把控', '餐饮与茶歇', '摄影摄像', '医疗与应急保障']], ['后', '会后', ['返程送站', '影像资料整理交付', '费用结算与票据', '总结回访']]];
+  const md = $('#flow');
+  md.querySelector('.panel').innerHTML = `<button class="x" type="button" aria-label="关闭">×</button><h3 id="flowH">服务流程</h3><p class="d">会前、会中、会后，每一项都有专人负责</p><div class="flow">${FLOW.map(([i, h, items]) => `<section><h5><i>${i}</i>${h}</h5><ul>${items.map(t => `<li>${t}</li>`).join('')}</ul></section>`).join('')}</div>`;
+  $('#openFlow').onclick = () => { md.hidden = false; };
+  md.onclick = e => { if (e.target === md || e.target.closest('.x')) md.hidden = true; };
+  if (q.get('check')) {
+    const R = el => el.getBoundingClientRect(), ov = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+    const out = [];
+    for (const [id, s] of Object.entries(slipEls)) { const a = R(s); for (const [k, h] of Object.entries(hitEls)) { const o = ov(a, R(h)); if (o > 4) out.push(`${id}>${k}:${Math.round(o)}`); } const t = ov(a, R(stage.querySelector('.title-slip'))); if (t > 4) out.push(`${id}>title:${Math.round(t)}`); for (const [k2, s2] of Object.entries(slipEls)) if (k2 > id && ov(a, R(s2)) > 4) out.push(`${id}>${k2}`); }
+    document.body.dataset.check = out.join(' ') || 'clean';
+  }
+  if (q.get('card')) { stage.classList.add('open'); openCard(q.get('card')); }
+  if (q.get('flow')) md.hidden = false;
+})();
+</script></body></html>

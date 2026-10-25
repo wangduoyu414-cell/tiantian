@@ -1,0 +1,4 @@
+/* 由 tools/fonts.py 生成：只含页面用到的字符，字体文件放在自己服务器上。 */
+@font-face { font-family: "Noto Serif SC"; font-style: normal; font-weight: 700; font-display: swap; src: url(../fonts/noto-serif-sc-700.woff2) format("woff2"); }
+@font-face { font-family: "Noto Serif SC"; font-style: normal; font-weight: 900; font-display: swap; src: url(../fonts/noto-serif-sc-900.woff2) format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/barlow-condensed-600.woff2) format("woff2"); }

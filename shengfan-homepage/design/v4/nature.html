@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>景物程式试验</title>
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  html, body { margin: 0; background: #efe6d3; font: 14px/1.6 -apple-system, "PingFang SC", sans-serif; color: #2f2a24; }
+  .row { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-end; padding: 24px; }
+  figure { margin: 0; } figcaption { text-align: center; font-size: 13px; color: #5a5048; margin-top: 6px; }
+  .jh-svg { display: block; overflow: visible; }
+</style></head>
+<body><div id="defs"></div><div id="out"></div>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script>
+document.getElementById('defs').innerHTML = JH.ARCH.defs();
+const Nt = JH.NATURE, q = new URLSearchParams(location.search), px = +(q.get('px') || 1.3);
+const group = (() => { const P = JH.Pen(); [[-40, 'r', 'walk'], [-14, 'b', 'stand'], [12, 'o', 'point'], [40, 'g', 'walk', 1]].forEach(([x, c, pose, bag]) => { const L = Nt.person({ h: 40, c, pose, bag }); P.g(L.g, ` transform="translate(${x} 0)"`); }); return { g: P.s(), box: [-56, 56, 0, 42] }; })();
+const items = [
+  ['古松', Nt.pine({ h: 260, seed: 3 })], ['古柏', Nt.cypress({ h: 220, seed: 5 })], ['垂柳', Nt.willow({ h: 220, seed: 7 })],
+  ['点叶树', Nt.dianye({ h: 200, seed: 11 })], ['夹叶枫', Nt.maple({ h: 180, seed: 13 })],
+  ['青绿山峦', Nt.mountain({ w: 420, h: 220 })], ['青绿山石', Nt.rock({ w: 200, h: 130 })], ['水纹', Nt.water({ w: 260, h: 70 })], ['祥云', Nt.cloud({ s: 1.2 })], ['点景人物', group],
+];
+document.getElementById('out').innerHTML = '<div class="row">' + items.map(([t, L]) => `<figure>${JH.svg(L, t === '点景人物' ? px * 1.6 : px)}<figcaption>${t}</figcaption></figure>`).join('') + '</div>';
+</script></body></html>

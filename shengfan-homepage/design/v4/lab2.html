@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>地标试验</title>
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  html, body { margin: 0; background: #efe6d3; font: 14px/1.6 -apple-system, "PingFang SC", sans-serif; color: #2f2a24; }
+  .row { display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-end; padding: 24px; }
+  figure { margin: 0; } figcaption { text-align: center; font-size: 13px; color: #5a5048; margin-top: 6px; }
+  .jh-svg { display: block; overflow: visible; }
+</style></head>
+<body><div id="defs"></div><div id="out"></div>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script src="../../assets/js/jh/qinian.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script src="../../assets/js/jh/tower.js"></script>
+<script src="../../assets/js/jh/lm.js"></script>
+<script>
+document.getElementById('defs').innerHTML = JH.ARCH.defs();
+const q = new URLSearchParams(location.search), only = (q.get('only') || '').split(',').filter(Boolean), H = +(q.get('h') || 520);
+const items = Object.entries(JH.LM).filter(([k]) => !only.length || only.includes(k));
+document.getElementById('out').innerHTML = '<div class="row">' + items.map(([k, f]) => { const L = f(); const px = H / (L.box[3] - L.box[2] + 12); return `<figure>${JH.svg(L, px)}<figcaption>${k} · ${H}px</figcaption></figure><figure>${JH.svg(L, 150 / (L.box[3] - L.box[2] + 12))}<figcaption>150px</figcaption></figure>`; }).join('') + '</div>';
+</script></body></html>

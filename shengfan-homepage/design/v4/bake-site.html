@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>各章烘图</title></head>
+<body>
+<!-- 开发用：把各章的主画面、场景小图、导览图底图画成位图。tools/bake-site.swift 打开这一页，逐项调用 bakeItem(name)。 -->
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script src="../../assets/js/jh/qinian.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script src="../../assets/js/jh/tower.js"></script>
+<script src="../../assets/js/jh/lm.js"></script>
+<script src="../../assets/js/jh/icons.js"></script>
+<script src="../../assets/js/jh/map.js"></script>
+<script src="../../assets/js/jh/red.js"></script>
+<script src="../../assets/js/jh/mice.js"></script>
+<script src="../../assets/js/jh/team.js"></script>
+<script src="../../assets/js/jh/jinghua.js"></script>
+<script>
+(() => {
+  const J = window.JH, N = J.N;
+  let css = '', defsInner = '';
+  const ready = (async () => {
+    css = await fetch('../../assets/css/jh.css', { cache: 'no-store' }).then(r => r.text());
+    defsInner = [J.ARCH.defs(), J.RED.defs(), J.MICE.defs()].map(s => s.replace(/^[\s\S]*?<defs>|<\/defs>[\s\S]*$/g, '')).join('') + J.JINGHUA.defs();
+  })();
+  const doc = (w, h, vb, inner, cls = '', extraDefs = '') => `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="${vb}"><defs>${defsInner}${extraDefs}</defs><style>${css}</style><g class="${cls}">${inner}</g></svg>`;
+  const innerOf = s => s.replace(/^<svg[^>]*>|<\/svg>$/g, '');
+
+  // 各章主画面：所有层叠成一张不透明的图；画面里可点的地方、题签位置记进 meta
+  // px：网页上一个画面单位约合多少 CSS 像素（定线宽用）；scale：位图上一个画面单位多少像素
+  function chapter(C, layout, px, scale, cls) {
+    const S = C.compose(layout, px), w = Math.round(S.W * scale), h = Math.round(S.H * scale);
+    return { w, h, alpha: false, svg: doc(w, h, `0 0 ${S.W} ${S.H}`, S.layers.map(l => innerOf(l.svg)).join(''), cls), meta: { W: S.W, H: S.H, hits: S.hits, slips: S.slips } };
+  }
+  // 会务研学的隔扇门：半边（两扇）一张
+  function door(layout, px, scale) {
+    const W = layout === 'desk' ? 800 : 200, H = layout === 'desk' ? 760 : 860, P = J.Pen();
+    J.MICE.doorLeaf(P, 0, W / 2, 0, H); J.MICE.doorLeaf(P, W / 2, W, 0, H);
+    const w = Math.round(W * scale), h = Math.round(H * scale);
+    return { w, h, alpha: false, svg: doc(w, h, `0 0 ${W} ${H}`, `<g class="jh" style="${J.lineStyle(px)}" transform="translate(0 ${H}) scale(1 -1)">${P.s()}</g>`, 'mc') };
+  }
+  // 导览图底图（不含地名）
+  function mapBase(px, scale) {
+    const M = J.MAP, w = Math.round(M.W * scale), h = Math.round(M.H * scale);
+    return { w, h, alpha: false, svg: doc(w, h, `0 0 ${M.W} ${M.H}`, M.base(px, { labels: false })) };
+  }
+  // 场景小图：卡片大小的画布，带底色；fit 'meet' 留边放下，'slice' 铺满裁掉
+  function card(L, o) {
+    const W = o.W || 340, H = o.H || 214, [il, it, ir, ib] = o.inset || [0, 0, 0, 0], pad = o.fit === 'meet' ? 6 : 0;
+    const rx = W * il, ry = H * it, rw = W * (1 - il - ir), rh = H * (1 - it - ib);
+    const [l, r, b, t] = L.box, sw = r - l + pad * 2, sh = t - b + pad * 2;
+    const f = o.fit === 'meet' ? Math.min(rw / sw, rh / sh) : Math.max(rw / sw, rh / sh);
+    const ox = rx + (rw - sw * f) / 2, oy = ry + (rh - sh * f) / 2, scale = o.scale || 3, w = Math.round(W * scale), h = Math.round(H * scale);
+    const bg = `<linearGradient id="bg-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${o.bg[0]}"/><stop offset="1" stop-color="${o.bg[1]}"/></linearGradient>`;
+    const inner = `<rect width="${W}" height="${H}" fill="url(#bg-card)"/><g class="jh" style="${J.lineStyle(f * (o.cssW || 300) / W)}" transform="translate(${N(ox - (l - pad) * f)} ${N(oy + (t + pad) * f)}) scale(${N(f)} ${N(-f)})">${L.g}</g>`;
+    return { w, h, alpha: false, svg: doc(w, h, `0 0 ${W} ${H}`, inner, o.cls || '', bg) };
+  }
+  // 小图标（透明底）：按显示高度定线宽
+  function icon(L, hCss, scale, cls = '') {
+    const pad = 6, [l, r, b, t] = L.box, sw = r - l + pad * 2, sh = t - b + pad * 2, px = hCss / sh, w = Math.round(sw * px * scale), h = Math.round(sh * px * scale);
+    return { w, h, alpha: true, svg: doc(w, h, `${N(l - pad)} ${N(-t - pad)} ${N(sw)} ${N(sh)}`, `<g class="jh" style="${J.lineStyle(px)}" transform="scale(1 -1)">${L.g}</g>`, cls) };
+  }
+
+  const RED_BG = ['#f3e3c9', '#efe2cd'], MC_BG = ['#e6ebe6', '#edece4'];
+  const ITEMS = {
+    'red-desk': () => chapter(J.RED, 'desk', 0.76, 1.5, 'zm'),
+    'red-mobile': () => chapter(J.RED, 'mobile', 0.945, 3, 'zm'),
+    'team-desk': () => chapter(J.TEAM, 'desk', 0.76, 1.5, ''),
+    'team-mobile': () => chapter(J.TEAM, 'mobile', 0.945, 3, ''),
+    'mice-desk': () => chapter(J.MICE, 'desk', 0.76, 1.5, 'mc'),
+    'mice-mobile': () => chapter(J.MICE, 'mobile', 0.945, 3, 'mc'),
+    'door-desk': () => door('desk', 0.76, 1.5),
+    'door-mobile': () => door('mobile', 0.945, 3),
+    'map-base': () => mapBase(0.76, 1.625),
+    ...Object.fromEntries(['vField', 'vDay', 'vLecture', 'vScene'].map(k => [`red-${k}`, () => card(J.RED[k](), { bg: RED_BG, inset: [0.04, 0.06, 0.04, 0], fit: 'meet', cls: 'zm' })])),
+    ...Object.fromEntries(['vWork', 'vTrain', 'vForum', 'vGala', 'vLaunch', 'vExpo', 'vCadre', 'vBench', 'vSurvey'].map(k => [`mice-${k}`, () => card(J.MICE[k](), { H: 212, bg: MC_BG, fit: 'slice', cls: 'mc', cssW: 340 })])),
+    'red-shuangqing': () => card(J.RED.shuangqing(), { bg: ['#e9dfcd', '#e9dfcd'], fit: 'slice', cls: 'zm' }),
+    'tl-bus': () => icon(J.RED.bus(), 88, 3, 'zm'),
+    'tl-meeting': () => icon(J.RED.meeting(), 88, 3, 'zm'),
+    'tl-honglou': () => icon(J.ICONS.honglou(), 88, 3, 'zm'),
+    'tl-xiangshan': () => icon(J.ICONS.xiangshan(), 88, 3, 'zm'),
+  };
+  window.listItems = () => Object.keys(ITEMS);
+  window.bakeItem = async name => {
+    await ready;
+    const it = ITEMS[name]();
+    const url = URL.createObjectURL(new Blob([it.svg], { type: 'image/svg+xml' }));
+    const img = new Image(); img.src = url; await img.decode();
+    const cv = document.createElement('canvas'); cv.width = it.w; cv.height = it.h;
+    const g = cv.getContext('2d');
+    if (!it.alpha) { g.fillStyle = '#efe6d3'; g.fillRect(0, 0, it.w, it.h); }
+    g.drawImage(img, 0, 0, it.w, it.h);
+    URL.revokeObjectURL(url);
+    return JSON.stringify({ name, w: it.w, h: it.h, alpha: it.alpha, meta: it.meta || null, png: cv.toDataURL('image/png') });
+  };
+})();
+</script></body></html>

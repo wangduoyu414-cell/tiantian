@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>界画样式表 · 第一版</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../assets/css/art2.css">
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  :root { --ink: #2f2a24; --ink2: #5a5048; --ink3: #8b8073; --red: #b3362b; --serif: "Noto Serif SC", "Songti SC", serif; --brush: "Ma Shan Zheng", "STKaiti", serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #efe6d3; color: var(--ink); font: 15px/1.75 -apple-system, "PingFang SC", sans-serif; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 56px 28px 80px; }
+  header h1 { margin: 0; font: 400 52px/1.2 var(--brush); letter-spacing: .14em; }
+  header p { margin: 8px 0 0; color: var(--ink2); }
+  .seal { display: inline-grid; place-items: center; width: 30px; height: 30px; margin-right: 12px; border-radius: 3px; background: var(--red); color: #f6ead6; font: 400 17px/1 var(--brush); vertical-align: 6px; transform: rotate(-3deg); }
+  section { margin-top: 64px; }
+  h2 { margin: 0 0 6px; font: 900 26px/1.3 var(--serif); letter-spacing: .06em; }
+  h2 small { margin-left: 10px; font: 400 14px/1 -apple-system, sans-serif; color: var(--ink3); letter-spacing: 0; }
+  .lead { margin: 0 0 22px; color: var(--ink2); max-width: 46em; }
+  .leaf { padding: 12px; border-radius: 4px; background: #e3d5b6; box-shadow: inset 0 0 0 1px rgba(120, 90, 50, .28), 0 16px 34px -22px rgba(60, 40, 20, .45); }
+  .leaf-in { background: #f4ecdb; box-shadow: inset 0 0 0 1px rgba(120, 90, 50, .35); padding: 26px 22px 18px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1.25fr; gap: 26px; align-items: end; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: end; }
+  .pair { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 10px 40px; }
+  .flex { display: flex; flex-wrap: wrap; gap: 26px 34px; align-items: flex-end; justify-content: center; }
+  figure { margin: 0; text-align: center; } figcaption { margin-top: 8px; font-size: 13.5px; color: var(--ink2); letter-spacing: .06em; }
+  figure svg { display: block; margin: 0 auto; overflow: visible; max-width: 100%; height: auto; }
+  figure svg.crop { overflow: hidden; background: #f4ecdb; }
+  .tag { display: inline-block; margin-bottom: 6px; padding: 1px 10px; border-radius: 3px; font-size: 12px; letter-spacing: .1em; }
+  .tag.old { background: rgba(47, 42, 36, .08); color: var(--ink3); } .tag.new { background: var(--red); color: #f6ead6; }
+  ol.notes { margin: 18px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; }
+  ol.notes li { display: flex; gap: 10px; font-size: 14px; color: var(--ink2); }
+  ol.notes b { display: grid; place-items: center; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--red); color: #f6ead6; font: 400 13px/1 var(--brush); }
+  .lines { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .ln { display: flex; align-items: center; gap: 14px; padding: 6px 0; font-size: 14px; color: var(--ink2); }
+  .ln svg { flex: none; }
+  .sw { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .sw div { font-size: 12.5px; color: var(--ink2); }
+  .sw i { display: flex; height: 44px; border-radius: 3px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(47, 42, 36, .25); margin-bottom: 5px; }
+  .sw i span { flex: 1; }
+  @media (max-width: 800px) { .grid2, .grid3, .lines, ol.notes { grid-template-columns: 1fr; } .sw { grid-template-columns: repeat(3, 1fr); } header h1 { font-size: 38px; } }
+</style></head>
+<body><div id="defs"></div>
+<div class="wrap">
+  <header>
+    <h1><span class="seal">样</span>界画样式表</h1>
+    <p>晟帆主页 · 画风定稿样张（第一版）。建筑按营造规矩重画：该弯的地方用举架、起翘算出弧度，该直的地方横平竖直、对齐开间模数；线分三级，矿物色平涂，阴阳两面出体积。</p>
+  </header>
+
+  <section>
+    <h2>一、标杆：天坛祈年殿<small>同样高度，新旧对照</small></h2>
+    <p class="lead">先拿一处地标把规矩画到位，确认后再按同样的规矩重画其余地标。</p>
+    <div class="leaf"><div class="leaf-in">
+      <div class="pair" id="bench"></div>
+      <ol class="notes">
+        <li><b>一</b><span>屋面按"举架"做成凹曲面：檐口平缓、近顶陡峭；瓦垄顺着经线走，越靠两侧越密、越弯。</span></li>
+        <li><b>二</b><span>视平线定在坛面：三重檐的檐口往上拱，看得见檐底的飞椽、檐椽两排椽头和一圈斗拱。</span></li>
+        <li><b>三</b><span>三层祈谷坛往下垂，看得见坛面和一圈圈汉白玉栏杆，望柱随圆周疏密变化；正中台阶带御路。</span></li>
+        <li><b>四</b><span>比例照实物：殿高与下檐宽大致相当，三重檐逐层收进，上檐最陡，宝顶收尖；殿身各层压短，蓝琉璃屋面成为主体。</span></li>
+      </ol>
+    </div></div>
+  </section>
+
+  <section>
+    <h2>二、线与色</h2>
+    <p class="lead">线是浓墨、不透明，三级粗细分明；色是矿物色平涂，每种色三档：阳面、阴面、提亮。光从左上来。</p>
+    <div class="leaf"><div class="leaf-in">
+      <div class="lines" id="lines"></div>
+      <div class="sw" id="swatch" style="margin-top:22px"></div>
+    </div></div>
+  </section>
+
+  <section>
+    <h2>三、屋顶与构件<small>正立面</small></h2>
+    <p class="lead">庑殿、歇山、攒尖三种屋顶，配斗拱、和玺彩画、菱花隔扇、须弥座和汉白玉栏杆。右边是一角放大：翼角起翘、仙人走兽、鸱吻、两排椽头。</p>
+    <div class="leaf"><div class="leaf-in">
+      <div class="grid2" id="halls"></div>
+      <div class="flex" id="halls2" style="margin-top:22px"></div>
+    </div></div>
+  </section>
+
+  <section>
+    <h2>四、景物程式<small>照《芥子园画传》的画法</small></h2>
+    <p class="lead">树、山、水、云、人都用同一套墨线和设色：松针成扇、柏叶成团、柳丝先挑后垂；山石顶面石青石绿、立面赭石，脊线分面，皴法顺势而下；云头勾线旋进头心；点景人物按骨架摆姿势。</p>
+    <div class="leaf"><div class="leaf-in"><div class="flex" id="nature"></div></div></div>
+  </section>
+
+  <section>
+    <h2>五、放进画面里的大小</h2>
+    <p class="lead">首屏里地标只有一两百像素高。按比例自动减细线条，小尺寸下轮廓仍然清楚，细节不糊成一团。</p>
+    <div class="leaf"><div class="leaf-in"><div class="flex" id="small"></div></div></div>
+  </section>
+</div>
+<script src="../../assets/js/art2.js"></script>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script src="../../assets/js/jh/qinian.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+$('#defs').innerHTML = ART2.defs() + JH.ARCH.defs();
+const B = JH.BUILD, Nt = JH.NATURE, { N } = JH;
+// 局部图形裁出一块来看
+function crop(L, x0, x1, y0, y1, width) {
+  const px = width / (x1 - x0);
+  return `<svg class="jh-svg crop" viewBox="${x0} ${-y1} ${x1 - x0} ${y1 - y0}" width="${width}" height="${N((y1 - y0) * px)}" style="overflow:hidden;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(120,90,50,.3)"><g class="jh" style="${JH.lineStyle(px)}" transform="scale(1 -1)">${L.g}</g></svg>`;
+}
+const fit = (L, w) => JH.svg(L, w / (L.box[1] - L.box[0] + 12));
+
+/* 一、标杆：两张图按实际画出来的范围裁紧，再取同样高度 */
+const old = ART2.LANDMARKS.qinian(), nw = JH.LM.qinian();
+function bench() {
+  const el = $('#bench'), pad = 4;
+  el.innerHTML = `<svg class="a2" id="b-old"><g transform="scale(1 -1)">${old.g}</g></svg><svg class="jh-svg" id="b-new"><g class="jh" transform="scale(1 -1)">${nw.g}</g></svg>`;
+  const bo = $('#b-old g').getBBox(), bn = $('#b-new g').getBBox();
+  const vb = b => [b.x - pad, -(b.y + b.height) - pad, b.width + pad * 2, b.height + pad * 2];
+  const vo = vb(bo), vn = vb(bn), aO = vo[2] / vo[3], aN = vn[2] / vn[3], avail = el.clientWidth;
+  const H = Math.floor(avail > 700 ? Math.min(500, (avail - 40) / (aO + aN)) : avail / Math.max(aO, aN));
+  const px = H / vn[3];
+  el.innerHTML = `<figure><span class="tag old">旧</span><svg class="a2" viewBox="${vo.map(N).join(' ')}" width="${N(H * aO)}" height="${H}"><g transform="scale(1 -1)">${old.g}</g></svg></figure>` +
+    `<figure><span class="tag new">新</span><svg class="jh-svg" viewBox="${vn.map(N).join(' ')}" width="${N(H * aN)}" height="${H}"><g class="jh" style="${JH.lineStyle(px)}" transform="scale(1 -1)">${nw.g}</g></svg></figure>`;
+}
+bench();
+
+/* 二、线与色 */
+const lineDemo = (w, cls, label) => `<div class="ln"><svg width="120" height="16" viewBox="0 0 120 16"><path d="M4 8H116" stroke="${cls}" stroke-width="${w}" stroke-linecap="round"/></svg><span>${label}</span></div>`;
+$('#lines').innerHTML = `<div>${lineDemo(1.6, '#231c15', '外轮廓 · 约 1.6 像素')}${lineDemo(0.95, '#231c15', '结构线 · 约 0.9 像素')}${lineDemo(0.55, '#231c15', '细部线 · 约 0.5 像素')}</div>` +
+  `<div>${lineDemo(0.9, '#e4c165', '金线（沥粉贴金）')}${lineDemo(0.9, '#b58c4c', '云气线')}<div class="ln"><span>远处的物件按比例自动减细，近粗远细，层次自然。</span></div></div>`;
+const SW = [['黄琉璃', '#f3cd72', '#dfa33a', '#a96f1f'], ['蓝琉璃', '#6488c6', '#2a529a', '#1a3670'], ['绿琉璃', '#6fb18d', '#3b8763', '#24583f'], ['灰筒瓦', '#a7aca7', '#7b817e', '#535a59'],
+  ['朱红', '#cf5a44', '#b03a2c', '#7d2318'], ['彩画青绿', '#4f84ad', '#24577f', '#2c8167'], ['泥金', '#f1d68a', '#d9b04f', '#a4791f'], ['汉白玉', '#ffffff', '#f2eee4', '#d5cebf'],
+  ['石青', '#5f8fae', '#3f6f8e', '#2c5070'], ['石绿', '#8ab89e', '#5f987a', '#3f7357'], ['赭石', '#d8b08a', '#bf9264', '#8f6642'], ['墨', '#5a5048', '#2f2a24', '#231c15']];
+$('#swatch').innerHTML = SW.map(([n, a, b, c]) => `<div><i><span style="background:${a}"></span><span style="background:${b}"></span><span style="background:${c}"></span></i>${n}</div>`).join('');
+
+/* 三、屋顶与构件 */
+const taihe = B.hall({ bays: [84, 74, 66, 56], colH: 90, platform: 46, rail: 14, double: true, type: 'wd', tile: 6, beasts: 7, per: 4 });
+$('#halls').innerHTML = `<figure>${fit(taihe, 560)}<figcaption>重檐庑殿（太和殿式）</figcaption></figure><figure>${crop(taihe, -268, -58, 226, 410, 600)}<figcaption>一角放大：翼角、走兽、鸱吻、椽头、斗拱、彩画</figcaption></figure>`;
+const xs = B.hall({ bays: [70, 60, 50], colH: 70, platform: 26, rail: 10, type: 'xs', tile: 5, beasts: 5, per: 3, rw: 132 });
+const cj = B.hall({ bays: [56], colH: 48, platform: 10, type: 'cj', tile: 4, beasts: 3, per: 2, leaves: 3, stairs: false, rh: 62, caihua: 'xuanzi' });
+$('#halls2').innerHTML = `<figure>${fit(xs, 520)}<figcaption>单檐歇山 · 旋子与和玺彩画</figcaption></figure><figure>${fit(cj, 230)}<figcaption>四角攒尖亭 · 鎏金宝顶</figcaption></figure>`;
+
+/* 四、景物 */
+const group = (() => { const P = JH.Pen(); [[-80, 'b', 'walk', { bag: 1 }], [-48, 'r', 'stand', { hair: 'long' }], [-16, 'o', 'flag'], [16, 'g', 'photo'], [48, 'w', 'clasp', { tc: 'c-trou2', hair: 'long' }], [80, 'r', 'point', { dir: -1 }]].forEach(([x, c, pose, e = {}]) => { const L = Nt.person({ h: 40, c, pose, ...e }); P.g(L.g, ` transform="translate(${x} 0)"`); }); return { g: P.s(), box: [-96, 96, 0, 52] }; })();
+const nat = [['古松', Nt.pine({ h: 240, seed: 3 }), 1.05], ['古柏', Nt.cypress({ h: 210, seed: 5 }), 1.05], ['垂柳', Nt.willow({ h: 210, seed: 7 }), 1.05], ['点叶树', Nt.dianye({ h: 190, seed: 11 }), 1.05], ['夹叶枫', Nt.maple({ h: 180, seed: 13 }), 1.05],
+  ['青绿山峦', Nt.mountain({ w: 460, h: 230 }), 1], ['青绿山石', Nt.rock({ w: 200, h: 130 }), 1], ['水纹', Nt.water({ w: 240, h: 70 }), 1], ['祥云', Nt.cloud({ s: 1.6 }), 1], ['点景人物', group, 2]];
+$('#nature').innerHTML = nat.map(([t, L, k]) => `<figure>${JH.svg(L, k)}<figcaption>${t}</figcaption></figure>`).join('');
+
+/* 五、小尺寸 */
+const at = (L, h) => JH.svg(L, h / (L.box[3] - L.box[2] + 12));
+$('#small').innerHTML = `<figure>${at(nw, 220)}<figcaption>祈年殿 · 220 像素高</figcaption></figure><figure>${at(nw, 120)}<figcaption>120 像素高</figcaption></figure><figure>${at(taihe, 150)}<figcaption>太和殿式 · 150 像素高</figcaption></figure><figure>${at(Nt.pine({ h: 240, seed: 3 }), 140)}<figcaption>古松 · 140 像素高</figcaption></figure>`;
+</script></body></html>

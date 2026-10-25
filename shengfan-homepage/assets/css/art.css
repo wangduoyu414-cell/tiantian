@@ -1,0 +1,50 @@
+/* 线描图形的线条与淡彩。先定义线条（不填色），再定义淡彩（只填色），
+   同时带两个类的元素就是"淡彩填色 + 墨线勾边"。淡彩用实色（按纸色预先调和），
+   前后遮挡才干净；只有远景、水面、阴影用透明度。 */
+.art {
+  --ink: #1f2f52;
+  --c-roof-y: #ebcd91;  --c-roof-b: #a3b6d3;  --c-roof-g: #ced2d3;  --c-roof-gr: #b8d0c2;
+  --c-red-l: #eedcd4;   --c-col: #c97b6f;     --c-paint: #cfdedb;   --c-stone: #fcfbf7;
+  --c-gold: #d6a640;    --c-plaque: #3e68a8;  --c-brick: #e3dfd8;   --c-wall: #ddbbb2;
+  --c-redbrick: #dfb9ad; --c-white: #ffffff;  --c-hill: #e3e7dc;    --c-glass: #dfe6ea;
+  --c-maple: #d9897a;   --c-tree: #cbd5c4;    --c-dark: #8f8d89;    --c-green: #cfe0bd;
+  overflow: visible;
+}
+.art .k  { fill: none; stroke: var(--ink); stroke-width: 1.05; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.art .kf { fill: none; stroke: var(--ink); stroke-opacity: .55; stroke-width: .7; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.art .kt { fill: none; stroke: var(--ink); stroke-opacity: .28; stroke-width: .55; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.art .kd { fill: none; stroke: var(--ink); stroke-opacity: .45; stroke-width: .7; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; }
+
+.art .w-roof-y   { fill: var(--c-roof-y); }
+.art .w-roof-b   { fill: var(--c-roof-b); }
+.art .w-roof-g   { fill: var(--c-roof-g); }
+.art .w-roof-gr  { fill: var(--c-roof-gr); }
+.art .w-red-l    { fill: var(--c-red-l); }
+.art .w-col      { fill: var(--c-col); }
+.art .w-paint    { fill: var(--c-paint); }
+.art .w-stone    { fill: var(--c-stone); }
+.art .w-gold     { fill: var(--c-gold); }
+.art .w-plaque   { fill: var(--c-plaque); }
+.art .w-brick    { fill: var(--c-brick); }
+.art .w-wall     { fill: var(--c-wall); }
+.art .w-redbrick { fill: var(--c-redbrick); }
+.art .w-white    { fill: var(--c-white); }
+.art .w-hill     { fill: var(--c-hill); }
+.art .w-glass    { fill: var(--c-glass); }
+.art .w-maple    { fill: var(--c-maple); }
+.art .w-tree     { fill: var(--c-tree); }
+.art .w-dark     { fill: var(--c-dark); }
+.art .w-green    { fill: var(--c-green); }
+.art .w-far      { fill: #6f8db0; fill-opacity: .1; }
+.art .w-far2     { fill: #6f8db0; fill-opacity: .17; }
+.art .w-water    { fill: #6f94bf; fill-opacity: .1; }
+.art .w-shade    { fill: #1f2f52; fill-opacity: .08; }
+.art .vol        { fill: url(#art-vol); stroke: none; }
+
+.art .sun   { fill: url(#art-sun); }
+.art .route { fill: none; stroke: #004291; stroke-opacity: .55; stroke-width: 1.3; stroke-dasharray: 5 6; vector-effect: non-scaling-stroke; }
+.art .cloud .w-white { fill-opacity: .7; }
+
+/* 远景：线条更淡 */
+.art .far .k, .art .far .kf { stroke-opacity: .32; }
+.art .far .kt { stroke-opacity: .14; }

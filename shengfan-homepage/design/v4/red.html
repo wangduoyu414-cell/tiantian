@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>红色教育 · 第三步样张</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  :root { --ink: #2a2621; --ink2: #5a5048; --ink3: #8b8073; --paper: #f2e8d8; --cinnabar: #b3362b; --cin-d: #8e2a21; --gold: #b58c4c; --serif: "Noto Serif SC", "Songti SC", serif; --brush: "Ma Shan Zheng", "STKaiti", serif; --gutter: clamp(16px, 4vw, 40px); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.7 -apple-system, "PingFang SC", sans-serif; }
+  .ch { max-width: 1320px; margin: 0 auto; padding: 72px var(--gutter) 90px; }
+  .ch-sign { margin: 0 0 10px; display: flex; align-items: center; gap: 10px; color: var(--ink2); font-size: 13px; letter-spacing: .3em; }
+  .ch-sign b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 18px/1 var(--brush); letter-spacing: 0; }
+  h2 { margin: 0; font: 900 clamp(28px, 3.4vw, 44px)/1.25 var(--serif); letter-spacing: .06em; }
+  .lead { margin: 10px 0 0; color: var(--ink2); max-width: 42em; }
+  .sub { display: flex; align-items: baseline; gap: 14px; margin: 64px 0 18px; font: 700 22px/1.3 var(--serif); letter-spacing: .08em; }
+  .sub::before { content: ''; align-self: center; width: 26px; height: 2px; background: var(--cinnabar); }
+  .sub small { font: 13px/1 -apple-system, sans-serif; color: var(--ink3); letter-spacing: .08em; }
+  .leaf { position: relative; margin: 28px 0 0; padding: 12px; border-radius: 4px; background: #e2d0b0; box-shadow: inset 0 0 0 1px rgba(120, 80, 40, .3), 0 18px 40px -26px rgba(70, 35, 15, .55); }
+  /* 主视觉 */
+  .stage { position: relative; width: 100%; aspect-ratio: 1600 / 760; overflow: hidden; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(120, 80, 40, .35); container-type: inline-size; background: #f2e6d4; }
+  .stage .jh-layer { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hit { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 6px; transition: background-color .25s, box-shadow .25s; }
+  .hit:hover, .hit.on { background: rgba(255, 236, 200, .14); box-shadow: 0 0 0 1px rgba(179, 54, 43, .35); }
+  .slip { position: absolute; z-index: 4; transform: translate(-50%, 0); writing-mode: vertical-rl; padding: .5em .28em; background: #f8f1e3; box-shadow: 0 0 0 1px rgba(143, 61, 43, .55), 0 0 0 3px #f8f1e3, 0 0 0 4px rgba(143, 61, 43, .3), 0 6px 14px -8px rgba(60, 30, 10, .5); font: 400 clamp(12px, 1.02cqw, 16px)/1.15 var(--brush); color: #5a2a1e; letter-spacing: .22em; cursor: pointer; border: 0; }
+  .slip:hover, .slip.on { background: #b3362b; color: #f8eedd; }
+  .title-slip { position: absolute; z-index: 5; right: 2.4%; top: 5%; display: flex; gap: 8px; align-items: flex-start; pointer-events: none; }
+  .title-slip b { writing-mode: vertical-rl; padding: .6em .4em; background: rgba(250, 244, 232, .92); box-shadow: inset 0 0 0 1px rgba(110, 60, 30, .5), inset 0 0 0 4px rgba(250, 244, 232, .92), inset 0 0 0 5px rgba(110, 60, 30, .3); font: 400 clamp(16px, 1.7cqw, 27px)/1.1 var(--brush); letter-spacing: .3em; color: var(--ink); }
+  .title-slip i { display: grid; place-items: center; width: 2.6cqw; min-width: 24px; aspect-ratio: 1; margin-top: 6.5em; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 clamp(10px, .86cqw, 14px)/1.05 var(--brush); font-style: normal; text-align: center; }
+  .hint { margin: 10px 2px 0; font-size: 12.5px; color: var(--ink3); }
+  /* 题签卡 */
+  .card { position: absolute; z-index: 20; display: flex; width: 360px; background: #f9f3e6; border-radius: 3px; box-shadow: 0 0 0 1px rgba(110, 60, 30, .32), 0 18px 36px -18px rgba(60, 25, 10, .55); overflow: hidden; }
+  .card[hidden] { display: none; }
+  .card .strip { flex: none; width: 58px; padding: 16px 0 12px; background: var(--cinnabar); color: #f8eedd; display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+  .card .strip b { writing-mode: vertical-rl; font: 400 22px/1.1 var(--brush); letter-spacing: .26em; }
+  .card .strip i { font: 400 11px/1.2 var(--brush); font-style: normal; text-align: center; padding: 4px 3px; border: 1px solid rgba(248, 238, 221, .7); border-radius: 2px; }
+  .card .body { padding: 14px 18px 16px; }
+  .card .meta { margin: 0 0 6px; font-size: 12.5px; color: var(--ink3); letter-spacing: .08em; }
+  .card p { margin: 0 0 10px; font-size: 14px; color: var(--ink2); }
+  .card .fit { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; } .card .fit span { padding: 0 8px; border-radius: 2px; background: rgba(179, 54, 43, .08); color: var(--cin-d); font-size: 12px; }
+  .card button { cursor: pointer; }
+  .b1 { padding: 8px 14px; border: 0; border-radius: 2px; background: var(--cinnabar); color: #f6ead6; font: 13.5px/1.2 inherit; letter-spacing: .08em; }
+  .b2 { padding: 8px 14px; border: 1px solid rgba(42, 38, 33, .35); border-radius: 2px; background: transparent; color: var(--ink); font: 13.5px/1.2 inherit; letter-spacing: .08em; }
+  .card .x { position: absolute; right: 8px; top: 4px; border: 0; background: none; font-size: 18px; color: var(--ink3); }
+  /* 四种教学形式 */
+  .forms { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .form { margin: 0; background: #f8f1e3; border-radius: 3px; box-shadow: 0 0 0 1px rgba(110, 60, 30, .22), 0 14px 30px -24px rgba(60, 25, 10, .6); overflow: hidden; display: flex; flex-direction: column; }
+  .form .pic { position: relative; aspect-ratio: 340 / 214; background: linear-gradient(#f3e3c9, #efe2cd); border-bottom: 1px solid rgba(110, 60, 30, .2); }
+  .form .pic svg { position: absolute; inset: 6% 4% 0; width: 92%; height: 94%; overflow: visible; }
+  .form .txt { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 14px 16px 16px; align-items: start; }
+  .form .seal { grid-row: span 2; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 22px/1 var(--brush); transform: rotate(-3deg); box-shadow: inset 0 0 0 2px var(--cinnabar), inset 0 0 0 3px rgba(246, 234, 214, .7); }
+  .form h4 { margin: 0; font: 700 18px/1.3 var(--serif); letter-spacing: .08em; }
+  .form p { margin: 0; font-size: 13.5px; color: var(--ink2); }
+  /* 一日示例 */
+  .tl { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 10px; padding: 8px 0 0; }
+  .tl::before { content: ''; position: absolute; left: 10%; right: 10%; top: 112px; height: 2px; background: repeating-linear-gradient(90deg, var(--cinnabar) 0 8px, transparent 8px 13px); }
+  .node { position: relative; text-align: center; }
+  .node .ic { height: 96px; display: flex; align-items: flex-end; justify-content: center; }
+  .node .ic svg { max-height: 88px; width: auto; max-width: 150px; overflow: visible; }
+  .node .dot { position: relative; z-index: 1; display: grid; place-items: center; width: 26px; height: 26px; margin: 3px auto 10px; border-radius: 50%; background: var(--cinnabar); color: #f6ead6; font: 400 14px/1 var(--brush); box-shadow: 0 0 0 4px var(--paper); }
+  .node time { display: block; font: 700 17px/1.2 var(--serif); letter-spacing: .06em; color: var(--cin-d); }
+  .node h4 { margin: 4px 0 2px; font: 700 16px/1.35 var(--serif); letter-spacing: .06em; }
+  .node p { margin: 0 auto; max-width: 13em; font-size: 13px; color: var(--ink2); }
+  .tl-act { display: flex; gap: 12px; justify-content: center; margin-top: 22px; }
+  .tl-act button { cursor: pointer; }
+  /* 完整行程弹层 */
+  .modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 20px; background: rgba(40, 25, 15, .45); }
+  .modal[hidden] { display: none; }
+  .modal .panel { position: relative; width: min(560px, 100%); max-height: calc(100vh - 40px); overflow: auto; padding: 22px 24px 20px; background: #f9f3e6; border-radius: 4px; box-shadow: 0 30px 60px -20px rgba(40, 20, 10, .6); }
+  .modal h3 { margin: 0; font: 700 21px/1.3 var(--serif); letter-spacing: .06em; } .modal .d { margin: 4px 0 14px; font-size: 12.5px; color: var(--ink3); letter-spacing: .08em; }
+  .modal ol { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(110, 60, 30, .18); }
+  .modal li { display: grid; grid-template-columns: 58px 1fr; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid rgba(110, 60, 30, .14); }
+  .modal li time { grid-row: span 2; font: 700 15px/1.5 var(--serif); color: var(--cin-d); }
+  .modal li b { font: 700 15px/1.4 var(--serif); } .modal li span { font-size: 13px; color: var(--ink2); }
+  .modal .inc { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 14px 0 16px; font-size: 13px; color: var(--ink3); }
+  .modal .inc span { padding: 1px 9px; border-radius: 2px; background: rgba(42, 38, 33, .07); color: var(--ink2); }
+  .modal .x { position: absolute; right: 10px; top: 8px; border: 0; background: none; font-size: 20px; color: var(--ink3); cursor: pointer; }
+  /* 照片墙：展览墙 */
+  .wall { position: relative; padding: 46px 40px 40px; border-radius: 3px; background: linear-gradient(#e7dccb, #e2d5c1 70%, #d9cab3); box-shadow: inset 0 0 0 1px rgba(110, 70, 40, .2); }
+  .wall::before { content: ''; position: absolute; left: 0; right: 0; top: 18px; height: 3px; background: linear-gradient(#bfa98a, #a88f6d); box-shadow: 0 1px 0 rgba(255, 255, 255, .5); }
+  .wall::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: linear-gradient(#cdb99b, #bda786); border-top: 1px solid rgba(110, 70, 40, .35); border-radius: 0 0 3px 3px; }
+  .frames { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 196px; gap: 40px 30px; padding-bottom: 20px; }
+  .frame { position: relative; margin: 0; display: flex; flex-direction: column; }
+  .frame .fr { position: relative; flex: 1; padding: 9px; background: linear-gradient(135deg, #4a3326, #2f2019); box-shadow: inset 0 0 0 1px #6b4b37, 0 14px 22px -14px rgba(30, 15, 5, .7); }
+  .frame .fr::before { content: ''; position: absolute; left: 50%; top: -22px; width: 1px; height: 22px; background: rgba(90, 70, 50, .55); }
+  .frame .mat { position: relative; height: 100%; padding: 16px; background: #f4ecdd; box-shadow: inset 0 0 0 1px #c9a66a; }
+  .frame .ph { position: relative; height: 100%; overflow: hidden; background: #e9dfcd; box-shadow: inset 0 0 0 1px rgba(80, 60, 40, .25); }
+  .frame .ph svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: grayscale(1) sepia(.45) contrast(.86) brightness(1.04); opacity: .62; }
+  .frame .ph em { position: absolute; right: 6px; bottom: 6px; padding: 1px 6px; background: rgba(248, 241, 227, .9); font-size: 11px; font-style: normal; color: var(--ink3); letter-spacing: .08em; }
+  .frame figcaption { margin-top: 10px; align-self: center; padding: 3px 10px; background: #f8f3ea; box-shadow: 0 0 0 1px rgba(110, 70, 40, .2); font-size: 12px; color: var(--ink2); letter-spacing: .06em; text-align: center; }
+  .f-a { grid-column: 1 / span 3; grid-row: 1 / span 2; } .f-b { grid-column: 4 / span 2; } .f-c { grid-column: 6; } .f-d { grid-column: 4; } .f-e { grid-column: 5 / span 2; }
+  .note { margin: 18px 0 0; font-size: 12.5px; color: var(--ink3); }
+  @media (max-width: 1000px) { .forms { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 760px) {
+    .ch { padding-top: 44px; }
+    .leaf { padding: 6px; margin: 22px calc(var(--gutter) * -1 + 6px) 0; }
+    .stage { aspect-ratio: 400 / 840; }
+    .title-slip { right: 3%; top: 2.4%; } .title-slip i { margin-top: 5.8em; }
+    .card { position: fixed; left: 0 !important; right: 0; top: auto !important; bottom: 0; width: auto; border-radius: 12px 12px 0 0; box-shadow: 0 -10px 30px -12px rgba(40, 25, 10, .45); }
+    .card { flex-direction: column; }
+    .card .strip { width: auto; flex-direction: row; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px 12px 0 0; }
+    .card .strip b { writing-mode: horizontal-tb; font-size: 20px; letter-spacing: .1em; }
+    .card .strip i br { display: none; } .card .strip i { margin: 0 34px 0 auto; } .card .body { padding: 12px 16px 22px; } .card .x { color: #f6ead6; top: 8px; right: 10px; }
+    .forms { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 10px; scrollbar-width: none; }
+    .form { flex: none; width: 78%; scroll-snap-align: center; }
+    .tl { grid-template-columns: 1fr; gap: 0; padding-left: 0; }
+    .tl::before { left: 14px; right: auto; top: 26px; bottom: 26px; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--cinnabar) 0 8px, transparent 8px 13px); }
+    .node { display: grid; grid-template-columns: 30px 84px 1fr; grid-template-rows: auto auto auto; column-gap: 12px; align-items: center; text-align: left; padding: 10px 0; }
+    .node .dot { grid-column: 1; grid-row: 1 / span 3; position: static; margin: 0; }
+    .node .ic { grid-column: 2; grid-row: 1 / span 3; height: 60px; align-items: center; justify-content: center; } .node .ic svg { max-height: 54px; max-width: 84px; }
+    .node time, .node h4, .node p { grid-column: 3; }
+    .node p { margin: 0; max-width: none; }
+    .tl-act { flex-direction: column; } .tl-act button { width: 100%; }
+    .sub { flex-wrap: wrap; row-gap: 4px; font-size: 21px; } .sub small { flex-basis: 100%; padding-left: 40px; }
+    .wall { padding: 34px 14px 34px; margin: 0 calc(var(--gutter) * -1 + 6px); }
+    .frames { grid-template-columns: 1fr 1fr; grid-auto-rows: 132px; gap: 30px 16px; }
+    .frame .fr { padding: 6px; } .frame .mat { padding: 8px; } .frame .ph em { right: 3px; bottom: 3px; padding: 0 4px; font-size: 9.5px; }
+    .f-a { grid-column: 1 / span 2; grid-row: span 2; } .f-b, .f-c, .f-d, .f-e { grid-column: auto; grid-row: auto; }
+  }
+</style></head>
+<body><div id="defs"></div>
+<section class="ch" id="red">
+  <header>
+    <p class="ch-sign"><b>壹</b><span>红色教育</span></p>
+    <h2>把课堂搬到红色现场</h2>
+    <p class="lead">依托北京红色资源组织主题党日、现场教学和党性教育，讲解、交通、餐食、安全一并安排。</p>
+  </header>
+  <figure class="leaf">
+    <div class="stage" id="stage"></div>
+    <aside class="card" id="card" hidden></aside>
+  </figure>
+  <p class="hint">点画中的题签，看每一处的介绍。</p>
+
+  <h3 class="sub">四种现场教学<small>可单选，也可组合</small></h3>
+  <div class="forms" id="forms"></div>
+
+  <h3 class="sub">一日示例 · 红色足迹<small>示例行程，可按单位学习主题定制</small></h3>
+  <div class="tl" id="tl"></div>
+  <div class="tl-act"><button class="b2" type="button" id="openItin">查看完整行程</button><button class="b1" type="button">按这个行程定制方案</button></div>
+  <div class="modal" id="itin" hidden><div class="panel" role="dialog" aria-modal="true" aria-labelledby="itinH"></div></div>
+
+  <h3 class="sub">现场照片<small>版位已留好，待补充现场照片</small></h3>
+  <div class="wall"><div class="frames" id="frames"></div></div>
+  <p class="note">线路与日程为示例，可按单位学习主题定制。照片版位现以示意画占位，换上现场照片后即为正式效果。</p>
+</section>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script src="../../assets/js/jh/icons.js"></script>
+<script src="../../assets/js/jh/map.js"></script>
+<script src="../../assets/js/jh/red.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s), R = JH.RED, IC = JH.ICONS, q = new URLSearchParams(location.search);
+  document.getElementById('defs').innerHTML = JH.ARCH.defs() + R.defs();
+  const mobile = innerWidth <= 760, stage = $('#stage');
+  const SPOT = Object.fromEntries(JH.MAP.SPOTS.map(s => [s[0], { name: s[1], area: s[2], themes: s[4], desc: s[5], fit: s[6] }]));
+  const NAMES = { honglou: '北大红楼', lidazhao: '李大钊故居', lugou: '卢沟桥', xiangshan: '香山 · 双清别墅', dangshi: '党史展览馆' };
+  // 主视觉
+  const S = R.compose(mobile ? 'mobile' : 'desk', stage.clientWidth / (mobile ? 400 : 1600));
+  stage.innerHTML = S.layers.map(l => l.svg).join('') + `<div class="title-slip"><b>红色地标群像</b><i>朱墨<br>界画</i></div>`;
+  // 题签：每一处旁边一枚竖写小签（位置在构图里定好），点签或点建筑都出题签卡
+  const hitEls = {}, slipEls = {};
+  for (const h of S.hits) {
+    const b = document.createElement('button'); b.className = 'hit'; b.type = 'button'; b.setAttribute('aria-label', NAMES[h.id]);
+    Object.assign(b.style, { left: (h.x / S.W * 100) + '%', top: (h.y / S.H * 100) + '%', width: (h.w / S.W * 100) + '%', height: (h.h / S.H * 100) + '%' });
+    b.onclick = e => { e.stopPropagation(); openCard(h.id); }; stage.appendChild(b); hitEls[h.id] = b;
+    const [sx, sy] = S.slips[h.id], s = document.createElement('button'); s.className = 'slip'; s.type = 'button'; s.textContent = NAMES[h.id];
+    s.style.left = (sx / S.W * 100) + '%'; s.style.top = (sy / S.H * 100) + '%';
+    s.onclick = e => { e.stopPropagation(); openCard(h.id); }; stage.appendChild(s); slipEls[h.id] = s;
+  }
+  function openCard(id) {
+    const sp = SPOT[id], c = $('#card'); c.hidden = false;
+    c.innerHTML = `<div class="strip"><b>${sp.name.replace(' · ', '·')}</b><i>红色<br>教育</i></div><div class="body"><button class="x" type="button" aria-label="关闭">×</button><p class="meta">${sp.area}${sp.themes.length ? ' · ' + sp.themes.join('、') : ''}</p><p>${sp.desc}</p><div class="fit">${sp.fit.map(f => `<span>${f}</span>`).join('')}</div><button class="b1" type="button">按这里定制方案</button></div>`;
+    c.querySelector('.x').onclick = () => { c.hidden = true; mark(''); };
+    mark(id);
+    if (mobile) return;
+    // 卡片放在画里的空处（多半是天空），不盖住任何一处地标，也不盖题签；同样空的位置里挑离这一处近的
+    const fig = $('.leaf').getBoundingClientRect(), st = stage.getBoundingClientRect(), cw = c.offsetWidth, ch = c.offsetHeight, pad = 18;
+    const rel = r => ({ l: r.left - fig.left, t: r.top - fig.top, r: r.right - fig.left, b: r.bottom - fig.top });
+    const obst = [...Object.values(hitEls).map(e => rel(e.getBoundingClientRect())), rel(stage.querySelector('.title-slip').getBoundingClientRect())];
+    const me = rel(hitEls[id].getBoundingClientRect()), cx = (me.l + me.r) / 2, cy = (me.t + me.b) / 2;
+    const L0 = st.left - fig.left + pad, T0 = st.top - fig.top + pad, L1 = st.right - fig.left - cw - pad, T1 = st.bottom - fig.top - ch - pad;
+    const cands = [];
+    for (let i = 0; i <= 8; i++) for (let j = 0; j <= 4; j++) cands.push([L0 + (L1 - L0) * i / 8, T0 + (T1 - T0) * j / 4]);
+    cands.push([me.r + 16, me.t], [me.l - cw - 16, me.t], [cx - cw / 2, me.t - ch - 16]);
+    const over = (l, t) => obst.reduce((a, k) => a + Math.max(0, Math.min(l + cw, k.r) - Math.max(l, k.l)) * Math.max(0, Math.min(t + ch, k.b) - Math.max(t, k.t)), 0);
+    let best = null, bs = Infinity;
+    for (let [l, t] of cands) { l = Math.max(L0, Math.min(L1, l)); t = Math.max(T0, Math.min(T1, t)); const sc = over(l, t) / 40 + Math.hypot(l + cw / 2 - cx, t + ch / 2 - cy); if (sc < bs) { bs = sc; best = [l, t]; } }
+    c.style.left = best[0] + 'px'; c.style.top = best[1] + 'px';
+  }
+  const mark = id => { for (const k in hitEls) { hitEls[k].classList.toggle('on', k === id); slipEls[k].classList.toggle('on', k === id); } };
+  // 四种教学形式
+  const FORMS = [['学', '现场教学', '走进旧址和纪念馆，讲解员带着看、带着讲。', 'vField'], ['日', '主题党日', '在纪念地敬献花篮、重温入党誓词，流程按支部需要安排。', 'vDay'], ['课', '专题党课', '邀请讲师结合主题授课，也可配合单位自己讲。', 'vLecture'], ['景', '情景教学', '情景再现、诵读和访谈，让历史在现场“活”起来。', 'vScene']];
+  const scene = (k, w) => { const L = R[k](); return JH.svg(L, w / (L.box[1] - L.box[0] + 12), 6, 'zm'); };
+  $('#forms').innerHTML = FORMS.map(([s, t, d, k]) => `<figure class="form"><div class="pic">${scene(k, 300)}</div><figcaption class="txt"><span class="seal">${s}</span><h4>${t}</h4><p>${d}</p></figcaption></figure>`).join('');
+  // 一日示例：五个节点
+  const TL = [['08:30', '集合出发', '统一乘车，负责人随车说明当天安排', 'bus'], ['09:30', '北大红楼', '讲解员带领参观，现场教学', 'honglou'], ['11:00', '主题交流', '结合本单位工作开展研讨', 'meeting'], ['13:30', '香山革命纪念地', '现场教学，重温入党誓词', 'xiangshan'], ['16:30', '返程', '安全送达各集合点', 'bus']];
+  const icon = k => { const L = k === 'bus' || k === 'meeting' ? R[k]() : IC[k](); return JH.svg(L, (mobile ? 64 : 88) / (L.box[3] - L.box[2] + 12), 6, 'zm'); };
+  $('#tl').innerHTML = TL.map(([t, h, d, k], i) => `<div class="node"><div class="ic">${icon(k)}</div><span class="dot">${'一二三四五'[i]}</span><time>${t}</time><h4>${h}</h4><p>${d}</p></div>`).join('');
+  // 完整行程
+  const ROWS = [['08:30', '集合出发', '统一乘车，负责人随车说明当天安排'], ['09:30', '北大红楼', '专业讲解，参观主题展览'], ['11:00', '主题交流', '结合本单位工作开展研讨'], ['12:00', '午餐', '按标准安排工作餐'], ['13:30', '香山革命纪念地', '现场教学，重温入党誓词'], ['16:00', '学习小结', '整理学习材料和影像资料'], ['16:30', '返程', '安全送达各集合点']];
+  const md = $('#itin');
+  md.querySelector('.panel').innerHTML = `<button class="x" type="button" aria-label="关闭">×</button><h3 id="itinH">红色足迹 · 党性教育</h3><p class="d">现场教学一日 · 示例行程，可按单位学习主题定制</p><ol>${ROWS.map(([t, b, s]) => `<li><time>${t}</time><b>${b}</b><span>${s}</span></li>`).join('')}</ol><div class="inc">一并安排：${['讲解', '车辆', '保险', '餐食', '随团负责人'].map(x => `<span>${x}</span>`).join('')}</div><button class="b1" type="button">按这个行程定制方案</button>`;
+  $('#openItin').onclick = () => { md.hidden = false; };
+  md.onclick = e => { if (e.target === md || e.target.closest('.x')) md.hidden = true; };
+  // 照片墙：展览墙的版位，先用示意画占位
+  const WALL = [['f-a', '北大红楼 · 现场教学', 'vField'], ['f-b', '纪念地 · 敬献花篮', 'vDay'], ['f-c', '香山 · 双清别墅', 'shuangqing'], ['f-d', '专题党课', 'vLecture'], ['f-e', '情景教学', 'vScene']];
+  $('#frames').innerHTML = WALL.map(([c, t, k]) => { const L = R[k](), [l, r, b, tp] = L.box; return `<figure class="frame ${c}"><div class="fr"><div class="mat"><div class="ph"><svg class="zm" viewBox="${l} ${-tp} ${r - l} ${tp - b}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="jh" style="${JH.lineStyle(1)}" transform="scale(1 -1)">${L.g}</g></svg><em>照片待补</em></div></div></div><figcaption>${t}</figcaption></figure>`; }).join('');
+  if (q.get('card')) openCard(q.get('card'));
+  if (q.get('itin')) md.hidden = false;
+})();
+</script></body></html>

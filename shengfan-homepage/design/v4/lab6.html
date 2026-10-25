@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>会务试验</title>
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>html, body { margin: 0; background: #eef0ea; font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; color: #5a5048; } .row { display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end; padding: 20px; } figure { margin: 0; text-align: center; } .jh-svg { display: block; margin: 0 auto; overflow: visible; }</style></head>
+<body><div id="defs"></div><div id="out" class="mc"></div>
+<script src="../../assets/js/jh/core.js"></script><script src="../../assets/js/jh/arch.js"></script><script src="../../assets/js/jh/build.js"></script><script src="../../assets/js/jh/nature.js"></script><script src="../../assets/js/jh/mice.js"></script>
+<script>
+document.getElementById('defs').innerHTML = JH.ARCH.defs() + JH.MICE.defs();
+const q = new URLSearchParams(location.search), only = (q.get('only') || '').split(',').filter(Boolean), H = +(q.get('h') || 240);
+const M = JH.MICE, items = ['yanqiHall', 'richu', 'shougang', 'cncc', 'zgc', 'lize', 'vWork', 'vTrain', 'vForum', 'vGala', 'vLaunch', 'vExpo', 'vCadre', 'vBench', 'vSurvey'].filter(k => !only.length || only.includes(k));
+document.getElementById('out').innerHTML = '<div class="row">' + items.map(k => { const L = M[k](); return `<figure>${JH.svg(L, H / (L.box[3] - L.box[2] + 12))}<figcaption>${k}</figcaption></figure>`; }).join('') + '</div>';
+</script></body></html>

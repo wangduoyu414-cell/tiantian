@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>晟帆国旅 · 电子名片</title>
+<!-- 名片图是在本机渲染导出的 PNG，这里直接用 Google Fonts 的完整字体，不随网站发布 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Barlow+Condensed:wght@600&display=block">
+<link rel="stylesheet" href="../../assets/css/art.css">
+<style>
+  :root { --ink: #12213f; --ink2: #3a4766; --ink3: #6b7487; --brand: #004291; --sky: #00a0dc; --line: rgba(18,33,63,.12);
+    --red: #b0252c; --green: #4a8f1e; --blue: #1f5aa6; --gold: #a87e26;
+    --serif: "Noto Serif SC", serif; --sans: -apple-system, "PingFang SC", sans-serif; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1080px; height: 800px; overflow: hidden; }
+  body { background: #f3f0e9; font-family: var(--sans); color: var(--ink); display: grid; place-items: center;
+    background-image: radial-gradient(rgba(18,33,63,.07) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .corner { position: absolute; width: 22px; height: 22px; border-color: rgba(18,33,63,.28); border-style: solid; border-width: 0; }
+  .c1 { left: 26px; top: 26px; border-left-width: 1.5px; border-top-width: 1.5px; } .c2 { right: 26px; top: 26px; border-right-width: 1.5px; border-top-width: 1.5px; }
+  .c3 { left: 26px; bottom: 26px; border-left-width: 1.5px; border-bottom-width: 1.5px; } .c4 { right: 26px; bottom: 26px; border-right-width: 1.5px; border-bottom-width: 1.5px; }
+  .card { position: relative; width: 960px; height: 680px; border-radius: 30px; background: #fffefb; overflow: hidden;
+    box-shadow: 0 2px 4px rgba(18,33,63,.06), 0 40px 70px -36px rgba(18,33,63,.45); display: grid; grid-template-columns: 1fr 300px; grid-template-rows: 1fr 150px; }
+  .card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: linear-gradient(var(--brand), var(--sky)); }
+  .main { padding: 50px 40px 0 64px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand img { width: 30px; }
+  .brand b { display: block; font: 700 22px/1.3 var(--serif); letter-spacing: .06em; }
+  .brand span { display: block; font-size: 14px; color: var(--ink3); letter-spacing: .12em; margin-top: 2px; }
+  .person { display: flex; align-items: baseline; gap: 18px; margin: 34px 0 26px; }
+  .person h1 { font: 900 66px/1 var(--serif); letter-spacing: .16em; }
+  .person p { font-size: 20px; color: var(--ink3); letter-spacing: .1em; }
+  .lines { list-style: none; padding: 0; display: grid; gap: 15px; }
+  .lines li { display: flex; align-items: center; gap: 16px; }
+  .lines .ib { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: #eef3fa; color: var(--brand); flex: none; }
+  .lines .ib.dark { background: var(--brand); color: #fff; }
+  .lines svg { width: 22px; height: 22px; }
+  .lines b { font: 600 30px/1 "Barlow Condensed", var(--sans); letter-spacing: .03em; }
+  .lines .t { font-size: 21px; font-weight: 500; }
+  .lines small { display: block; margin-top: 4px; font-size: 14px; color: var(--ink3); letter-spacing: .06em; }
+  .side { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding-right: 34px; }
+  .qr { width: 212px; height: 212px; border-radius: 18px; position: relative; display: grid; place-items: center; text-align: center; font-size: 15px; line-height: 1.6; color: #a1a7b3;
+    border: 1.5px dashed rgba(18,33,63,.25); background: repeating-linear-gradient(135deg, transparent 0 9px, rgba(18,33,63,.04) 9px 10px), #fff; }
+  .qr::before, .qr::after { content: ""; position: absolute; width: 30px; height: 30px; border: 3px solid var(--brand); }
+  .qr::before { left: -10px; top: -10px; border-right: 0; border-bottom: 0; border-radius: 8px 0 0 0; }
+  .qr::after { right: -10px; bottom: -10px; border-left: 0; border-top: 0; border-radius: 0 0 8px 0; }
+  .side p { font: 700 22px var(--serif); letter-spacing: .3em; padding-left: .3em; }
+  .foot { grid-column: 1 / -1; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; padding: 0 40px 0 64px; border-top: 1.5px dashed var(--line); background: #faf8f3; overflow: hidden; }
+  .sky { position: absolute; left: 0; right: 0; bottom: -2px; height: 150px; opacity: .16; pointer-events: none; }
+  .sky svg { width: 100%; height: 100%; display: block; }
+  .biz { position: relative; display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 600; }
+  .biz .ic { width: 44px; height: 44px; padding: 8px; border-radius: 12px; background: #fff; border: 1px solid var(--line); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ic .ac { fill: var(--ac); fill-opacity: .2; stroke: none; } .ic .acs { stroke: var(--ac); }
+</style>
+</head>
+<body>
+<i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+<div id="defs"></div>
+<article class="card">
+  <div class="main">
+    <div class="brand"><img src="../../assets/img/sf-mark.png" alt=""><div><b>北京晟帆国际旅行社有限公司</b><span>贵昌集团旗下 · 会务文旅板块</span></div></div>
+    <div class="person"><h1>鲁甜甜</h1><p>职务待定</p></div>
+    <ul class="lines">
+      <li><span class="ib dark"><svg><use href="#i-phone"/></svg></span><div><b>1XX XXXX XXXX</b><small>电话 / 微信同号（待提供）</small></div></li>
+      <li><span class="ib"><svg><use href="#i-tel"/></svg></span><div><b>010-5339 8618</b><small>公司座机</small></div></li>
+      <li><span class="ib"><svg><use href="#i-mail"/></svg></span><div><span class="t">gcsfgj@163.com</span></div></li>
+      <li><span class="ib"><svg><use href="#i-pin"/></svg></span><div><span class="t">北京市丰台区花乡六圈西路 8 号院</span><small>新华双创园 B 座 3 层 307 室</small></div></li>
+    </ul>
+  </div>
+  <div class="side">
+    <div class="qr"><span>主页二维码<br>上线后生成</span></div>
+    <p>了解我们</p>
+  </div>
+  <div class="foot">
+    <div class="sky" id="sky"></div>
+    <div class="biz" style="--ac:#b0252c" id="b1"></div>
+    <div class="biz" style="--ac:#b0252c" id="b2"></div>
+    <div class="biz" style="--ac:#4a8f1e" id="b3"></div>
+    <div class="biz" style="--ac:#1f5aa6" id="b4"></div>
+  </div>
+</article>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 20 20"><path d="M6.2 2.8 8.4 3.4l1 3.4-1.7 1.5a10 10 0 0 0 4 4l1.5-1.7 3.4 1 .6 2.2c.2.8-.3 1.6-1.1 1.8-6.2 1.3-12.4-4.9-11-11 .2-.8 1-1.3 1.8-1.1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 20 20"><path d="M3.5 6.2c0-1.6 2.9-2.9 6.5-2.9s6.5 1.3 6.5 2.9v1.2l-3 .6-.8-1.8H7.3l-.8 1.8-3-.6Z M5.6 9.6h8.8l1.6 6.6H4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="12.8" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 20 20"><path d="M10 17.6s5.4-5 5.4-9.2a5.4 5.4 0 0 0-10.8 0c0 4.2 5.4 9.2 5.4 9.2Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="8.4" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 20 20"><path d="M3 5h14v10H3Z M3.4 5.4 10 10.6l6.6-5.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+</svg>
+<script src="../../assets/js/art.js"></script>
+<script src="../../assets/js/icons.js"></script>
+<script>
+  document.getElementById('defs').innerHTML = ART.defs();
+  // 底栏淡淡一条北京天际线：只取长卷中段
+  document.getElementById('sky').innerHTML = ART.panorama().replace('viewBox="0 0 2400 600"', 'viewBox="200 300 1900 210"').replace('xMidYMax slice', 'xMidYMax slice');
+  [['b1', 'red', '红色教育'], ['b2', 'gov', '党政团建'], ['b3', 'ent', '企业团建'], ['b4', 'mice', '会务研学']].forEach(([id, ic, t]) => {
+    document.getElementById(id).innerHTML = ICON(ic) + `<span>${t}</span>`;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林木试验</title>
+<link rel="stylesheet" href="../../assets/css/art2.css"><link rel="stylesheet" href="../../assets/css/scene.css"><link rel="stylesheet" href="../../assets/css/flora.css">
+<style>html,body{margin:0;background:#efe6d3}.sc svg{display:block;width:100%;height:auto}</style></head>
+<body><div id="defs"></div><div class="sc" id="sc" data-season="autumn"></div>
+<script src="../../assets/js/art2.js"></script><script src="../../assets/js/flora.js"></script>
+<script>
+const q = new URLSearchParams(location.search); if (q.get('season')) sc.dataset.season = q.get('season');
+document.getElementById('defs').innerHTML = ART2.defs();
+const { Pen, N } = ART2, P = Pen();
+// 一行单株：各树种三种尺寸
+const kinds = ['p', 'c', 'e', 'g', 'a', 'y'];
+kinds.forEach((k, i) => {
+  [90, 46, 24].forEach((h, j) => { const B = FLORA.Bucket(); FLORA.tree(B, 60 + i * 160 + j * 52 - (j ? 20 : 0), 130 + j * 0, h, k, ART2.rng(i * 10 + j + 3)); B.flush(P); });
+});
+// 一座山上的林
+const base = 470, cx = 480, hw = 430, hh = 200, pts = [];
+for (let i = 0; i <= 60; i++) { const t = -1 + 2 * i / 60; const f = Math.pow(Math.max(0, 1 - Math.pow(Math.abs(t), 2.4)), 0.85) * (1 + 0.05 * Math.sin(t * 9 + 1) * (1 - t * t)) * (1 - 0.08 * Math.max(0, t)); pts.push([cx + t * hw, base - f * hh]); }
+P.p('M' + pts.map(p => N(p[0]) + ' ' + N(p[1])).join('L') + 'Z', 'mtn', ' fill="url(#g-hill)"');
+const ridge = x => ART2.yAt(pts, x);
+P.raw(`<clipPath id="cpf"><rect x="0" y="0" width="960" height="${base}"/></clipPath>`);
+const P0 = P; 
+P.raw('<g clip-path="url(#cpf)">'); FLORA.canopy(P, { x0: cx - hw + 6, x1: cx + hw - 6, top: ridge, base: base - 2, rows: 18, rFar: 7, rNear: 13, emerge: 0.025, mix: { p: 3, c: 0.7, e: 3.4, g: 2, a: 1.3, y: 0.8 }, seed: 5,
+  skip: (x, y) => Math.abs(x - cx) < 34 + Math.max(0, y - (base - hh * 0.75)) * 0.45 }); P.raw('</g>');
+// 岸边一丛
+FLORA.clump(P, { x0: 20, x1: 300, y: 560, h: 40, mix: { e: 2, g: 2, a: 1, y: 1, p: 1 }, seed: 9, rows: 2 });
+FLORA.clump(P, { x0: 640, x1: 940, y: 560, h: 44, mix: { c: 3, e: 1 }, seed: 11, rows: 2 });
+sc.innerHTML = `<svg class="a2" viewBox="0 0 960 600">${P.s()}</svg>`;
+</script></body></html>

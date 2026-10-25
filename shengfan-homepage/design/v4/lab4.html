@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>导览图标</title>
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>html, body { margin: 0; background: #efe6d3; font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; color: #5a5048; } .row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 18px 10px; padding: 20px; } figure { margin: 0; text-align: center; } .jh-svg { display: block; margin: 0 auto; overflow: visible; }</style></head>
+<body><div id="defs"></div><div id="out"></div>
+<script src="../../assets/js/jh/core.js"></script><script src="../../assets/js/jh/arch.js"></script><script src="../../assets/js/jh/nature.js"></script><script src="../../assets/js/jh/icons.js"></script>
+<script>
+document.getElementById('defs').innerHTML = JH.ARCH.defs();
+const px = +(new URLSearchParams(location.search).get('px') || 1.4);
+document.getElementById('out').innerHTML = '<div class="row">' + Object.entries(JH.ICONS).filter(([k]) => !k.startsWith('_')).map(([k, f]) => `<figure>${JH.svg(f(), px)}<figcaption>${k}</figcaption></figure>`).join('') + '</div>';
+</script></body></html>

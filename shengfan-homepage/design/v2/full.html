@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京华胜景 · 全景</title>
+<link rel="stylesheet" href="../../assets/css/art2.css"><link rel="stylesheet" href="../../assets/css/scene.css"><link rel="stylesheet" href="../../assets/css/flora.css">
+<style>html,body{margin:0;background:#efe6d3}.sc svg{display:block;width:100%;height:auto}</style></head>
+<body><div id="defs"></div><div class="sc" id="sc" data-season="autumn"></div>
+<script src="../../assets/js/art2.js"></script><script src="../../assets/js/flora.js"></script><script src="../../assets/js/scene.js"></script>
+<script>document.getElementById('defs').innerHTML=ART2.defs();const S=SCENE.compose();const q=new URLSearchParams(location.search);
+const x0=+(q.get('x')||0),w=+(q.get('w')||S.W);if(q.get('season'))document.getElementById('sc').dataset.season=q.get('season');
+const only=q.get('only')||'wide';const sp=l=>S.sprites.filter(o=>o.layer===l&&(!o.only||o.only===only)).map(o=>o.svg).join('');
+document.getElementById('sc').innerHTML=`<svg class="a2" viewBox="${x0} 0 ${w} ${S.H}">${S.sky}${sp('sky')}<g>${S.far}</g>${sp('far')}<g>${S.mid}</g>${sp('mid')}<g>${S.main}</g>${sp('main')}${sp('fore')}</svg>`;</script>
+</body></html>

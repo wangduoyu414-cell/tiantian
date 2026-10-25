@@ -1,0 +1,154 @@
+/* 京华胜景长卷：山水、树、水、云。季节色由 [data-season] 上的变量控制。 */
+.sc { --t-a: #c8472c; --t-b: #e2ad36; --t-g: #4e7a52; --t-w: #b8b45e; }
+.sc[data-season="spring"] { --t-a: #e7a7b1; --t-b: #f2e8cd; --t-g: #6c9e5a; --t-w: #a3c66c; }
+.sc[data-season="summer"] { --t-a: #4f8a52; --t-b: #6a9f5f; --t-g: #3f7749; --t-w: #79a85a; }
+.sc[data-season="winter"] { --t-a: #b9ab99; --t-b: #cfc4b1; --t-g: #4b6751; --t-w: #b8b39b; }
+.sc svg { overflow: visible; }
+.sc .mtn { stroke: #2f2a24; stroke-width: .6; stroke-opacity: .4; vector-effect: non-scaling-stroke; }
+.sc .far1.mtn { stroke-opacity: .2; }
+.sc .cun { fill: none; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .2; vector-effect: non-scaling-stroke; }
+.sc .far1.cun { stroke-opacity: .1; }
+.sc .moss { fill: #2c4636; fill-opacity: .55; }
+.sc .tree-s { fill: #3b5a45; fill-opacity: .72; stroke: #3b2d22; stroke-width: .4; stroke-opacity: .5; vector-effect: non-scaling-stroke; }
+.sc .tree-s.t-dot { fill: var(--t-g); }
+.sc .trunk { fill: #6a4a33; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .trunkL { fill: none; stroke: #6a4a33; stroke-width: 2.4; }
+.sc .branch { fill: none; stroke: #5d4330; stroke-width: 1.6; stroke-linecap: round; }
+.sc .pine { fill: #3e5f49; stroke: #22362a; stroke-width: .55; stroke-opacity: .7; vector-effect: non-scaling-stroke; }
+.sc .needle { fill: none; stroke: #6f957a; stroke-width: .45; stroke-opacity: .7; vector-effect: non-scaling-stroke; }
+.sc .cypress { fill: #3d5c47; stroke: #22362a; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .cyp-s { fill: none; stroke: #6c8f74; stroke-width: .5; stroke-opacity: .55; vector-effect: non-scaling-stroke; }
+.sc .willow-c { fill: var(--t-w); fill-opacity: .28; }
+.sc .willow { fill: none; stroke: var(--t-w); stroke-width: .9; stroke-opacity: .85; stroke-linecap: round; }
+.sc .crown { stroke: #2f2a24; stroke-width: .5; stroke-opacity: .45; vector-effect: non-scaling-stroke; transition: fill 1.2s; }
+.sc .t-a { fill: var(--t-a); } .sc .t-b { fill: var(--t-b); } .sc .t-g { fill: var(--t-g); }
+.sc .leafdot { stroke: #2f2a24; stroke-width: 1.8; stroke-linecap: round; stroke-opacity: .22; }
+.sc .ground { fill: url(#g-ground); }
+.sc .grass { fill: none; stroke: #8a9468; stroke-width: .7; stroke-opacity: .45; }
+.sc .water { fill: url(#g-water); }
+.sc .wave { fill: none; stroke: #6f8e93; stroke-width: .8; stroke-opacity: .5; }
+.sc .wave2 { stroke-opacity: .32; }
+@keyframes wave { to { transform: translateX(14px); } }
+.sc .island { fill: #cbb98c; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .5; vector-effect: non-scaling-stroke; }
+.sc .rcover { fill: url(#g-rcover); }
+.sc[data-season="winter"] .rcover { fill: url(#g-rcoverW); }
+.sc .rip { fill: none; stroke: #dbe5e0; stroke-width: .9; stroke-opacity: .95; }
+.sc[data-season="winter"] .rip { stroke: #edf1ef; }
+.sc .cloud-f { fill: #fbf6ea; fill-opacity: .9; stroke: #c8a156; stroke-width: .9; vector-effect: non-scaling-stroke; }
+.sc .cloud-l { fill: none; stroke: #c8a156; stroke-width: .8; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.sc .cloud { animation: drift 46s ease-in-out infinite alternate; }
+.sc .clouds.alt .cloud { animation-duration: 58s; animation-direction: alternate-reverse; }
+@keyframes drift { to { translate: 60px 0; } }
+.sc .bird { fill: none; stroke: #2f2a24; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.sc .birds { animation: fly 30s linear infinite; }
+@keyframes fly { from { translate: -60px 10px; } 50% { translate: 120px -16px; } to { translate: 300px 4px; } }
+.sc .boat { animation: moor 3.6s ease-in-out infinite alternate; }
+@keyframes moor { from { translate: 0 0; } to { translate: 3px 1.5px; } }
+@keyframes sail { to { translate: 420px 6px; } }
+.sc .hull { fill: #6b4630; stroke: #2f2a24; stroke-width: .6; vector-effect: non-scaling-stroke; }
+.sc .hull-l { fill: none; stroke: #e2c27a; stroke-width: .6; }
+.sc .cabin { fill: #b2432f; stroke: #2f2a24; stroke-width: .5; vector-effect: non-scaling-stroke; }
+.sc .cabin-w { fill: #7a2a1f; stroke: #e2c27a; stroke-width: .4; }
+.sc .boat-roof { fill: #e2b04a; stroke: #2f2a24; stroke-width: .5; vector-effect: non-scaling-stroke; }
+.sc .boat-roofl { fill: none; stroke: #2f6c8f; stroke-width: 1.2; }
+.sc .pole { stroke: #5d4330; stroke-width: 1.2; }
+.sc .boat-wake { fill: none; stroke: #fff; stroke-width: .9; stroke-opacity: .7; }
+.sc .pwall { fill: url(#g-wall); stroke: #2f2a24; stroke-width: .6; stroke-opacity: .7; vector-effect: non-scaling-stroke; }
+.sc .pwall-l { stroke: #7e2a1f; stroke-width: .5; stroke-opacity: .5; }
+.sc .pwall-cap { fill: #e2b04a; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .7; vector-effect: non-scaling-stroke; }
+.sc .pwall-tile { stroke: #a7782b; stroke-width: .6; }
+.sc .palace-far { opacity: .82; }
+.sc .gw { fill: #bcae98; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .45; vector-effect: non-scaling-stroke; }
+.sc .gw-c { stroke: #6f6455; stroke-width: 1.4; }
+.sc .gw-t { fill: #c7baa3; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .5; vector-effect: non-scaling-stroke; }
+.sc .gw-tc { fill: none; stroke: #6f6455; stroke-width: .8; }
+.sc .gw-w { fill: #5b4f45; }
+.sc .far-lm { opacity: .55; }
+.sc .cbd path { fill: #98aebb; fill-opacity: .3; }
+.sc .mist { animation: breathe 18s ease-in-out infinite alternate; }
+.sc .mist-near { opacity: .7; }
+@keyframes breathe { from { translate: -30px 0; opacity: .75; } to { translate: 40px 0; opacity: 1; } }
+.sc .sun { fill: #f0c46a; fill-opacity: .55; }
+@media (prefers-reduced-motion: reduce) {
+  .sc .wave, .sc .cloud, .sc .birds, .sc .boat, .sc .mist { animation: none; }
+}
+.sc .crown-sh { fill: none; stroke: #2f2a24; stroke-width: 2.2; stroke-opacity: .1; stroke-linecap: round; }
+.sc .bark { fill: none; stroke: #3b2a1f; stroke-width: .6; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .limb { fill: none; stroke: #5a3f2c; stroke-width: 2.2; stroke-linecap: round; }
+.sc .rock { fill: #c9bfae; stroke: #2f2a24; stroke-width: .6; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .rock-hole { fill: #6f6656; fill-opacity: .55; }
+.sc .reed { fill: none; stroke: #8a7a4e; stroke-width: .9; stroke-opacity: .8; stroke-linecap: round; }
+.sc .bank { fill: url(#g-ground); }
+.sc .bank-l { fill: none; stroke: #2f2a24; stroke-width: .6; stroke-opacity: .45; vector-effect: non-scaling-stroke; }
+.sc { --t-c: #b97a3e; }
+.sc[data-season="spring"] { --t-c: #f0c9cf; } .sc[data-season="summer"] { --t-c: #5c8f55; } .sc[data-season="winter"] { --t-c: #c2b6a4; }
+.sc .t-c { fill: var(--t-c); }
+.sc .crown { stroke: #2f2a24; stroke-width: .45; stroke-opacity: .38; vector-effect: non-scaling-stroke; }
+.sc .t-a { fill: color-mix(in srgb, var(--t-a) 82%, #7a8a6a); } .sc .t-b { fill: color-mix(in srgb, var(--t-b) 82%, #7a8a6a); }
+.sc .trunk-g { fill: url(#g-trunk); stroke: #2b2019; stroke-width: .6; stroke-opacity: .7; vector-effect: non-scaling-stroke; }
+.sc .bark { fill: none; stroke: #2b2019; stroke-width: .55; stroke-opacity: .55; vector-effect: non-scaling-stroke; }
+.sc .limb { fill: none; stroke: #4a3526; stroke-width: 3; stroke-linecap: round; }
+.sc .pine { fill: #2f5240; fill-opacity: .92; }
+.sc .needle { fill: none; stroke: #1c2f24; stroke-width: .5; stroke-opacity: .75; vector-effect: non-scaling-stroke; }
+.sc .needle-l { fill: none; stroke: #8db49a; stroke-width: .45; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .axis-steps { fill: #efe8da; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .5; vector-effect: non-scaling-stroke; }
+.sc .kt-s { fill: none; stroke: #2f2a24; stroke-width: .35; stroke-opacity: .3; vector-effect: non-scaling-stroke; }
+.sc .lang-b { fill: #7c2a1f; }
+.sc .lang-c { stroke: #c4553c; stroke-width: 1.2; }
+.sc .lang-r { fill: #7f8681; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc { --t-g2: #355c45; } .sc[data-season="winter"] { --t-g2: #3e5747; }
+.sc .t-g2 { fill: var(--t-g2); }
+.sc .crown { stroke: none; }
+.sc .crown-sh { stroke-opacity: .14; }
+.sc .shore-rail { fill: #f3eee2; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .45; vector-effect: non-scaling-stroke; }
+.sc .shore-post { fill: none; stroke: #9a9284; stroke-width: 1; }
+/* 冬：山、坡覆雪 */
+.sc[data-season="winter"] .mtn.g-hill { fill: url(#g-hillW); }
+.sc[data-season="winter"] .mtn.g-mtnFar { fill: url(#g-mtnFarW); }
+.sc[data-season="winter"] .mtn.g-mtnMid { fill: url(#g-mtnMidW); }
+.sc[data-season="winter"] .mtn.g-mtnNear { fill: url(#g-mtnNearW); }
+.sc[data-season="winter"] .moss { fill-opacity: .3; }
+/* 仙鹤 */
+.sc .crane-b, .sc .crane-w { fill: #fbf9f3; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .crane-wf { fill: #e3ddd0; }
+.sc .crane-e { fill: none; stroke: #26221e; stroke-width: 2.2; stroke-linecap: round; }
+.sc .crane-t, .sc .crane-h { fill: #26221e; }
+.sc .crane-n { fill: none; stroke: #26221e; stroke-width: 2.1; stroke-linecap: round; }
+.sc .crane-c { fill: #c3382a; }
+.sc .crane-k { fill: #b9a46e; }
+.sc .crane-leg { fill: none; stroke: #3a332c; stroke-width: .8; stroke-linecap: round; }
+.sc .cranes { animation: circle 34s ease-in-out infinite alternate; }
+@keyframes circle { 0% { translate: -30px 6px; } 50% { translate: 50px -14px; } 100% { translate: 110px 4px; } }
+@media (prefers-reduced-motion: reduce) { .sc .cranes { animation: none; } }
+.sc .cwall { fill: url(#g-cwallY); stroke: #2f2a24; stroke-width: .6; stroke-opacity: .7; vector-effect: non-scaling-stroke; }
+.sc .cwall-base { fill: #d9d0bf; stroke: #2f2a24; stroke-width: .4; stroke-opacity: .4; vector-effect: non-scaling-stroke; }
+.sc .cwall-c { fill: #8e382b; stroke: #2f2a24; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+/* 垂柳 */
+.sc .willow-limbF { fill: #4f3a2b; stroke: #2b2019; stroke-width: .6; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .willow-twig { fill: none; stroke: #5a4433; stroke-width: 1.6; stroke-linecap: round; }
+.sc .willow-s { fill: none; stroke: #6d6a3c; stroke-width: .8; stroke-opacity: .75; stroke-linecap: round; }
+.sc .willow-lf { fill: none; stroke: var(--t-w); stroke-width: 1.9; stroke-linecap: round; }
+.sc .willow-lf2 { fill: none; stroke: #7d8a4a; stroke-width: 1.9; stroke-linecap: round; }
+.sc[data-season="winter"] .willow-lf, .sc[data-season="winter"] .willow-lf2 { display: none; }
+.sc .sway { transform-box: fill-box; transform-origin: 30% 0; animation: sway 7s ease-in-out infinite alternate; }
+@keyframes sway { from { rotate: -1.2deg; } to { rotate: 1.4deg; } }
+@media (prefers-reduced-motion: reduce) { .sc .sway { animation: none; } }
+/* 四时：只在某季出现的东西 */
+.sc .summer-only, .sc .autumn-only { display: none; }
+.sc[data-season="summer"] .summer-only, .sc[data-season="autumn"] .autumn-only { display: inline; }
+.sc[data-season="autumn"] .not-autumn { display: none; }
+.sc .lt-leaf { fill: #5d8d58; stroke: #2f4a33; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .lt-vein { fill: none; stroke: #8fb784; stroke-width: .5; vector-effect: non-scaling-stroke; }
+.sc .lt-stem { fill: none; stroke: #5f7f4a; stroke-width: 1.1; stroke-linecap: round; }
+.sc .lt-up { fill: #6a9a5e; stroke: #2f4a33; stroke-width: .5; stroke-opacity: .6; vector-effect: non-scaling-stroke; }
+.sc .lt-pet { fill: #f0b9bd; stroke: #b5636c; stroke-width: .5; vector-effect: non-scaling-stroke; }
+.sc .lt-pet2 { fill: #e79aa2; stroke: #b5636c; stroke-width: .5; vector-effect: non-scaling-stroke; }
+.sc .goose { fill: none; stroke: #3a332c; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.sc .goose-b { fill: none; stroke: #3a332c; stroke-width: 1.6; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.sc .geese { animation: honk 60s linear infinite; }
+@keyframes honk { from { translate: -40px 8px; } to { translate: 260px -24px; } }
+/* 冬：冰面、冷一点的天 */
+.sc[data-season="winter"] .water { fill: url(#g-waterW); }
+.sc[data-season="winter"] .wave-p { opacity: .3; }
+.sc[data-season="winter"] .sky { fill: url(#g-skyW); }
+@media (prefers-reduced-motion: reduce) { .sc .geese { animation: none; } }

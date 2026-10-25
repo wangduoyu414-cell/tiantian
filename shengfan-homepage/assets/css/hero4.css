@@ -1,0 +1,158 @@
+/* 首屏《京华胜景图》v4
+   静止的几层是烘好的图片（assets/img/hero/，tools/bake-hero.swift 生成）；
+   会动的是云、鹤、晟帆、秋天的雁阵、四时的落花落叶落雪。
+   电脑：画面铺满一屏，往下滑时多停半屏，各层按纵深推开；鼠标移动有轻微视差。
+   手机：画面按宽度铺开（约一屏半），滑动时远处的层走得慢。 */
+.jhero { --paper: #efe6d3; --ink: #2a2621; --ink2: #5a5048; --ink3: #8b8073; --cinnabar: #b3362b;
+  --serif: "Noto Serif SC", "Songti SC", serif; --brush: "Ma Shan Zheng", "STKaiti", serif;
+  position: relative; height: 145vh; background: var(--paper); }
+.jhero.m { height: auto; }
+.jh-stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.jhero.m .jh-stick { position: relative; height: auto; }
+.jh-stage { position: absolute; left: 0; top: 0; }
+.jh-zoom { position: absolute; inset: 0; transform-origin: 50% 100%; transition: transform 2.8s cubic-bezier(.16, .7, .2, 1); }
+.jhero:not(.open) .jh-zoom { transform: scale(1.07); }
+
+/* 天：一层纸色渐变，日光处略暖 */
+.jh-sky { position: absolute; inset: -14% 0; will-change: transform; background: radial-gradient(44% 22% at 50% 47%, rgba(247, 220, 174, .55), rgba(247, 220, 174, 0)), linear-gradient(#f3e9d6, #efe4cf 55%, #ebdfc7); transition: background-color 1s; }
+.jhero.m .jh-sky { background: radial-gradient(44% 15% at 50% 34%, rgba(247, 220, 174, .55), rgba(247, 220, 174, 0)), linear-gradient(#f3e9d6, #efe4cf 55%, #ebdfc7); }
+.jhero[data-season="winter"] .jh-sky { background: radial-gradient(44% 22% at 50% 47%, rgba(255, 246, 228, .6), rgba(255, 246, 228, 0)), linear-gradient(#edeeea, #e9e9e3 55%, #e5e2d8); }
+
+/* 静止层（图片）与会动的小块 */
+.jh-pl, .jh-spr { position: absolute; display: block; will-change: transform; pointer-events: none; }
+.jh-pl picture, .jh-pl img { display: block; width: 100%; height: 100%; }
+.jh-pl .swap { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; }
+.jh-pl .swap.in { opacity: 1; }
+.jh-spr .in, .jh-spr .bob { position: absolute; inset: 0; }
+.jh-spr svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+.k-cloud .in { animation: jh-drift 48s ease-in-out infinite alternate; }
+.k-cloud:nth-of-type(2n) .in { animation-duration: 61s; animation-direction: alternate-reverse; }
+@keyframes jh-drift { from { transform: translateX(-7%); } to { transform: translateX(7%); } }
+
+/* 鹤：三个姿势轮换（扇翅），整只鹤慢慢盘旋 */
+.k-crane .in { animation: jh-glide 17s ease-in-out infinite alternate; animation-delay: var(--ph, 0s); }
+.k-crane svg { opacity: 0; animation: 1.3s linear infinite; animation-delay: var(--ph, 0s); }
+.k-crane .p0 { animation-name: jh-wing-up; } .k-crane .p1 { animation-name: jh-wing-flat; } .k-crane .p2 { animation-name: jh-wing-down; }
+@keyframes jh-wing-up { 0%, 24.9% { opacity: 1; } 25%, 100% { opacity: 0; } }
+@keyframes jh-wing-flat { 0%, 24.9% { opacity: 0; } 25%, 49.9% { opacity: 1; } 50%, 74.9% { opacity: 0; } 75%, 100% { opacity: 1; } }
+@keyframes jh-wing-down { 0%, 49.9% { opacity: 0; } 50%, 74.9% { opacity: 1; } 75%, 100% { opacity: 0; } }
+@keyframes jh-glide { from { transform: translate(-45%, 14%); } to { transform: translate(55%, -14%); } }
+
+/* 晟帆：在湖上慢慢划、随波起伏；点它出公司介绍 */
+.k-boat { pointer-events: auto; cursor: pointer; }
+.k-boat .in { animation: jh-row 38s ease-in-out infinite alternate; }
+.k-boat .bob { animation: jh-bob 4.8s ease-in-out infinite; transform-origin: 50% 92%; }
+@keyframes jh-row { from { transform: translateX(-40%); } to { transform: translateX(65%); } }
+@keyframes jh-bob { 0%, 100% { transform: translateY(0) rotate(-.7deg); } 50% { transform: translateY(2.5%) rotate(.8deg); } }
+.k-boat:focus-visible { outline: 2px solid var(--cinnabar); outline-offset: 2px; border-radius: 6px; }
+
+/* 雁阵：只在秋天，从右往左飞过 */
+.k-geese { display: none; }
+.jhero[data-season="autumn"] .k-geese { display: block; }
+.k-geese .in { animation: jh-geese 66s linear infinite; }
+@keyframes jh-geese { 0% { transform: translate(240%, 30%); opacity: 0; } 7% { opacity: 1; } 93% { opacity: 1; } 100% { transform: translate(-640%, -50%); opacity: 0; } }
+
+/* 四时：落花、落叶、落雪 */
+.jh-fx { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.jh-fx i { position: absolute; top: -3%; width: var(--s); height: var(--s); opacity: var(--o, .85); animation: jh-fall var(--d) linear var(--dl) infinite; }
+@keyframes jh-fall { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(var(--dx), var(--fall, 900px), 0) rotate(var(--r)); } }
+.fx-spring i { background: #f3c2c9; border-radius: 60% 0 60% 0; }
+.fx-spring i:nth-child(3n) { background: #f8dde0; }
+.fx-autumn i { height: calc(var(--s) * .62); background: #d8873a; border-radius: 0 70% 0 70%; }
+.fx-autumn i:nth-child(3n) { background: #b8452c; } .fx-autumn i:nth-child(4n) { background: #e6b54a; }
+.fx-winter i { background: #fff; border-radius: 50%; box-shadow: 0 0 3px rgba(255, 255, 255, .9); }
+
+/* 可点的地标 */
+.jh-hit { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 10px; pointer-events: auto; transition: background-color .25s, box-shadow .25s; }
+@media (hover: hover) { .jh-hit:hover { background: radial-gradient(closest-side, rgba(255, 246, 222, .34), rgba(255, 246, 222, 0)); } }
+.jh-hit:focus-visible { outline: 2px solid var(--cinnabar); outline-offset: 2px; }
+
+/* 点开时：四周蒙一层纸色，只亮这一处 */
+.jh-veil { position: absolute; inset: 0; z-index: 12; pointer-events: none; opacity: 0; background: rgba(239, 230, 211, .62); transition: opacity .5s ease;
+  -webkit-mask: radial-gradient(var(--vr, 160px) var(--vry, 130px) at var(--vx, 50%) var(--vy, 50%), transparent 58%, #000 100%);
+  mask: radial-gradient(var(--vr, 160px) var(--vry, 130px) at var(--vx, 50%) var(--vy, 50%), transparent 58%, #000 100%); }
+.jhero.picking .jh-veil { opacity: 1; }
+
+/* 题签：竖写小签，自上而下展开，再钤一方印 */
+.jh-slip { position: absolute; z-index: 14; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: .7em .42em .55em; background: #faf5ea; pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(143, 61, 43, .55), 0 0 0 3px #faf5ea, 0 0 0 4px rgba(143, 61, 43, .3), 0 8px 18px -10px rgba(60, 30, 10, .5);
+  clip-path: inset(0 0 100% 0); transition: clip-path .6s cubic-bezier(.3, .7, .2, 1); }
+.jh-slip b { writing-mode: vertical-rl; font: 400 clamp(16px, 1.3vw, 22px)/1.1 var(--brush); letter-spacing: .26em; color: #4a2219; }
+.jh-slip i { display: grid; place-items: center; width: 2em; height: 2em; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 12px/1.05 var(--brush); font-style: normal; text-align: center; opacity: 0; transform: scale(1.7); transition: transform .35s .55s cubic-bezier(.3, 1.6, .5, 1), opacity .2s .55s; }
+.jh-slip.on { clip-path: inset(-12px -12px -12px -12px); }
+.jh-slip.on i { opacity: 1; transform: rotate(-4deg) scale(1); }
+.jh-slip[hidden] { display: none; }
+
+/* 介绍卡 */
+.jh-card { position: absolute; z-index: 26; width: 330px; padding: 16px 18px; background: #f9f3e6; border-radius: 3px; box-shadow: 0 0 0 1px rgba(110, 70, 30, .3), 0 18px 36px -18px rgba(50, 30, 10, .55); }
+.jh-card[hidden] { display: none; }
+.jh-card h3 { margin: 0; padding-right: 24px; font: 700 19px/1.3 var(--serif); letter-spacing: .04em; color: var(--ink); }
+.jh-card .era { margin: 3px 0 8px; font-size: 12.5px; color: var(--ink3); letter-spacing: .08em; }
+.jh-card .txt { margin: 0 0 12px; font-size: 14px; line-height: 1.7; color: var(--ink2); }
+.jh-card .route { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--ink2); }
+.jh-card .route b { color: #8f3d2b; font-weight: 600; }
+.jh-card .go { flex: none; padding: 7px 13px; border: 0; border-radius: 2px; background: var(--cinnabar); color: #f6ead6; font: 13px/1.2 inherit; letter-spacing: .08em; cursor: pointer; }
+.jh-card .x { position: absolute; right: 8px; top: 6px; border: 0; background: none; font-size: 19px; line-height: 1; color: var(--ink3); cursor: pointer; }
+
+/* 云开见景：一屏云雾，向两边散开 */
+.jh-cover { position: absolute; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; }
+.jh-cover .cv-m { position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 55%, #f7f0e2, #efe6d3 72%), #efe6d3; transition: opacity 1.5s ease .55s; }
+.jh-cover .cv-c { position: absolute; transition: transform 2.5s cubic-bezier(.55, .05, .25, 1), opacity 1.3s ease 1.05s; }
+.jh-cover .cv-c svg { display: block; width: 100%; height: auto; overflow: visible; }
+.jh-cover .cv-c svg * { vector-effect: non-scaling-stroke; }
+.jhero.open .jh-cover .cv-m { opacity: 0; }
+.jhero.open .jh-cover .cv-c.l { transform: translateX(-78vw); opacity: 0; }
+.jhero.open .jh-cover .cv-c.r { transform: translateX(78vw); opacity: 0; }
+.jhero.opened .jh-cover { display: none; }
+
+/* 标题、提示、四时印、落款 */
+.jh-title { position: absolute; z-index: 20; left: 0; right: 0; top: calc(60px + 6.5vh); padding: 0 20px; text-align: center; pointer-events: none; opacity: 0; transform: translateY(14px); transition: opacity 1.2s ease 1.2s, transform 1.4s ease 1.2s; }
+.jhero.open .jh-title { opacity: 1; transform: none; }
+.jhero.opened .jh-title { transition: opacity .45s ease, transform .45s ease; }
+.jhero.picking .jh-title { opacity: .28; }
+.jh-title .tt > * { pointer-events: auto; }
+.jh-title .eyebrow { margin: 0 0 14px; font-size: 12.5px; letter-spacing: .26em; color: var(--ink2); }
+.jh-title h1 { margin: 0; display: flex; justify-content: center; align-items: center; gap: .3em; font: 900 clamp(40px, 5.6vw, 80px)/1.15 var(--serif); letter-spacing: .1em; color: #2a2621; text-shadow: 0 0 22px rgba(243, 235, 218, .95), 0 0 8px rgba(243, 235, 218, .9); }
+.jh-title h1 i { width: .15em; height: .15em; border-radius: 50%; background: var(--cinnabar); }
+.jh-title .lead { margin: 14px 0 0; font-size: 15px; letter-spacing: .3em; color: #3c352d; text-shadow: 0 0 12px rgba(243, 235, 218, 1); }
+.jh-title .btns { margin-top: 22px; display: flex; gap: 12px; justify-content: center; }
+.jh-title .btns a, .jh-title .btns button { padding: 10px 22px; border-radius: 2px; font: 14.5px/1.2 inherit; letter-spacing: .1em; text-decoration: none; cursor: pointer; }
+.jh-title .b1 { border: 0; background: var(--cinnabar); color: #f6ead6; }
+.jh-title .b2 { border: 1px solid rgba(42, 38, 33, .45); color: var(--ink); background: rgba(243, 235, 218, .6); }
+.jh-title .hint-m { display: none; }
+.jh-hint { position: absolute; z-index: 20; left: clamp(16px, 3vw, 40px); bottom: 24px; display: flex; align-items: center; gap: 12px; white-space: nowrap; font-size: 13px; letter-spacing: .18em; color: var(--ink2); text-shadow: 0 0 10px #f3ead8, 0 0 4px #f3ead8; pointer-events: none; opacity: 0; transition: opacity 1s ease 2.6s; }
+.jh-hint::after { content: ''; width: 1px; height: 26px; background: linear-gradient(var(--ink2), transparent); animation: jh-hint 2.2s ease-in-out infinite; }
+@keyframes jh-hint { 0%, 100% { transform: translateY(-4px); opacity: .4; } 50% { transform: translateY(4px); opacity: 1; } }
+.jhero.open .jh-hint { opacity: 1; }
+.jh-season { position: absolute; z-index: 22; right: clamp(16px, 3vw, 40px); bottom: 22px; display: grid; place-items: center; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 4px; background: var(--cinnabar); color: #f6ead6; font-family: var(--brush); cursor: pointer; box-shadow: inset 0 0 0 2px var(--cinnabar), inset 0 0 0 3px rgba(246, 234, 214, .7), 0 6px 14px -8px rgba(60, 20, 10, .6); opacity: 0; transition: opacity 1s ease 2.2s; }
+.jhero.open .jh-season { opacity: 1; }
+.jh-season span { font-size: 11px; line-height: 1; letter-spacing: .1em; } .jh-season b { margin-top: -10px; font-size: 22px; font-weight: 400; line-height: 1; }
+.jh-season.stamp { animation: jh-stamp .45s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes jh-stamp { from { transform: scale(1.35) rotate(-6deg); } to { transform: none; } }
+.jh-colo { position: absolute; z-index: 20; right: clamp(16px, 3vw, 40px); top: calc(64px + 5vh); display: flex; flex-direction: row-reverse; gap: 8px; align-items: flex-end; pointer-events: none; opacity: 0; transition: opacity 1.2s ease 2.4s; }
+.jhero.open .jh-colo { opacity: 1; }
+.jh-colo span { writing-mode: vertical-rl; font: 400 14px/1.2 var(--brush); letter-spacing: .3em; color: #4a3c30; text-shadow: 0 0 8px #f3ead8; }
+.jh-colo i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 11px/1.05 var(--brush); font-style: normal; text-align: center; }
+
+/* 手机 */
+.jhero.m .jh-title { top: calc(56px + 2.4vh); }
+.jhero.m .jh-title .eyebrow { font-size: 11.5px; letter-spacing: .16em; margin-bottom: 10px; }
+.jhero.m .jh-title h1 { flex-direction: column; gap: 0; font-size: 44px; line-height: 1.18; }
+.jhero.m .jh-title h1 i { display: none; }
+.jhero.m .jh-title .lead { font-size: 13px; letter-spacing: .14em; }
+.jhero.m .jh-title .btns a, .jhero.m .jh-title .btns button { padding: 9px 16px; font-size: 13.5px; }
+.jhero.m .jh-title .hint-m { display: block; margin: 12px 0 0; font-size: 12px; letter-spacing: .14em; color: var(--ink2); text-shadow: 0 0 10px #f3ead8; }
+.jhero.m .jh-hint, .jhero.m .jh-colo { display: none; }
+.jhero.m .jh-season { bottom: 16px; width: 46px; height: 46px; }
+@media (max-width: 760px) {
+  .jh-card { position: fixed; left: 0 !important; right: 0; top: auto !important; bottom: 0; width: auto; border-radius: 12px 12px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom)); box-shadow: 0 -10px 30px -12px rgba(40, 25, 10, .45); }
+  .jh-card .x { top: 10px; right: 12px; }
+}
+
+/* 减少动态效果：不开场、不视差、不落花雪，鹤和船停着 */
+.jhero.reduce .jh-zoom, .jhero.reduce .jh-title, .jhero.reduce .jh-hint, .jhero.reduce .jh-season, .jhero.reduce .jh-colo { transition: none; }
+.jhero.reduce .jh-cover, .jhero.reduce .jh-fx { display: none; }
+.jhero.reduce .jh-spr .in, .jhero.reduce .jh-spr .bob { animation: none; }
+.jhero.reduce .k-crane svg { animation: none; } .jhero.reduce .k-crane .p1 { opacity: 1; }
+.jhero.paused * { animation-play-state: paused !important; }

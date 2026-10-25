@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>京华胜景图 · 首屏动效样张</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<link rel="stylesheet" href="../../assets/css/hero4.css">
+<style>
+  :root { --ink: #2a2621; --ink2: #5a5048; --cinnabar: #b3362b; --serif: "Noto Serif SC", "Songti SC", serif; --gutter: clamp(16px, 4vw, 40px); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #efe6d3; color: var(--ink); font: 15px/1.7 -apple-system, "PingFang SC", sans-serif; }
+  .nav { position: fixed; inset: 0 0 auto; z-index: 40; display: flex; align-items: center; gap: 22px; height: 60px; padding: 0 var(--gutter); background: linear-gradient(#f3ebdbee, #f3ebdb00); }
+  .brand { display: flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; }
+  .brand b { font: 700 17px/1 var(--serif); letter-spacing: .08em; } .brand i { font-style: normal; font-size: 11.5px; color: var(--ink2); margin-left: 6px; }
+  .brand img { width: 19px; height: 27px; }
+  .links { display: flex; gap: 22px; margin-left: auto; } .links a { color: var(--ink); text-decoration: none; font-size: 14px; letter-spacing: .06em; }
+  .cta { margin-left: 10px; padding: 7px 16px; border: 0; border-radius: 2px; background: var(--cinnabar); color: #f6ead6; font: 500 13.5px/1.2 inherit; letter-spacing: .08em; }
+  .next { min-height: 120vh; padding: 80px var(--gutter); text-align: center; color: var(--ink2); letter-spacing: .2em; }
+  @media (max-width: 760px) { .links, .brand i { display: none; } .cta { margin-left: auto; } }
+</style></head>
+<body>
+<header class="nav"><a class="brand" href="#top"><img src="../../assets/img/sf-mark.png" alt=""><span><b>晟帆国旅</b><i>贵昌集团旗下</i></span></a>
+  <nav class="links"><a href="#next">红色教育</a><a href="#next">团建</a><a href="#next">会务研学</a><a href="#next">北京资源</a><a href="#next">资质保障</a><a href="#next">联系</a></nav>
+  <button class="cta" type="button">获取活动方案</button></header>
+
+<section class="jhero" id="top" data-base="../../assets/img/hero/" aria-label="京华胜景图">
+  <div class="jh-stick">
+    <div class="jh-stage"><div class="jh-zoom"></div></div>
+    <div class="jh-veil" aria-hidden="true"></div>
+    <div class="jh-slip" hidden aria-hidden="true"></div>
+    <div class="jh-title"><div class="tt">
+      <p class="eyebrow">北京晟帆国际旅行社 · 贵昌集团旗下</p>
+      <h1><span>立足首都</span><i></i><span>服务政企</span></h1>
+      <p class="lead">红色教育 · 党政团建 · 企业团建 · 会务研学</p>
+      <div class="btns"><a class="b1" href="#next">获取活动方案</a><a class="b2" href="#next">看看能办什么</a></div>
+      <p class="hint-m">点画中地标，看看能去哪里</p>
+    </div></div>
+    <div class="jh-hint">点画中地标看介绍 · 向下滑动</div>
+    <div class="jh-colo" aria-hidden="true"></div>
+    <button class="jh-season" type="button"><span>四时</span><b>秋</b></button>
+    <aside class="jh-card" hidden aria-live="polite"></aside>
+    <div class="jh-cover" aria-hidden="true"></div>
+  </div>
+</section>
+<section class="next" id="next">（下一章：红色教育）</section>
+<script src="../../assets/js/hero4.js"></script>
+</body></html>

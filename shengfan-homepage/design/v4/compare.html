@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>祈年殿新旧对比</title>
+<link rel="stylesheet" href="../../assets/css/art2.css">
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  html, body { margin: 0; background: #efe6d3; font: 15px/1.6 -apple-system, "PingFang SC", sans-serif; color: #2f2a24; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; padding: 30px 30px 10px; }
+  .row.one { grid-template-columns: 1fr; }
+  figure { margin: 0; text-align: center; } figcaption { margin-top: 10px; font-size: 15px; color: #5a5048; letter-spacing: .1em; }
+  svg { display: block; overflow: visible; width: 100%; height: auto; }
+</style></head>
+<body><div id="defs"></div><div id="out"></div>
+<script src="../../assets/js/art2.js"></script>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/qinian.js"></script>
+<script>
+document.getElementById('defs').innerHTML = ART2.defs() + JH.ARCH.defs();
+const q = new URLSearchParams(location.search), H = +(q.get('h') || 760);
+const old = ART2.LANDMARKS.qinian(), nw = JH.LM.qinian();
+const oldSvg = (() => { const [l, r, b, t] = old.box, pad = 6, w = r - l + pad * 2, h = t - b + pad * 2, s = H / h;
+  return `<svg class="a2" viewBox="${l - pad} ${-t - pad} ${w} ${h}" width="${w * s}" height="${H}"><g transform="scale(1 -1)">${old.g}</g></svg>`; })();
+const [l, r, b, t] = nw.box, px = H / (t - b + 12);
+const only = q.get('only');
+document.getElementById('out').innerHTML = `<div class="row${only ? ' one' : ''}">${only === 'new' ? '' : `<figure>${oldSvg}<figcaption>旧</figcaption></figure>`}<figure>${JH.svg(nw, px)}<figcaption>新 · 界画规矩</figcaption></figure></div>`;
+</script></body></html>

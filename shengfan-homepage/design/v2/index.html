@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<title>晟帆国旅 · 京华胜景（首屏样张）</title>
+<script>document.documentElement.classList.add('js')</script>
+<!-- 样张阶段直接用 Google Fonts；正式上线时按页面用字裁剪后放到自己服务器 -->
+<!-- 不挡渲染：国内网络连不上 Google 时，页面先用系统字体照常显示 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../assets/css/art2.css">
+<link rel="stylesheet" href="../../assets/css/scene.css"><link rel="stylesheet" href="../../assets/css/flora.css">
+<link rel="stylesheet" href="v2.css">
+</head>
+<body>
+<div id="defs"></div>
+
+<header class="nav">
+  <a class="brand" href="#top"><img src="../../assets/img/sf-mark.png" alt="" width="19" height="27"><span><b>晟帆国旅</b><i>贵昌集团旗下</i></span></a>
+  <button class="nav-cta" type="button">获取活动方案</button>
+</header>
+
+<section class="juan" id="top" aria-label="京华胜景长卷">
+  <div class="juan-stick">
+    <div class="juan-stage sc" id="stage" data-season="autumn">
+      <div class="lay" data-d=".55" id="laySky"></div>
+      <div class="lay" data-d=".72" id="layFar"></div>
+      <div class="lay" data-d=".86" id="layMid"></div>
+      <div class="lay" data-d="1" id="layMain"><div class="caps" id="caps"></div></div>
+      <div class="silk" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+    </div>
+
+    <div class="juan-title" id="title">
+      <p class="t-eyebrow">北京晟帆国际旅行社 · 贵昌集团旗下</p>
+      <h1><span>立足首都</span><i></i><span>服务政企</span></h1>
+      <p class="t-lead"><span>红色教育 · 党政团建</span><i> · </i><span>企业团建 · 会务研学</span></p>
+      <div class="t-cta"><button class="b-primary" type="button">获取活动方案</button><a class="b-ghost" href="#next">看看能办什么</a></div>
+    </div>
+
+    <div class="juan-hint" id="hint"><span class="hint-line"></span><span>向下滑动 · 展卷游京华</span></div>
+
+    <!-- 晟帆随行：一叶帆船跟着往前走 -->
+    <div class="guide" id="guide" role="button" tabindex="0" aria-label="晟帆国旅，一路随行">
+      <div class="gb-dir"><div class="gb-bob">
+        <svg viewBox="-80 -130 160 160" aria-hidden="true">
+          <path class="gb-wake" d="M-62 6C-86 8-110 7-140 10M-58 10C-78 12-96 12-120 14M-64 2C-82 3-98 2-116 4"/>
+          <g class="gb-oar-g"><path class="gb-oar" d="M-54-15L-80 9"/></g>
+          <path class="gb-hull" d="M-62-6H54C61-6 65-10 68-17C64-3 53 7 33 10H-44C-56 8-62 2-62-6Z"/>
+          <path class="gb-strake" d="M-59-2H60"/>
+          <path class="gb-cabin" d="M-40-6V-13C-38-24-18-26-13-15V-6Z"/>
+          <path class="gb-cabin-l" d="M-37-12C-34-20-21-21-17-14M-34-7V-15M-28-7V-18M-22-7V-17"/>
+          <path class="gb-body" d="M-55-6L-53-19Q-51-23-48-19L-47-6Z"/><path class="gb-hat" d="M-58-20L-50.5-27L-43-20Z"/>
+          <path class="gb-mast" d="M8-6V-120"/>
+          <path class="gb-flag" d="M8-120Q17-120 27-116Q17-113 8-112Z"><animate attributeName="d" dur="1.4s" repeatCount="indefinite" values="M8-120Q17-120 27-116Q17-113 8-112Z;M8-120Q17-117 27-118Q17-111 8-112Z;M8-120Q17-120 27-116Q17-113 8-112Z"/></path>
+          <g class="gb-sail-g">
+            <path class="gb-sail" d="M-28-110C-8-115 16-119 38-117C40-84 40-50 38-20C14-18-10-18-34-20C-36-50-35-82-28-110Z"/>
+            <path class="gb-batten" d="M-31-95C-6-99 20-101 39-100M-33-80C-7-83 20-85 39-84M-34-65C-7-67 20-68 39-68M-35-50C-8-51 20-52 39-52M-35-35C-8-35 20-36 38-36"/>
+            <rect class="gb-seal" x="0" y="-76" width="17" height="21" rx="1.6"/><rect class="gb-seal-in" x="2" y="-74" width="13" height="17" rx="1"/>
+            <text class="gb-seal-t" x="8.5" y="-66.6">晟</text><text class="gb-seal-t" x="8.5" y="-58.6">帆</text>
+          </g>
+        </svg>
+      </div></div>
+    </div>
+
+    <!-- 卷轴导览：底部细线标出各处，点哪去哪；右侧一方"四时"印 -->
+    <nav class="juan-nav" id="juanNav" aria-label="长卷导览"><div class="jn-track"><i id="prog"></i></div></nav>
+    <button class="season-seal" id="seasonBtn" type="button"><span>四时</span><b>秋</b></button>
+    <div class="snow" id="snow" aria-hidden="true"></div>
+
+    <div class="rollers" aria-hidden="true"><i class="rl"></i><i class="rr"></i></div>
+
+    <aside class="pick-card" id="pickCard" role="dialog" aria-live="polite" hidden></aside>
+  </div>
+</section>
+
+<section class="next" id="next">
+  <p class="n-idx">01 · 红色教育</p>
+  <h2>把课堂搬到红色现场</h2>
+  <p class="n-lead">（样张到此为止。方向认可后，后面各章会沿用同一套青绿画法和装裱、题跋、印章的语言。）</p>
+</section>
+
+<script src="../../assets/js/art2.js"></script><script src="../../assets/js/flora.js"></script>
+<script src="../../assets/js/scene.js"></script>
+<script src="v2.js"></script>
+</body>
+</html>

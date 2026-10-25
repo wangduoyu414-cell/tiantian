@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>团建主视觉试验</title>
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>html, body { margin: 0; background: #efe6d3; } .stage { position: relative; width: 100%; overflow: hidden; } .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; } .hit { position: absolute; outline: 1px dashed rgba(180, 40, 30, .6); } .slip { position: absolute; width: 14px; height: 60px; background: rgba(180, 40, 30, .5); }</style></head>
+<body><div id="defs"></div><div class="stage" id="stage"></div>
+<script src="../../assets/js/jh/core.js"></script><script src="../../assets/js/jh/arch.js"></script><script src="../../assets/js/jh/build.js"></script><script src="../../assets/js/jh/nature.js"></script><script src="../../assets/js/jh/lm.js"></script><script src="../../assets/js/jh/red.js"></script><script src="../../assets/js/jh/mice.js"></script><script src="../../assets/js/jh/team.js"></script>
+<script>
+document.getElementById('defs').innerHTML = JH.ARCH.defs() + JH.RED.defs() + JH.MICE.defs();
+const q = new URLSearchParams(location.search), mobile = innerWidth <= 760, st = document.getElementById('stage');
+const S = JH.TEAM.compose(mobile ? 'mobile' : 'desk', innerWidth / (mobile ? 400 : 1600));
+st.style.aspectRatio = `${S.W} / ${S.H}`;
+st.innerHTML = S.layers.map(l => l.svg).join('') + (q.get('hits') ? S.hits.map(h => `<i class="hit" style="left:${h.x / S.W * 100}%;top:${h.y / S.H * 100}%;width:${h.w / S.W * 100}%;height:${h.h / S.H * 100}%"></i>`).join('') + Object.values(S.slips).map(([x, y]) => `<i class="slip" style="left:${x / S.W * 100}%;top:${y / S.H * 100}%"></i>`).join('') : '');
+</script></body></html>

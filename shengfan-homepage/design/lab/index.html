@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图形实验</title>
+<link rel="stylesheet" href="../../assets/css/art.css">
+<style>
+  body { margin: 0; background: #f6f4ef; font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; color: #1f2f52; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 24px; padding: 24px; }
+  figure { margin: 0; background: #fbfaf6; border: 1px solid rgba(31,47,82,.12); border-radius: 10px; padding: 18px; }
+  figcaption { margin-top: 8px; opacity: .6; }
+  svg { width: 100%; height: auto; display: block; }
+</style>
+</head>
+<body>
+<div class="grid" id="grid"></div>
+<div id="defs"></div>
+<script src="../../assets/js/art.js"></script>
+<script>
+  document.getElementById('defs').innerHTML = ART.defs();
+  const grid = document.getElementById('grid');
+  const only = new URLSearchParams(location.search).get('only');
+  for (const [name, fn] of Object.entries(ART.LANDMARKS)) {
+    if (only && only !== name) continue;
+    const L = fn(), [l, r, b, t] = L.box, pad = 6;
+    const w = r - l + pad * 2, h = t - b + pad * 2;
+    const fig = document.createElement('figure');
+    fig.innerHTML = `<svg class="art" viewBox="${l - pad} ${-t - pad} ${w} ${h}"><g transform="scale(1 -1)">${L.g}</g></svg><figcaption>${name}</figcaption>`;
+    grid.appendChild(fig);
+  }
+</script>
+</body>
+</html>

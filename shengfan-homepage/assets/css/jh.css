@@ -1,0 +1,167 @@
+/* 界画库 · 线与色
+   线：三级墨线，浓墨不透明；金线（沥粉贴金）、白线（提亮）另列。线宽由 --w1/--w2/--w3 给（按放置比例换算好的局部单位）。
+   色：矿物色平涂。每种色三档：本色（阳面）、-d 阴面、-l 提亮。光从左上来。 */
+.jh { --ink: #231c15; }
+.jh .l1 { fill: none; stroke: var(--ink); stroke-width: var(--w1, 1.6px); stroke-linejoin: round; stroke-linecap: round; }
+.jh .l2 { fill: none; stroke: var(--ink); stroke-width: var(--w2, .95px); stroke-linejoin: round; stroke-linecap: round; }
+.jh .l3 { fill: none; stroke: var(--ink); stroke-width: var(--w3, .55px); stroke-opacity: .78; stroke-linejoin: round; stroke-linecap: round; }
+.jh .lg { fill: none; stroke: #e4c165; stroke-width: var(--w3, .55px); stroke-linecap: round; stroke-linejoin: round; }
+.jh .lg2 { fill: none; stroke: #e4c165; stroke-width: var(--w2, .95px); stroke-linecap: round; stroke-linejoin: round; }
+.jh .lw { fill: none; stroke: #fffaf0; stroke-opacity: .55; stroke-width: var(--w3, .55px); stroke-linecap: round; }
+/* 填色同时带线：在 class 里写 "c-xxx l1" */
+.jh .c-yellow { fill: #dfa33a; } .jh .c-yellow-d { fill: #a96f1f; } .jh .c-yellow-l { fill: #f3cd72; }
+.jh .c-blue { fill: #2a529a; } .jh .c-blue-d { fill: #1a3670; } .jh .c-blue-l { fill: #6488c6; }
+.jh .c-green { fill: #3b8763; } .jh .c-green-d { fill: #24583f; } .jh .c-green-l { fill: #6fb18d; }
+.jh .c-gray { fill: #7b817e; } .jh .c-gray-d { fill: #535a59; } .jh .c-gray-l { fill: #a7aca7; }
+.jh .c-red { fill: #b03a2c; } .jh .c-red-d { fill: #7d2318; } .jh .c-red-l { fill: #cf5a44; }
+.jh .c-qing { fill: #24577f; } .jh .c-lu { fill: #2c8167; } .jh .c-qing-l { fill: #4f84ad; } .jh .c-lu-l { fill: #58a88b; }
+.jh .c-gold { fill: #d9b04f; } .jh .c-gold-d { fill: #a4791f; } .jh .c-gold-l { fill: #f1d68a; }
+.jh .c-marble { fill: #f2eee4; } .jh .c-marble-d { fill: #d5cebf; } .jh .c-marble-dd { fill: #b9b1a1; }
+.jh .c-brick { fill: #9b9992; } .jh .c-brick-d { fill: #74726c; }
+.jh .c-wood { fill: #6b4a33; } .jh .c-ink { fill: #231c15; }
+.jh .c-soffit { fill: #2a221b; fill-opacity: .62; }
+.jh .c-shade { fill: #1d1712; fill-opacity: .16; } .jh .c-shade2 { fill: #1d1712; fill-opacity: .3; }
+.jh .c-light { fill: #fffaf0; fill-opacity: .22; }
+.jh .c-paper { fill: #f3ebdb; }
+/* 渐变（defs 里定义） */
+.jh .g-yellow { fill: url(#jh-yellow); } .jh .g-blue { fill: url(#jh-blue); } .jh .g-green { fill: url(#jh-green); } .jh .g-gray { fill: url(#jh-gray); }
+.jh .g-col { fill: url(#jh-col); } .jh .g-gold { fill: url(#jh-gold); } .jh .g-drum { fill: url(#jh-drum); }
+.jh .p-lattice { fill: url(#jh-lattice); } .jh .p-lattice2 { fill: url(#jh-lattice2); }
+.jh .p-brick { fill: url(#jh-brickp); }
+/* 景物 */
+.jh .g-bark { fill: url(#jh-bark); }
+.jh .c-pine { fill: #4c7a60; } .jh .c-pine-d { fill: #2f5241; }
+.jh .l-pine { fill: none; stroke: #1b2d23; stroke-width: var(--w3, .55px); stroke-opacity: .85; stroke-linecap: round; }
+.jh .c-bai { fill: #3a5f4d; }
+.jh .l-willow-s { fill: none; stroke: #5f7a3f; stroke-width: var(--w3, .55px); stroke-linecap: round; }
+.jh .l-willow { fill: none; stroke: #9cbd6c; stroke-width: calc(var(--w2, .95px) * 1.6); stroke-linecap: round; }
+.jh .l-willow-d { fill: none; stroke: #6f8f45; stroke-width: calc(var(--w2, .95px) * 1.6); stroke-linecap: round; }
+.jh .c-wash-g { fill: #a9c088; fill-opacity: .55; }
+.jh .l-dot { fill: none; stroke: #22382b; stroke-width: calc(var(--w2, .95px) * 1.2); stroke-linecap: round; stroke-linejoin: round; }
+.jh .c-maple { fill: #c4472f; } .jh .c-maple-l { fill: #e3813f; }
+.jh .c-shiqing { fill: #3f6f8e; } .jh .c-shilu { fill: #5f987a; } .jh .c-zhe { fill: #bf9264; } .jh .c-zhe-d { fill: #8f6642; }
+.jh .l-moss { fill: none; stroke: #263b2c; stroke-width: calc(var(--w1, 1.6px) * 1.8); stroke-linecap: round; }
+.jh .c-water { fill: #d5e2dc; } .jh .l-water { fill: none; stroke: #5f8892; stroke-width: var(--w3, .55px); stroke-opacity: .85; }
+.jh .c-cloud { fill: #fbf7ec; } .jh .l-cloud { stroke: #b58c4c; stroke-width: var(--w2, .95px); stroke-linejoin: round; }
+.jh .l-leg, .jh .l-arm { fill: none; stroke: #2d2620; stroke-width: calc(var(--w1, 1.6px) * 1.4); stroke-linecap: round; }
+.jh .c-robe-r { fill: #a8402f; } .jh .c-robe-b { fill: #2f5a7e; } .jh .c-robe-o { fill: #c9923e; } .jh .c-robe-g { fill: #4b7a52; } .jh .c-robe-w { fill: #ece5d6; }
+.jh .c-skin { fill: #efd2b2; } .jh .c-hair { fill: #231c15; }
+.jh .g-shan { fill: url(#jh-shan); }
+.jh .l-cun { fill: none; stroke: #231c15; stroke-width: var(--w3, .55px); stroke-opacity: .4; stroke-linecap: round; }
+.jh .l-cloud2 { fill: none; stroke: #b58c4c; stroke-width: var(--w3, .55px); stroke-linecap: round; }
+.jh .c-trou { fill: #3a3a40; }
+.jh .l-arm-r { fill: none; stroke: #a8402f; stroke-width: calc(var(--w1, 1.6px) * 2.2); stroke-linecap: round; }
+.jh .l-arm-b { fill: none; stroke: #2f5a7e; stroke-width: calc(var(--w1, 1.6px) * 2.2); stroke-linecap: round; }
+.jh .l-arm-o { fill: none; stroke: #c9923e; stroke-width: calc(var(--w1, 1.6px) * 2.2); stroke-linecap: round; }
+.jh .l-arm-g { fill: none; stroke: #4b7a52; stroke-width: calc(var(--w1, 1.6px) * 2.2); stroke-linecap: round; }
+.jh .l-hand { fill: none; stroke: #efd2b2; stroke-width: calc(var(--w1, 1.6px) * 2.4); stroke-linecap: round; }
+/* 第二轮：柳、柏、山石、云、人 */
+.jh .c-willow { fill: #9cbb64; } .jh .c-willow-d { fill: #67873f; } .jh .c-willow-l { fill: #c3d88f; }
+.jh .l-wash-g { fill: none; stroke: #b5c98d; stroke-opacity: .2; stroke-linecap: round; stroke-linejoin: round; }
+.jh .c-bai-d { fill: #2c4a3c; } .jh .c-bai-l { fill: #4d7660; }
+.jh .l-scale { fill: none; stroke: #142219; stroke-opacity: .5; stroke-width: var(--w3, .55px); stroke-linecap: round; }
+.jh .l-scale2 { fill: none; stroke: #d9e8c6; stroke-opacity: .5; stroke-width: var(--w3, .55px); stroke-linecap: round; }
+.jh .g-rocktop { fill: url(#jh-rocktop); }
+.jh .c-cun { fill: #231c15; fill-opacity: .3; }
+.jh .g-cloud { fill: url(#jh-cloud); }
+.jh .l-cloudline { fill: none; stroke: #b58c4c; stroke-width: var(--w2, .95px); stroke-linecap: round; stroke-linejoin: round; }
+.jh .c-flag { fill: #efe3c4; }
+.jh .c-trou2 { fill: #7a6b55; }
+.jh .c-skin-d { fill: #d9b48f; }
+/* 宫城城墙（栗红）、城砖 */
+.jh .c-wallr { fill: #8f3d2b; } .jh .c-wallr-d { fill: #6c2a1d; } .jh .c-wallr-l { fill: #a8573f; }
+.jh .c-stone { fill: #cfc8b8; } .jh .c-stone-d { fill: #aaa292; }
+/* 长城城砖、国博石材 */
+.jh .c-gw { fill: #a59c87; } .jh .c-gw-d { fill: #857c69; }
+.jh .c-gb { fill: #e2d5b8; } .jh .c-gb-l { fill: #efe6d1; } .jh .c-gb-d { fill: #a99a7c; } .jh .c-gbw { fill: #4f483f; }
+/* 远山、林丘、雾、船、鹤 */
+.jh .g-shan-far { fill: url(#jh-shan-far); } .jh .g-shan-mid { fill: url(#jh-shan-mid); } .jh .g-mist { fill: url(#jh-mist); }
+.jh .c-tree { fill: #5f8a5a; } .jh .c-tree-d { fill: #3f6a4c; }
+.jh .l-hull { fill: none; stroke: #a07a52; stroke-width: var(--w2, .95px); }
+.jh .c-mat { fill: #b8955a; } .jh .l-mat { fill: none; stroke: #7d6038; stroke-width: var(--w3, .55px); }
+.jh .l-mast { fill: none; stroke: #4a3324; stroke-width: calc(var(--w1, 1.6px) * 1.6); stroke-linecap: round; }
+.jh .c-sail { fill: #efe5cd; } .jh .l-batten { fill: none; stroke: #8a6d4b; stroke-width: var(--w2, .95px); }
+.jh .c-seal { fill: #b3362b; } .jh .t-seal { fill: #f6ead6; font: 400 7.4px/1 "Ma Shan Zheng", "STKaiti", serif; text-anchor: middle; }
+.jh .c-hat { fill: #c9a25a; } .jh .l-oar { fill: none; stroke: #5c3c27; stroke-width: var(--w1, 1.6px); stroke-linecap: round; }
+.jh .c-crane { fill: #fbf8f0; } .jh .c-crane-d { fill: #e6e0d2; }
+.jh .l-neck { fill: none; stroke: #231c15; stroke-width: calc(var(--w1, 1.6px) * 1.8); stroke-linecap: round; }
+.jh .l-leg { fill: none; stroke: #3a3029; stroke-width: var(--w2, .95px); stroke-linecap: round; }
+/* 雾团、水纹、坡岸、林冠 */
+.jh .g-mistr { fill: url(#jh-mistr); }
+.jh .l-wave { fill: none; stroke: #6f949b; stroke-width: var(--w3, .55px); stroke-opacity: .7; stroke-linecap: round; }
+.jh .l-wave2 { fill: none; stroke: #f8f3e6; stroke-width: var(--w2, .95px); stroke-opacity: .8; stroke-linecap: round; }
+.jh .c-bank-t { fill: #a3b98b; } .jh .c-bank-f { fill: #c49d6c; }
+.jh .c-tree-l { fill: #7fa56c; }
+.jh .g-lake { fill: url(#jh-lake); } .jh .g-water { fill: url(#jh-water); }
+.jh .c-haze { fill: #efe6d3; fill-opacity: .34; }
+.jh .g-haze { fill: url(#jh-haze); }
+/* 远景：线淡一些（近浓远淡） */
+.jh.far .l1 { stroke-opacity: .55; } .jh.far .l2 { stroke-opacity: .45; } .jh.far .l3 { stroke-opacity: .4; }
+.jh.far .l-cun { stroke-opacity: .22; } .jh.far .l-moss { stroke-opacity: .25; }
+/* 导览图小图标 */
+.jh .c-peach { fill: #efb6bd; } .jh .l-dot-w { fill: none; stroke: #fff4ee; stroke-width: calc(var(--w2, .95px) * 1.8); stroke-linecap: round; }
+.jh .c-glass { fill: #93b3ba; } .jh .c-glass2 { fill: #aec3c6; } .jh .l-grid { fill: none; stroke: #4f727c; stroke-width: var(--w3, .55px); stroke-opacity: .8; }
+.jh .c-bronze { fill: #8d6c3f; } .jh .c-brick-r { fill: #a5502e; } .jh .c-win { fill: #efe6d1; } .jh .l-brick { fill: none; stroke: #6f2f1c; stroke-width: var(--w3, .55px); stroke-opacity: .55; }
+.jh .c-steel { fill: #b9bebd; } .jh .c-cube { fill: #82b2cf; } .jh .c-snow { fill: #f6f7f3; }
+.jh .l-ski { fill: none; stroke: #f8faf6; stroke-width: calc(var(--w1, 1.6px) * 1.6); stroke-linecap: round; }
+.jh .l-reed { fill: none; stroke: #7d8a4a; stroke-width: var(--w2, .95px); stroke-linecap: round; }
+.jh .l-gwline { fill: none; stroke: #8f8572; stroke-width: calc(var(--w1, 1.6px) * 2.4); stroke-linejoin: round; stroke-linecap: round; }
+/* ── 红色教育 · 朱墨界画 ── */
+.jh .g-tile { fill: url(#zm-tile); } .jh .c-tile-d { fill: #7d3324; } .jh .l-tile { fill: none; stroke: #6c2617; stroke-width: var(--w3, .55px); stroke-opacity: .55; }
+.jh .g-brick { fill: url(#zm-brick); } .jh .c-brick-d { fill: #7c3726; }
+.jh .c-trim { fill: #efe5d3; } .jh .c-trim-d { fill: #cdbfa6; }
+.jh .c-pane { fill: #4a4f4c; } .jh .l-mull { fill: none; stroke: #efe5d3; stroke-width: var(--w3, .55px); }
+.jh .c-door { fill: #6c2a1f; } .jh .c-door-d { fill: #4e1d16; }
+.jh .l-brick-g { fill: none; stroke: #5f5a50; stroke-width: var(--w3, .55px); stroke-opacity: .32; }
+.jh .c-haitang { fill: #7d8a64; } .jh .c-blossom { fill: #f6e3e1; } .jh .c-blossom2 { fill: #e9a7a8; }
+.jh .c-zhu { fill: #b3362b; } .jh .c-wall-g { fill: #b9ae9c; }
+.jh .c-ds { fill: #e2d6c1; } .jh .c-ds-l { fill: #efe7d7; } .jh .c-ds-d { fill: #a99a82; }
+.jh .c-pave { fill: #e6dbc7; } .jh .c-monu { fill: #d9d1c2; } .jh .l-ins { fill: none; stroke: #8f8676; stroke-width: var(--w3, .55px); stroke-opacity: .5; stroke-dasharray: 3 2; }
+.jh .c-leaf { fill: #6d7a58; } .jh .c-flower-r { fill: #c23b2c; } .jh .c-flower-y { fill: #e9b94a; } .jh .c-flower-w { fill: #f5efe2; }
+.jh .c-wall-in { fill: #ece1cd; } .jh .c-wood-l { fill: #a98258; } .jh .c-wood-d { fill: #4c3426; }
+.jh .c-stage-bg { fill: #4a3328; } .jh .c-curtain { fill: #962f24; } .jh .l-fold { fill: none; stroke: #5e1a12; stroke-width: var(--w2, .95px); stroke-opacity: .55; }
+.jh .g-lamp { fill: url(#zm-lamp); } .jh .c-lampg { fill: #ffdc8c; } .jh .c-bus { fill: #efe5d3; }
+.jh .c-robe-k { fill: #33404e; } .jh .c-robe-y { fill: #8a8b76; }
+/* 朱墨设色：同一套景物，换成浅绛（赭石、墨）为主，绿色压暗 */
+.zm .g-shan { fill: url(#zm-shan); } .zm .g-shan-mid { fill: url(#zm-mid); } .zm .g-shan-far { fill: url(#zm-far); }
+.zm .c-tree { fill: #7d8566; } .zm .c-tree-d { fill: #5d654f; } .zm .c-tree-l { fill: #9da285; }
+.zm .c-pine { fill: #5c6a55; } .zm .c-pine-d { fill: #434e40; } .zm .l-pine { stroke: #2b3027; }
+.zm .c-bai { fill: #56614f; } .zm .c-bai-d { fill: #404a3e; } .zm .c-bai-l { fill: #6e7864; }
+.zm .c-wash-g { fill: #b3b28e; } .zm .l-dot { stroke: #3a3f30; }
+.zm .c-water { fill: #ebe1cf; } .zm .l-water { stroke: #a8927a; } .zm .g-lake, .zm .g-water { fill: url(#zm-water); }
+.zm .l-wave { stroke: #9c8669; } .zm .l-wave2 { stroke: #fbf5ea; }
+.zm .c-bank-t { fill: #cdc3a2; } .zm .c-bank-f { fill: #c79a6e; }
+.zm .g-rocktop { fill: url(#zm-rocktop); } .zm .c-cun { fill-opacity: .24; }
+.zm .g-mistr { fill: url(#jh-mistr); }
+.jh .c-yard { fill: #d9cdb6; }
+.jh .l-goose { fill: none; stroke: #4a3b30; stroke-width: calc(var(--w2, .95px) * 1.2); stroke-linecap: round; stroke-linejoin: round; }
+.jh .c-gw-l { fill: #bdb4a2; }
+/* ── 会务研学 · 京华会客厅 ── */
+.jh .g-glassv { fill: url(#mc-glass); } .jh .g-glassh { fill: url(#mc-glass-h); } .jh .g-sun { fill: url(#mc-sun); }
+.jh .l-rib { fill: none; stroke: #8a6a35; stroke-width: var(--w3, .55px); stroke-opacity: .7; } .jh .l-rib2 { fill: none; stroke: #fff5dc; stroke-width: var(--w3, .55px); stroke-opacity: .6; }
+.jh .g-tower { fill: url(#mc-tower); } .jh .c-tower-in { fill: #77736b; } .jh .l-stain { fill: none; stroke: #8d897f; stroke-width: var(--w3, .55px); stroke-opacity: .5; }
+.jh .g-rust { fill: url(#mc-rust); } .jh .c-rust-d { fill: #5f3324; } .jh .c-concrete { fill: #c9c5bb; } .jh .c-concrete-d { fill: #9f9b92; }
+.jh .l-steel { fill: none; stroke: #6f7a7d; stroke-width: var(--w2, .95px); stroke-linecap: round; }
+.jh .g-ribbon { fill: url(#mc-ribbon); } .jh .c-ribbon-b { fill: #9fc0c8; } .jh .l-ribbon { fill: none; stroke: #5f8d99; stroke-width: var(--w2, .95px); }
+.jh .g-mcwater { fill: url(#mc-water); } .jh .g-warm { fill: url(#mc-warm); } .jh .g-spot { fill: url(#mc-spot); } .jh .g-screen { fill: url(#mc-screen); }
+.jh .c-chair { fill: #7b4e36; } .jh .c-floor { fill: #d8cdb8; } .jh .c-table { fill: #efe6d6; } .jh .c-cloth { fill: #4c6b5c; } .jh .c-cloth-w { fill: #f6f1e6; }
+.jh .c-tent { fill: #fbf8f1; } .jh .c-screen-f { fill: #3b3a37; }
+.jh .c-hall { fill: #e9e2d4; } .jh .c-hall-d { fill: #3e2c24; } .jh .c-board { fill: #23465a; } .jh .c-board-in { fill: #2f5a72; } .jh .c-board-l { fill: #f2ede2; }
+.jh .c-stage { fill: #6d4a34; } .jh .c-lantern { fill: #c23b2c; } .jh .l-tassel { fill: none; stroke: #c9a24a; stroke-width: var(--w2, .95px); stroke-linecap: round; }
+.jh .c-sky-w { fill: #e3ecee; } .jh .c-arm { fill: #e6a43b; } .jh .c-sand { fill: #e4d7bd; }
+.jh .c-door-f { fill: #5a2a1e; }
+.jh .c-door-red { fill: #a8372a; } .jh .c-door-red-d { fill: #7c2519; } .jh .p-mclattice { fill: url(#mc-lattice); }
+/* 首屏四时：荷 */
+.jh .c-lotus { fill: #5f8f55; } .jh .l-lotus { fill: none; stroke: #2f5233; stroke-width: var(--w3, .55px); stroke-opacity: .6; }
+.jh .l-stem { fill: none; stroke: #4f7a45; stroke-width: var(--w2, .95px); stroke-linecap: round; }
+.jh .c-lotus-f { fill: #f0b8c0; } .jh .c-lotus-f2 { fill: #f8d8dc; }
+.jh .g-hazer { fill: url(#jh-hazer); }
+/* ── 团建 · 京郊山野图 ── */
+.jh .c-kite-w { fill: #f6efe0; } .jh .c-kite-r { fill: #c23b2c; } .jh .c-kite-b { fill: #2f5f86; } .jh .c-kite-g { fill: #3b8763; } .jh .c-kite-y { fill: #e9b94a; } .jh .c-kite-k { fill: #231c15; }
+.jh .l-string { fill: none; stroke: #5a5048; stroke-opacity: .7; }
+.jh .l-cable { fill: none; stroke: #5f5546; stroke-width: var(--w2, .95px); }
+.jh .l-net { fill: none; stroke: #8f6f4a; stroke-width: var(--w3, .55px); }
+.jh .l-pole2 { fill: none; stroke: #6b4a33; stroke-width: calc(var(--w1, 1.6px) * 1.6); stroke-linecap: round; }
+.jh .c-field { fill: #a8c57b; } .jh .c-field2 { fill: #d9c56b; } .jh .l-crop { fill: none; stroke: #4f7a3e; stroke-width: var(--w3, .55px); stroke-linecap: round; }
+.jh .c-lawn { fill: #b7cf90; } .jh .l-lawn { fill: none; stroke: #6f8f4f; }
+.jh .g-lawn { fill: url(#jh-lawn); } .jh .c-lawnpath { fill: #e4dcc0; } .jh .l-tuft { fill: none; stroke: #6f9150; stroke-opacity: .75; stroke-linecap: round; stroke-linejoin: round; } .jh .l-flower { fill: none; stroke: #f3e7c8; stroke-linecap: round; }

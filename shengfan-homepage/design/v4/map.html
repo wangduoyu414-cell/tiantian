@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>京华研学导览图 · 第四章样张</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  :root { --ink: #2a2621; --ink2: #5a5048; --ink3: #8b8073; --paper: #efe6d3; --cinnabar: #b3362b; --serif: "Noto Serif SC", "Songti SC", serif; --brush: "Ma Shan Zheng", "STKaiti", serif; --gutter: clamp(16px, 4vw, 40px); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.7 -apple-system, "PingFang SC", sans-serif; }
+  .ch { max-width: 1320px; margin: 0 auto; padding: 72px var(--gutter) 90px; }
+  .ch-sign { margin: 0 0 10px; display: flex; align-items: center; gap: 10px; color: var(--ink2); font-size: 13px; letter-spacing: .3em; }
+  .ch-sign b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 3px; background: var(--cinnabar); color: #f6ead6; font: 400 18px/1 var(--brush); letter-spacing: 0; }
+  h2 { margin: 0; font: 900 clamp(28px, 3.4vw, 44px)/1.25 var(--serif); letter-spacing: .06em; }
+  .lead { margin: 10px 0 0; color: var(--ink2); max-width: 42em; }
+  .bar { margin: 26px 0 16px; display: flex; flex-wrap: wrap; gap: 12px 26px; align-items: center; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chips > span { font-size: 13px; color: var(--ink3); letter-spacing: .12em; margin-right: 2px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border: 1px solid rgba(42, 38, 33, .22); border-radius: 999px; background: rgba(255, 252, 244, .6); color: var(--ink); font: 14px/1.2 inherit; letter-spacing: .06em; cursor: pointer; }
+  .chip i { width: 9px; height: 9px; border-radius: 50%; }
+  .chip small { color: var(--ink3); font-size: 12px; }
+  .chip.on { background: var(--ink); color: #f6efe0; border-color: var(--ink); } .chip.on small { color: #d8cdb8; }
+  .leaf { position: relative; margin: 0; padding: 12px; border-radius: 4px; background: #e3d5b6; box-shadow: inset 0 0 0 1px rgba(120, 90, 50, .28), 0 18px 40px -26px rgba(60, 40, 20, .5); }
+  .scroll { position: relative; overflow: hidden; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(120, 90, 50, .35); }
+  .map { position: relative; width: 100%; aspect-ratio: 1600 / 1120; container-type: inline-size; }
+  .map > svg.map-base, .map > svg.map-route { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .mt-d { font-family: var(--brush); fill: #5f5241; letter-spacing: .3em; paint-order: stroke; stroke: #f3ead8; stroke-width: 5px; stroke-linejoin: round; }
+  .mt-w { font-family: "Songti SC", serif; font-style: italic; fill: #4b7a84; letter-spacing: .14em; paint-order: stroke; stroke: #f3ead8; stroke-width: 4px; stroke-linejoin: round; }
+  .mt-g { font-family: var(--brush); fill: #6f6452; letter-spacing: .3em; }
+  .mt-r { font-family: var(--brush); fill: #8f3d2b; letter-spacing: .2em; paint-order: stroke; stroke: #f3ead8; stroke-width: 4px; stroke-linejoin: round; }
+  .pin { position: absolute; transform: translate(-50%, -100%); padding: 0; border: 0; background: none; cursor: pointer; transition: opacity .25s, filter .25s, transform .25s; }
+  .pin svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .pin .tag { position: absolute; left: 50%; top: 100%; transform: translate(-50%, 3px); white-space: nowrap; padding: .08em .6em .08em .5em; border-radius: 2px; background: rgba(250, 245, 233, .92); box-shadow: 0 0 0 1px rgba(90, 70, 40, .22); font-size: 11px; font-size: clamp(9px, .98cqw, 12px); line-height: 1.5; color: var(--ink); letter-spacing: .04em; }
+  .pin .tag i { display: inline-block; width: .52em; height: .52em; border-radius: 50%; margin-right: .35em; vertical-align: .08em; }
+  .pin:hover { transform: translate(-50%, -100%) translateY(-3px); z-index: 5; }
+  .pin.dim { opacity: .28; filter: grayscale(.6); }
+  .pin.picked .tag { background: var(--ink); color: #f6efe0; }
+  .pin.on { z-index: 6; } .pin.on .tag { box-shadow: 0 0 0 1.5px var(--cinnabar); }
+  .pin .tag i.n { display: inline-grid; place-items: center; width: 1.4em; height: 1.4em; margin: -.2em .4em -.2em -.15em; vertical-align: -.25em; border-radius: 50%; background: var(--cinnabar) !important; color: #f6ead6; font: 400 .95em/1 var(--brush); font-style: normal; }
+  .pin.stop .tag { box-shadow: 0 0 0 1.5px var(--cinnabar); }
+  .home { position: absolute; transform: translate(-12%, -100%); pointer-events: none; }
+  .oldtag { position: absolute; transform: translate(-50%, -100%); z-index: 3; pointer-events: none; white-space: nowrap; font: 400 .94cqw/1.3 var(--brush); color: #8f3d2b; letter-spacing: .2em; text-shadow: 0 0 3px #f3ead8, 0 0 3px #f3ead8, 0 0 6px #f3ead8; }
+  .home svg { width: 2.2cqw; height: auto; display: block; overflow: visible; }
+  .home .tag { position: absolute; left: 1.55cqw; top: -.2cqw; white-space: nowrap; font: 400 1.12cqw/1.4 var(--brush); color: var(--cinnabar); letter-spacing: .12em; text-shadow: 0 0 3px #f3ead8, 0 0 3px #f3ead8; }
+  .cartouche { position: absolute; left: 2.2%; top: 3%; padding: .86cqw 1.55cqw .78cqw; background: rgba(246, 239, 224, .94); box-shadow: inset 0 0 0 1px rgba(110, 80, 40, .5), inset 0 0 0 4px rgba(246, 239, 224, .94), inset 0 0 0 5px rgba(110, 80, 40, .35); text-align: center; }
+  .cartouche b { display: block; font: 400 2.2cqw/1.2 var(--brush); letter-spacing: .24em; color: var(--ink); }
+  .cartouche small { display: block; margin-top: .25cqw; font-size: .98cqw; color: var(--ink2); letter-spacing: .18em; }
+  .compass { position: absolute; right: 2.6%; top: 3%; width: 5.4cqw; height: 5.4cqw; z-index: 2; }
+  .card { position: absolute; z-index: 20; left: 28px; top: 28px; width: 300px; padding: 16px 18px 16px; background: #f8f2e4; border-radius: 3px; box-shadow: 0 0 0 1px rgba(110, 80, 40, .3), 0 16px 34px -18px rgba(50, 30, 10, .5); }
+  .card[hidden], .itin[hidden] { display: none; }
+  .card .pic { height: 110px; display: grid; place-items: center; margin: -4px 0 8px; background: radial-gradient(closest-side, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0)); }
+  .card .pic svg { max-height: 104px; width: auto; overflow: visible; }
+  .card h3 { margin: 0; font: 700 19px/1.3 var(--serif); letter-spacing: .04em; }
+  .card .meta { margin: 4px 0 8px; font-size: 12.5px; color: var(--ink3); letter-spacing: .08em; }
+  .card .meta i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+  .card p { margin: 0 0 10px; font-size: 14px; color: var(--ink2); }
+  .card .fit { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; } .card .fit span { padding: 0 8px; border-radius: 2px; background: rgba(42, 38, 33, .07); font-size: 12px; color: var(--ink2); }
+  .card .act { display: flex; gap: 8px; } .card .act button { flex: 1; padding: 8px 0; border-radius: 2px; font: 13.5px/1.2 inherit; letter-spacing: .08em; cursor: pointer; }
+  .b1 { border: 0; background: var(--cinnabar); color: #f6ead6; } .b2 { border: 1px solid rgba(42, 38, 33, .35); background: transparent; color: var(--ink); }
+  .card .x { position: absolute; right: 8px; top: 6px; border: 0; background: none; font-size: 18px; color: var(--ink3); cursor: pointer; }
+  .itin { margin-top: 14px; padding: 14px 18px; border-radius: 3px; background: #f6efe0; box-shadow: inset 0 0 0 1px rgba(110, 80, 40, .28); display: grid; grid-template-columns: auto 1fr auto; gap: 8px 22px; align-items: center; }
+  .itin h4 { margin: 0; font: 700 17px/1.3 var(--serif); letter-spacing: .04em; } .itin .d { display: block; font: 12px/1.5 -apple-system, sans-serif; color: var(--ink3); letter-spacing: .08em; }
+  .itin ol { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; }
+  .itin li { display: flex; gap: 6px; align-items: center; font-size: 14px; } .itin li + li::before { content: ''; width: 18px; height: 1px; margin-right: 4px; background: repeating-linear-gradient(90deg, var(--cinnabar) 0 4px, transparent 4px 7px); }
+  .itin li b { flex: none; display: grid; place-items: center; width: 19px; height: 19px; border-radius: 50%; background: var(--cinnabar); color: #f6ead6; font: 400 12.5px/1 var(--brush); }
+  .itin button { padding: 9px 16px; border-radius: 2px; font: 13.5px/1.2 inherit; letter-spacing: .08em; white-space: nowrap; cursor: pointer; }
+  .tray { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 16px; border-radius: 3px; background: rgba(42, 38, 33, .06); font-size: 14px; }
+  .tray b { font: 700 15px/1 var(--serif); letter-spacing: .06em; } .tray .list { color: var(--ink2); flex: 1; min-width: 200px; }
+  .tray button { padding: 8px 16px; border: 0; border-radius: 2px; background: var(--cinnabar); color: #f6ead6; font: 13.5px/1.2 inherit; letter-spacing: .08em; }
+  .note { margin: 12px 0 0; font-size: 12.5px; color: var(--ink3); }
+  .hint { display: none; }
+  @media (max-width: 760px) {
+    .ch { padding-top: 44px; }
+    .bar { gap: 10px; } .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; width: 100%; scrollbar-width: none; } .chips > span { flex: none; white-space: nowrap; } .chip { flex: none; }
+    .leaf { padding: 6px; margin: 0 calc(var(--gutter) * -1 + 6px); }
+    .scroll { overflow: auto; -webkit-overflow-scrolling: touch; height: 64vh; }
+    .map { width: 1100px; }
+    .card { position: fixed; left: 0 !important; right: 0; top: auto !important; bottom: 0; width: auto; border-radius: 12px 12px 0 0; padding: 18px 18px 22px; box-shadow: 0 -10px 30px -12px rgba(40, 25, 10, .45); }
+    .card::before { content: ''; position: absolute; left: 50%; top: 7px; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: rgba(42, 38, 33, .2); }
+    .card .pic { height: 74px; margin: 0 0 4px; } .card .pic svg { max-height: 70px; } .card h3 { font-size: 18px; } .card p { font-size: 13.5px; margin-bottom: 8px; } .card .fit { margin-bottom: 10px; }
+    .itin { grid-template-columns: 1fr; } .itin button { width: 100%; }
+    .hint { display: block; margin: 8px 2px 0; font-size: 12.5px; color: var(--ink3); }
+  }
+</style></head>
+<body><div id="defs"></div>
+<section class="ch" id="bj">
+  <header>
+    <p class="ch-sign"><b>肆</b><span>北京资源 · 研学导览</span></p>
+    <h2>一张图，看遍京华研学</h2>
+    <p class="lead">红色教育、文化研学、团建拓展、会议场地四类场地，按主题挑点、按线路成行。点图上的小画看介绍，加入行程，按您选的点定制方案。</p>
+  </header>
+  <div class="bar"><div class="chips" id="cats"></div><div class="chips" id="routes"></div></div>
+  <figure class="leaf">
+    <div class="scroll" id="scroll"><div class="map" id="map"></div></div>
+    <aside class="card" id="card" hidden></aside>
+  </figure>
+  <p class="hint">左右、上下拖动看全图；点小画看介绍。</p>
+  <div class="itin" id="itin" hidden></div>
+  <div class="tray" id="tray"></div>
+  <p class="note">示意图，不按实际位置和比例绘制，不表示行政区划界线。具体场地按活动需求推荐。</p>
+</section>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script src="../../assets/js/jh/icons.js"></script>
+<script src="../../assets/js/jh/map.js"></script>
+<script>
+(() => {
+  const M = JH.MAP, IC = JH.ICONS, $ = s => document.querySelector(s), q = new URLSearchParams(location.search);
+  document.getElementById('defs').innerHTML = JH.ARCH.defs();
+  const map = $('#map'), mobile = innerWidth <= 760;
+  const mapW = mobile ? 1100 : map.clientWidth, k = mapW / M.W;          // 画面单位 → 屏幕像素
+  const S = Object.fromEntries(M.SPOTS.map(s => [s[0], { id: s[0], name: s[1], area: s[2], cat: s[3], themes: s[4], desc: s[5], fit: s[6], at: s[7], ins: s[8] }]));
+  const state = { cat: q.get('cat') || 'all', route: q.get('route') || '', card: q.get('card') || '', picks: new Set((q.get('pick') || '').split(',').filter(Boolean)) };
+  // 底图
+  map.innerHTML = `<svg class="map-base" viewBox="0 0 ${M.W} ${M.H}" aria-hidden="true">${M.base(k)}${M.inset(k)}</svg><svg class="map-route" viewBox="0 0 ${M.W} ${M.H}" aria-hidden="true" id="routeSvg"></svg>` +
+    `<div class="cartouche"><b>京华研学导览图</b><small>示意图 · 不按比例</small></div>` +
+    `<svg class="compass" viewBox="-32 -32 64 64" aria-hidden="true"><circle r="22" fill="#f6efe0" stroke="#6b5d4b" stroke-width="1.2"/><circle r="16" fill="none" stroke="#6b5d4b" stroke-width=".6"/><path d="M0 -29L5 0L0 26L-5 0Z" fill="#2a2621"/><path d="M0 -29L5 0H-5Z" fill="#b3362b"/><path d="M-26 0L0 4L22 0L0 -4Z" fill="#6b5d4b"/><text x="0" y="-21" text-anchor="middle" font-size="9" fill="#f6efe0" font-family="STKaiti, serif">北</text></svg>`;
+  // 小画：主图上的点和老城放大里的点
+  const pinSize = (id, inset) => (inset ? 0.42 : 0.72);
+  const pins = {};
+  const place = (sp, x, y, inset) => {
+    const L = IC[sp.id](), sc = pinSize(sp.id, inset), wScene = (L.box[1] - L.box[0] + 12) * sc, px = sc * k;
+    const b = document.createElement('button');
+    b.className = 'pin'; b.type = 'button'; b.dataset.id = sp.id; b.style.left = (x / M.W * 100) + '%'; b.style.top = (y / M.H * 100) + '%'; b.style.width = (wScene / M.W * 100) + '%';
+    b.innerHTML = JH.svg(L, px) + `<span class="tag"><i style="background:${M.CATS[sp.cat].color}"></i>${sp.name}</span>`;
+    b.setAttribute('aria-label', sp.name);
+    b.addEventListener('click', e => { e.stopPropagation(); openCard(sp.id); });
+    map.appendChild(b); pins[sp.id] = b;
+  };
+  const order = Object.values(S).sort((a, b) => (!!a.ins - !!b.ins) || ((a.at || a.ins)[1] - (b.at || b.ins)[1]));
+  for (const sp of order) { if (sp.at) place(sp, sp.at[0], sp.at[1], false); else place(sp, sp.ins[0], sp.ins[1], true); }
+  // 晟帆出发地
+  const home = document.createElement('div'); home.className = 'home'; home.style.left = (M.HOME[0] / M.W * 100) + '%'; home.style.top = (M.HOME[1] / M.H * 100) + '%';
+  home.innerHTML = JH.svg(IC.home(), 0.62) + '<span class="tag">晟帆 · 从这里出发</span>'; map.appendChild(home);
+  // 老城标注放在线路层上面，线路从旁边过也不会压住字
+  const ot = document.createElement('div'); ot.className = 'oldtag'; ot.textContent = '老城 · 见右下放大'; ot.style.left = (M.OLD.cx / M.W * 100) + '%'; ot.style.top = ((M.OLD.cy - 66) / M.H * 100) + '%'; map.appendChild(ot);
+  // 筛选
+  $('#cats').innerHTML = '<span>类别</span>' + [['all', '全部', '#2a2621'], ...Object.entries(M.CATS).map(([k2, c]) => [k2, c.name, c.color])].map(([id, n, c]) => `<button class="chip${state.cat === id ? ' on' : ''}" data-cat="${id}"><i style="background:${c}"></i>${n}</button>`).join('');
+  $('#routes').innerHTML = '<span>研学线路</span>' + M.ROUTES.map(r => `<button class="chip${state.route === r.id ? ' on' : ''}" data-route="${r.id}">${r.name}<small>${r.days}</small></button>`).join('');
+  $('#cats').addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (!b) return; state.cat = b.dataset.cat; state.route = ''; render(); });
+  $('#routes').addEventListener('click', e => { const b = e.target.closest('[data-route]'); if (!b) return; state.route = state.route === b.dataset.route ? '' : b.dataset.route; render(); if (mobile && state.route) focusRoute(true); });
+  // 手机：把地图滚到线路所在的那一片
+  function focusRoute(smooth) {
+    const R = M.ROUTES.find(r => r.id === state.route); if (!R) return;
+    const pts = R.stops.map(id => S[id].at || S[id].ins), xs = pts.map(p => p[0]), ys = pts.map(p => p[1]), sc = $('#scroll');
+    const cx = (Math.min(...xs) + Math.max(...xs)) / 2 / M.W * map.clientWidth, cy = (Math.min(...ys) + Math.max(...ys)) / 2 / M.H * map.clientHeight - 20;
+    sc.scrollTo({ left: cx - sc.clientWidth / 2, top: cy - sc.clientHeight / 2, behavior: smooth ? 'smooth' : 'auto' });
+  }
+  // 线路：主图上的点直接连；老城里的点在放大图里连，再用虚线接到主图上的老城
+  const ptOf = id => S[id].at || null, insOf = id => S[id].ins || null;
+  function drawRoute() {
+    const svg = $('#routeSvg'), R = M.ROUTES.find(r => r.id === state.route);
+    for (const [id, b] of Object.entries(pins)) { const i = R ? R.stops.indexOf(id) : -1, dot = b.querySelector('.tag i'); b.classList.toggle('stop', i >= 0); if (i >= 0) { dot.className = 'n'; dot.textContent = '一二三四五六'[i]; } else { dot.className = ''; dot.textContent = ''; } }
+    if (!R) { svg.innerHTML = ''; $('#itin').hidden = true; return; }
+    const main = R.stops.map(id => ptOf(id) || [M.OLD.cx, M.OLD.cy]).filter((p, i, a) => !i || p !== a[i - 1] || ptOf(R.stops[i]));
+    const sub = R.stops.map(insOf).filter(Boolean);
+    const curve = pts => pts.map((p, i) => i ? `Q${(pts[i - 1][0] + p[0]) / 2 + (p[1] - pts[i - 1][1]) * 0.18} ${(pts[i - 1][1] + p[1]) / 2 - (p[0] - pts[i - 1][0]) * 0.18} ${p[0]} ${p[1]}` : `M${p[0]} ${p[1]}`).join('');
+    const sw = 2.6 / k;
+    let d = '';
+    const uniq = []; for (const p of main) if (!uniq.length || uniq[uniq.length - 1] !== p) uniq.push(p);
+    if (uniq.length > 1) d += `<path d="${curve(uniq)}" fill="none" stroke="#f6efe0" stroke-width="${sw * 2.6}" stroke-linecap="round" opacity=".8"/><path d="${curve(uniq)}" fill="none" stroke="#b3362b" stroke-width="${sw}" stroke-dasharray="${sw * 3} ${sw * 2}" stroke-linecap="round"/>`;
+    if (sub.length > 1) d += `<path d="${curve(sub)}" fill="none" stroke="#f6efe0" stroke-width="${sw * 2.6}" stroke-linecap="round" opacity=".8"/><path d="${curve(sub)}" fill="none" stroke="#b3362b" stroke-width="${sw}" stroke-dasharray="${sw * 3} ${sw * 2}" stroke-linecap="round"/>`;
+    svg.innerHTML = d;
+    const it = $('#itin'); it.hidden = false;
+    it.innerHTML = `<div><h4>${R.name}</h4><span class="d">${R.days} · ${R.stops.length} 站 · 示例线路，可按需增减</span></div><ol>${R.stops.map((id, i) => `<li><b>${'一二三四五六'[i]}</b>${S[id].name}</li>`).join('')}</ol><button class="b1" type="button">按这条线路定制方案</button>`;
+  }
+  let opening = false;
+  function openCard(id) {
+    state.card = id; const sp = S[id], c = $('#card'); c.hidden = false;
+    c.innerHTML = `<button class="x" type="button" aria-label="关闭">×</button><div class="pic">${JH.svg(IC[id](), 1.2)}</div><h3>${sp.name}</h3><div class="meta"><i style="background:${M.CATS[sp.cat].color}"></i>${M.CATS[sp.cat].name} · ${sp.area}${sp.themes.length ? ' · ' + sp.themes.join('、') : ''}</div><p>${sp.desc}</p><div class="fit">${sp.fit.map(f => `<span>${f}</span>`).join('')}</div><div class="act"><button class="b2" type="button" data-pick="${id}">${state.picks.has(id) ? '已加入行程' : '加入行程'}</button><button class="b1" type="button">按这里定制方案</button></div>`;
+    c.querySelector('.x').onclick = () => { c.hidden = true; state.card = ''; render(); };
+    c.querySelector('[data-pick]').onclick = () => { state.picks.has(id) ? state.picks.delete(id) : state.picks.add(id); openCard(id); render(); };
+    render(); placeCard(id);
+    if (mobile && !opening) {
+      // 手机：卡片从底部升起，把地图挪到卡片上方，点开的小画留在看得见的地方
+      const leaf = $('.leaf'), top0 = leaf.getBoundingClientRect().top, NAV = document.querySelector('.nav') ? 64 : 8;
+      if (top0 < 0 || top0 > NAV + 40) window.scrollBy(0, top0 - NAV);
+      const sc = $('#scroll'), sr = sc.getBoundingClientRect(), cr = c.getBoundingClientRect(), pr = pins[id].getBoundingClientRect();
+      const visTop = Math.max(sr.top, 0), visBot = Math.min(sr.bottom, cr.top) - 8;
+      sc.scrollBy({ left: (pr.left + pr.right) / 2 - (sr.left + sr.right) / 2, top: (pr.top + pr.bottom) / 2 - (visTop + visBot) / 2, behavior: 'smooth' });
+    }
+  }
+  // 桌面：卡片放在小画旁边；有线路时，挑挡住线路站点最少的一侧
+  function placeCard(id) {
+    if (mobile) return;
+    const c = $('#card'), fig = $('.leaf').getBoundingClientRect(), pr = pins[id].getBoundingClientRect(), cw = c.offsetWidth, ch = c.offsetHeight, gap = 16, pad = 12;
+    const R = M.ROUTES.find(r => r.id === state.route), rel = r => ({ l: r.left - fig.left, t: r.top - fig.top, r: r.right - fig.left, b: r.bottom - fig.top + 26 });
+    const keep = [rel(pr), ...(R ? R.stops.filter(s => s !== id).map(s => rel(pins[s].getBoundingClientRect())) : [])];
+    const cx = pr.left - fig.left + pr.width / 2, top0 = pr.top - fig.top;
+    const clampL = l => Math.max(pad, Math.min(fig.width - cw - pad, l)), clampT = t => Math.max(pad, Math.min(fig.height - ch - pad, t));
+    const cands = [[pr.right - fig.left + gap, top0 - 40], [pr.left - fig.left - cw - gap, top0 - 40], [cx - cw / 2, pr.bottom - fig.top + 34], [cx - cw / 2, top0 - ch - gap],
+      [pad, pad], [fig.width - cw - pad, pad], [pad, fig.height - ch - pad], [fig.width - cw - pad, fig.height - ch - pad]].map(([l, t]) => [clampL(l), clampT(t)]);
+    const over = (l, t) => keep.reduce((a, k) => a + Math.max(0, Math.min(l + cw, k.r) - Math.max(l, k.l)) * Math.max(0, Math.min(t + ch, k.b) - Math.max(t, k.t)), 0);
+    let best = cands[0], bs = Infinity;
+    cands.forEach(([l, t], i) => { const sc = over(l, t) * 20 + Math.hypot(l + cw / 2 - cx, t + ch / 2 - top0) + i * 4; if (sc < bs) { bs = sc; best = [l, t]; } });
+    c.style.left = best[0] + 'px'; c.style.top = best[1] + 'px';
+  }
+  function render() {
+    document.querySelectorAll('#cats .chip').forEach(b => b.classList.toggle('on', !state.route && b.dataset.cat === state.cat));
+    document.querySelectorAll('#routes .chip').forEach(b => b.classList.toggle('on', b.dataset.route === state.route));
+    const R = M.ROUTES.find(r => r.id === state.route);
+    for (const [id, b] of Object.entries(pins)) {
+      const dim = R ? !R.stops.includes(id) : (state.cat !== 'all' && S[id].cat !== state.cat);
+      b.classList.toggle('dim', dim); b.classList.toggle('picked', state.picks.has(id)); b.classList.toggle('on', state.card === id);
+    }
+    drawRoute();
+    const list = [...state.picks].map(id => S[id].name);
+    $('#tray').innerHTML = `<b>我的行程</b><span class="list">${list.length ? list.join('、') : '在图上点小画，把想去的地方加进来'}</span>${list.length ? `<button type="button">按这 ${list.length} 处定制方案</button>` : ''}`;
+  }
+  render();
+  if (state.card) { opening = true; openCard(state.card); opening = false; }
+  if (mobile) { const sc = $('#scroll'), mw = map.clientWidth, mh = map.clientHeight; sc.scrollLeft = q.has('sx') ? +q.get('sx') : 700 / M.W * mw - sc.clientWidth / 2; sc.scrollTop = q.has('sy') ? +q.get('sy') : 620 / M.H * mh - sc.clientHeight / 2; if (state.route && !q.has('sx')) focusRoute(false); }
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { drawRoute(); if (state.card) placeCard(state.card); }, 150); });
+})();
+</script></body></html>

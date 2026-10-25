@@ -1,0 +1,187 @@
+:root {
+  --ink: #2f2a24; --ink2: #5a5048; --paper: #efe6d3; --silk: #f3ebda; --cinnabar: #b3362b; --gold: #c8a156; --qing: #1f4a66;
+  --serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --brush: "Ma Shan Zheng", "STKaiti", "KaiTi", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+button { font: inherit; cursor: pointer; }
+
+/* 导航 */
+.nav { position: fixed; inset: 0 0 auto; z-index: 40; display: flex; align-items: center; justify-content: space-between; height: 60px; padding: 0 20px; pointer-events: none; }
+.nav > * { pointer-events: auto; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.brand b { display: block; font: 700 16px/1.15 var(--serif); letter-spacing: .12em; }
+.brand i { display: block; font-style: normal; font-size: 10.5px; letter-spacing: .14em; color: var(--ink2); }
+.nav-cta { height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(47, 42, 36, .25); background: rgba(243, 235, 218, .7); color: var(--ink); font-size: 13px; font-weight: 600; letter-spacing: .06em; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+
+/* 长卷：固定视窗，往下滑时画卷横移 */
+.juan { position: relative; height: 420vh; }
+.juan-stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.juan-stage { position: absolute; inset: 0; background: #efe6d3; transition: clip-path 1.7s cubic-bezier(.65, .02, .2, 1), filter 2.2s ease .6s; }
+.js .juan-stage.closed { clip-path: inset(0 50% 0 50%); filter: saturate(.12) brightness(1.06); }
+.lay { position: absolute; top: 0; left: 0; height: 100%; will-change: transform; }
+.t-lead i { font-style: normal; }
+.lay svg { display: block; height: 100%; width: auto; }
+.silk { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; opacity: .5; background-size: 220px 220px; }
+.vignette { position: absolute; inset: 0; pointer-events: none; background:
+  radial-gradient(130% 100% at 50% 45%, transparent 62%, rgba(96, 70, 40, .2) 100%),
+  linear-gradient(transparent 82%, rgba(239, 230, 211, .0) 88%, rgba(239, 230, 211, .9) 100%); }
+
+/* 卷轴：开卷时从中间向两侧滚开 */
+.rollers { position: absolute; inset: 0; pointer-events: none; z-index: 20; }
+.rollers i { position: absolute; top: -2%; bottom: -2%; left: 50%; width: 18px; margin-left: -9px; border-radius: 9px;
+  background: linear-gradient(90deg, #3b2617, #7a5234 35%, #a47448 50%, #6b4529 70%, #2e1c10); box-shadow: 0 0 18px rgba(40, 26, 14, .35); transition: transform 1.7s cubic-bezier(.65, .02, .2, 1), opacity .5s 1.5s; }
+.rollers i::before, .rollers i::after { content: ""; position: absolute; left: -5px; right: -5px; height: 26px; border-radius: 6px; background: linear-gradient(90deg, #8a6a2a, #e8cf86 45%, #b48a3a 60%, #6e521d); }
+.rollers i::before { top: 6%; } .rollers i::after { bottom: 6%; }
+.open .rollers .rl { transform: translateX(-52vw); opacity: 0; }
+.open .rollers .rr { transform: translateX(52vw); opacity: 0; }
+.no-js .rollers, .reduce .rollers { display: none; }
+
+/* 首屏文字 */
+.juan-title { position: absolute; z-index: 10; left: 0; right: 0; top: calc(60px + 7vh); text-align: center; padding: 18px 20px 26px;
+  background: radial-gradient(60% 70% at 50% 50%, rgba(243, 235, 218, .92), rgba(243, 235, 218, .6) 55%, rgba(243, 235, 218, 0) 78%); transition: opacity .5s, transform .5s; opacity: 0; transform: translateY(10px); }
+.open .juan-title { opacity: 1; transform: none; transition-delay: 1.2s; }
+.juan-title.hide { opacity: 0 !important; transform: translateY(-14px) !important; transition-delay: 0s !important; pointer-events: none; }
+.t-eyebrow { margin: 0 0 14px; font-size: 12.5px; letter-spacing: .24em; color: var(--ink2); }
+.juan-title h1 { margin: 0; display: flex; justify-content: center; align-items: center; gap: .3em; flex-wrap: wrap; font: 900 clamp(40px, 6.4vw, 84px)/1.15 var(--serif); letter-spacing: .1em; color: #2a2621; text-shadow: 0 0 24px rgba(243, 235, 218, .9); }
+.juan-title h1 i { width: .16em; height: .16em; border-radius: 50%; background: var(--cinnabar); }
+.t-lead { margin: 14px 0 0; font: 400 clamp(17px, 2vw, 22px)/1.5 var(--brush); letter-spacing: .32em; color: var(--ink2); }
+.t-cta { display: flex; gap: 12px; justify-content: center; margin-top: 22px; }
+.b-primary, .b-ghost { display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 999px; font-size: 15px; font-weight: 600; letter-spacing: .06em; text-decoration: none; }
+.b-primary { border: 0; background: var(--qing); color: #f6efe0; box-shadow: 0 10px 22px -12px rgba(20, 50, 70, .8); }
+.b-ghost { border: 1px solid rgba(47, 42, 36, .3); color: var(--ink); background: rgba(243, 235, 218, .55); }
+@media (max-width: 700px) {
+  .juan-title h1 { flex-direction: column; gap: 0; font-size: 46px; }
+  .juan-title h1 i { display: none; }
+  .juan-title { top: calc(60px + 3vh); }
+  .t-lead { letter-spacing: .16em; font-size: 17px; }
+  .t-lead span { display: block; } .t-lead i { display: none; }
+}
+
+/* 题跋：竖排，走到哪处就浮现哪处 */
+.caps { position: absolute; inset: 0; pointer-events: none; }
+.cap { position: absolute; display: flex; gap: .5em; writing-mode: vertical-rl; color: var(--ink); opacity: 0; transition: opacity .7s; }
+.cap.on { opacity: 1; }
+/* 题跋逐行"写"出来：墨从上往下走；离开时倒着收回 */
+.cap > b, .cap > span { -webkit-mask-image: linear-gradient(to bottom, #000 44%, transparent 56%); mask-image: linear-gradient(to bottom, #000 44%, transparent 56%);
+  -webkit-mask-size: 100% 230%; mask-size: 100% 230%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 100%; mask-position: 0 100%;
+  transition: -webkit-mask-position .5s ease-in, mask-position .5s ease-in; }
+.cap.on > b, .cap.on > span { -webkit-mask-position: 0 0; mask-position: 0 0; transition: -webkit-mask-position 1.2s cubic-bezier(.3, .1, .3, 1) .15s, mask-position 1.2s cubic-bezier(.3, .1, .3, 1) .15s; }
+.cap.on > span:nth-of-type(1) { transition-delay: .6s; }
+.cap.on > span:nth-of-type(2) { transition-delay: .95s; }
+/* 最后钤印：从大到小压下去 */
+.cap .seal { opacity: 0; transform: rotate(-14deg) scale(1.7); transition: opacity .3s, transform .3s; }
+.cap.on .seal { opacity: 1; transform: rotate(-2deg) scale(1); transition: opacity .25s 1.7s, transform .42s cubic-bezier(.2, .9, .3, 1.35) 1.7s; }
+.cap b { font: 400 30px/1.2 var(--brush); letter-spacing: .18em; }
+.cap span { font: 400 16px/1.6 var(--brush); letter-spacing: .14em; color: var(--ink2); }
+.cap .seal { margin-top: .5em; }
+@media (max-width: 700px) { .cap b { font-size: 25px; } .cap span { font-size: 14px; } }
+.seal { writing-mode: horizontal-tb; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 30px; height: 40px; padding: 3px; border-radius: 4px;
+  background: var(--cinnabar); color: #f6ead6; font: 400 13px/1 var(--brush); box-shadow: inset 0 0 0 2px var(--cinnabar), inset 0 0 0 3px rgba(246, 234, 214, .7); }
+.seal.big { width: 44px; height: 60px; font-size: 20px; }
+.seal span { display: block; line-height: 1.1; color: inherit; font: inherit; }
+.cap.colophon b { font-size: 34px; }
+
+/* 进度与提示 */
+.juan-hint { position: absolute; z-index: 10; left: 50%; white-space: nowrap; bottom: calc(66px + env(safe-area-inset-bottom)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font: 400 15px/1 var(--brush); letter-spacing: .3em; color: var(--ink2); transition: opacity .4s; }
+.juan-hint.hide { opacity: 0; }
+.hint-line { width: 1px; height: 34px; background: linear-gradient(transparent, var(--ink)); animation: hint 2.2s ease-in-out infinite; }
+@keyframes hint { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* 四时 */
+.snow { position: absolute; inset: 0; z-index: 9; pointer-events: none; display: none; }
+.juan-stick[data-season="winter"] .snow, .juan-stick[data-season="spring"] .snow, .juan-stick[data-season="autumn"] .snow { display: block; }
+/* 春：落花；秋：落叶（同一批粒子换个样子，少一些） */
+.juan-stick[data-season="spring"] .snow i { width: 7px !important; height: 5px !important; border-radius: 70% 0 70% 0; background: #f1c2c7; animation-name: petal; }
+.juan-stick[data-season="spring"] .snow i:nth-child(2n) { background: #f7e3e0; }
+.juan-stick[data-season="spring"] .snow i:nth-child(n+25) { display: none; }
+.juan-stick[data-season="autumn"] .snow i { width: 10px !important; height: 6px !important; border-radius: 0 85% 0 85%; background: #b9603e; animation-name: leaf; }
+.juan-stick[data-season="autumn"] .snow i:nth-child(3n) { background: #d4a24a; }
+.juan-stick[data-season="autumn"] .snow i:nth-child(3n+1) { background: #9c4f33; }
+.juan-stick[data-season="autumn"] .snow i:nth-child(n+17) { display: none; }
+@keyframes petal { from { transform: translate3d(0, 0, 0) rotate(0); } to { transform: translate3d(calc(var(--dx) + 140px), 105vh, 0) rotate(560deg); } }
+@keyframes leaf { 0% { transform: translate3d(0, 0, 0) rotate(0); } 30% { transform: translate3d(calc(var(--dx) * .4 + 36px), 30vh, 0) rotate(170deg); } 60% { transform: translate3d(calc(var(--dx) * .2 - 14px), 62vh, 0) rotate(330deg); } 100% { transform: translate3d(calc(var(--dx) + 50px), 105vh, 0) rotate(620deg); } }
+.snow i { position: absolute; top: -10px; width: 4px; height: 4px; border-radius: 50%; background: #fff; opacity: .85; animation: fall linear infinite; }
+@keyframes fall { to { transform: translate3d(var(--dx, 20px), 105vh, 0); } }
+
+/* 点睛：点地标出来的介绍卡，像一页册页 */
+.lm.pick, .pick { cursor: pointer; }
+.pick-card { position: absolute; z-index: 25; left: 20px; bottom: 34px; width: min(360px, calc(100vw - 40px)); padding: 22px 22px 18px; border-radius: 6px;
+  background: #f6efe0; color: var(--ink); box-shadow: 0 0 0 6px #e3d6bb, 0 0 0 7px rgba(120, 90, 50, .35), 0 24px 50px -20px rgba(60, 40, 20, .5); animation: card .45s cubic-bezier(.2, .7, .2, 1); }
+@keyframes card { from { opacity: 0; transform: translateY(14px); } }
+.pick-card h3 { margin: 0; font: 400 28px/1.2 var(--brush); letter-spacing: .12em; }
+.pick-card .era { margin: 4px 0 0; font-size: 12.5px; letter-spacing: .14em; color: var(--ink2); }
+.pick-card p.txt { margin: 12px 0 0; font-size: 14.5px; line-height: 1.8; }
+.pick-card .route { margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(47, 42, 36, .25); font-size: 13.5px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.pick-card .route b { color: var(--qing); }
+.pick-card .x { position: absolute; right: 12px; top: 10px; width: 30px; height: 30px; border: 0; background: none; font-size: 20px; color: var(--ink2); }
+@media (max-width: 700px) { .pick-card { left: 12px; right: 12px; width: auto; bottom: 22px; } }
+
+/* 下一章占位 */
+.next { position: relative; z-index: 2; padding: 90px 24px 120px; text-align: center; background: var(--paper); }
+.n-idx { margin: 0 0 12px; font-size: 13px; letter-spacing: .2em; color: var(--cinnabar); font-weight: 600; }
+.next h2 { margin: 0; font: 900 clamp(30px, 6vw, 46px)/1.3 var(--serif); }
+.n-lead { max-width: 34em; margin: 14px auto 0; color: var(--ink2); font-size: 14.5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .juan-stage, .rollers i { transition: none; }
+  .js .juan-stage.closed { clip-path: none; filter: none; }
+  .snow i { animation: none; display: none; }
+}
+
+@media (max-width: 700px) { .juan-hint { bottom: calc(64px + env(safe-area-inset-bottom)); letter-spacing: .2em; } }
+
+/* 独立小块（近景、雾、船、鹤、云） */
+.spr { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.spr svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* 卷轴导览 */
+.juan-nav { position: absolute; z-index: 12; left: 20px; right: 92px; bottom: calc(14px + env(safe-area-inset-bottom)); height: 34px; }
+.jn-track { position: absolute; left: 0; right: 0; bottom: 6px; height: 1px; background: rgba(47, 42, 36, .22); }
+.jn-track i { position: absolute; left: 0; top: -.5px; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold), var(--cinnabar)); }
+.juan-nav button { position: absolute; bottom: 0; transform: translateX(-50%); padding: 0 2px 12px; border: 0; background: none; color: var(--ink2); font: 400 14px/1 var(--brush); letter-spacing: .12em; white-space: nowrap; transition: color .3s; }
+.juan-nav button::after { content: ""; position: absolute; left: 50%; bottom: 3px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 1.5px rgba(47, 42, 36, .45); transition: background .3s, box-shadow .3s, transform .3s; }
+.juan-nav button.on { color: var(--cinnabar); }
+.juan-nav button.on::after { background: var(--cinnabar); box-shadow: 0 0 0 3px rgba(179, 54, 43, .18); transform: scale(1.15); }
+@media (max-width: 700px) { .juan-nav { left: 16px; right: 76px; } .juan-nav button { font-size: 13px; letter-spacing: .04em; } }
+
+/* 四时：一方印，点一下换一季 */
+.season-seal { position: absolute; z-index: 12; right: 20px; bottom: calc(12px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; color: var(--ink2); font: 400 12px/1 var(--brush); letter-spacing: .1em; }
+.season-seal b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 4px; background: var(--cinnabar); color: #f6ead6; font: 400 20px/1 var(--brush); box-shadow: inset 0 0 0 2px var(--cinnabar), inset 0 0 0 3px rgba(246, 234, 214, .7); transform: rotate(-3deg); }
+.season-seal.stamp b { animation: stamp .5s cubic-bezier(.2, .9, .3, 1.3); }
+@keyframes stamp { from { transform: rotate(-12deg) scale(1.5); opacity: 0; } to { transform: rotate(-3deg) scale(1); opacity: 1; } }
+@media (max-width: 700px) { .season-seal { right: 14px; } .season-seal span { display: none; } }
+
+/* 晟帆随行 */
+.guide { position: absolute; z-index: 9; left: 0; top: 0; cursor: pointer; opacity: 0; transform: translateX(-40px); transition: opacity .8s, transform 1.2s cubic-bezier(.2, .7, .2, 1); pointer-events: none; }
+.guide.on { opacity: 1; transform: none; pointer-events: auto; }
+.guide svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.gb-dir { width: 100%; height: 100%; transition: transform .7s cubic-bezier(.4, 0, .2, 1); }
+.guide.back .gb-dir { transform: scaleX(-1); }
+.gb-bob { width: 100%; height: 100%; animation: bob 3.4s ease-in-out infinite; transform-origin: 50% 80%; }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-.6deg); } 50% { transform: translateY(2px) rotate(.8deg); } }
+.guide.moving .gb-bob { animation-duration: 1.6s; }
+.gb-wake { fill: none; stroke: #fff; stroke-width: 1.3; stroke-linecap: round; opacity: 0; stroke-dasharray: 18 10; transition: opacity .4s; }
+.guide.moving .gb-wake { opacity: .85; animation: wake .8s linear infinite; }
+@keyframes wake { to { stroke-dashoffset: -28; } }
+.gb-hull { fill: #5c3c27; stroke: #2f2a24; stroke-width: .8; }
+.gb-strake { fill: none; stroke: #c9a46a; stroke-width: .9; }
+.gb-cabin { fill: #6f5034; stroke: #2f2a24; stroke-width: .7; }
+.gb-cabin-l { fill: none; stroke: #a9875e; stroke-width: .6; }
+.gb-body { fill: #3f4a55; } .gb-hat { fill: #c9a25a; stroke: #2f2a24; stroke-width: .5; }
+.gb-oar { fill: none; stroke: #5c3c27; stroke-width: 1.6; stroke-linecap: round; }
+.gb-oar-g { transform-box: view-box; transform-origin: -54px -15px; animation: scull 2.6s ease-in-out infinite; }
+@keyframes scull { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(7deg); } }
+.gb-mast { fill: none; stroke: #4a3324; stroke-width: 1.8; stroke-linecap: round; }
+.gb-flag { fill: var(--cinnabar); }
+.gb-sail { fill: #efe5cd; stroke: #2f2a24; stroke-width: .8; }
+.gb-batten { fill: none; stroke: #8a6d4b; stroke-width: .9; }
+.gb-seal { fill: var(--cinnabar); } .gb-seal-in { fill: none; stroke: #f6ead6; stroke-width: .6; }
+.gb-seal-t { fill: #f6ead6; font: 400 7.6px/1 var(--brush); text-anchor: middle; }
+.gb-sail-g { transform-box: view-box; transform-origin: 8px -20px; animation: billow 5s ease-in-out infinite alternate; }
+@keyframes billow { from { transform: skewX(-1.2deg); } to { transform: skewX(1.4deg); } }
+.b-primary.sm { height: 38px; padding: 0 18px; font-size: 14px; }
+.pick-card .route a.b-primary { color: #f6efe0; }
+@media (prefers-reduced-motion: reduce) { .gb-bob, .gb-oar-g, .gb-sail-g, .guide.moving .gb-wake { animation: none; } }

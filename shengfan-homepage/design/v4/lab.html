@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>界画构件试验</title>
+<link rel="stylesheet" href="../../assets/css/jh.css">
+<style>
+  html, body { margin: 0; background: #efe6d3; font: 14px/1.6 -apple-system, "PingFang SC", sans-serif; color: #2f2a24; }
+  .row { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; padding: 24px; }
+  figure { margin: 0; } figcaption { text-align: center; font-size: 13px; color: #5a5048; }
+  .jh-svg { display: block; overflow: visible; }
+</style></head>
+<body><div id="defs"></div><div id="out"></div>
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script>
+document.getElementById('defs').innerHTML = JH.ARCH.defs();
+const q = new URLSearchParams(location.search), px = +(q.get('px') || 1.6);
+const B = JH.BUILD;
+const items = [
+  ['重檐庑殿（太和殿式）', B.hall({ bays: [84, 74, 66, 56], colH: 90, platform: 46, rail: 14, double: true, type: 'wd', tile: 6, beasts: 7, per: 4, railHead: 'yun' })],
+  ['单檐歇山', B.hall({ bays: [70, 60, 50], colH: 70, platform: 26, rail: 10, type: 'xs', tile: 5, beasts: 5, per: 3, rw: 132 })],
+  ['四角攒尖亭', B.hall({ bays: [56], colH: 48, platform: 10, type: 'cj', tile: 4, beasts: 3, per: 2, leaves: 3, stairs: false, rh: 62, caihua: 'xuanzi' })],
+];
+document.getElementById('out').innerHTML = '<div class="row">' + items.map(([t, L]) => `<figure>${JH.svg(L, t.includes('亭') ? px * 1.4 : px)}<figcaption>${t}</figcaption></figure>`).join('') + '</div>';
+</script></body></html>

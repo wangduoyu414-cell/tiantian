@@ -1,0 +1,40 @@
+/* 青绿长卷：线与色。线宽固定像素（non-scaling），大小建筑的线一样细；层次靠渐变和淡彩出。 */
+.a2 { --ink: #2f2a24; overflow: visible; }
+.a2 .k   { fill: none; stroke: var(--ink); stroke-width: .85; stroke-opacity: .82; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.a2 .kf  { fill: none; stroke: var(--ink); stroke-width: .55; stroke-opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.a2 .kt  { fill: none; stroke: var(--ink); stroke-width: .4; stroke-opacity: .34; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.a2 .kl  { fill: none; stroke: #fff; stroke-width: .4; stroke-opacity: .38; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.a2 .kg  { fill: none; stroke: #c8a156; stroke-width: .6; stroke-opacity: .95; vector-effect: non-scaling-stroke; }
+.a2 .kgt { fill: none; stroke: #e2c27a; stroke-width: .4; stroke-opacity: .8; vector-effect: non-scaling-stroke; }
+
+.a2 .f-roofY  { fill: url(#g-roofY); }   .a2 .f-roofB { fill: url(#g-roofB); }   .a2 .f-roofG { fill: url(#g-roofG); }
+.a2 .f-roofGr { fill: url(#g-roofGr); }
+.a2 .f-eaveY  { fill: #e9c066; }         .a2 .f-eaveB { fill: #4a76b7; }         .a2 .f-eaveG { fill: #a7aca7; }
+.a2 .f-headY, .a2 .f-headB, .a2 .f-headG { fill: none; stroke-linecap: round; }
+.a2 .f-headY  { stroke: #8d6223; }       .a2 .f-headB { stroke: #1b3768; }       .a2 .f-headG { stroke: #5f6461; }
+.a2 .f-soffit { fill: #2c241d; fill-opacity: .55; }
+.a2 .f-rafter { fill: none; stroke: #2f6c8f; }
+.a2 .f-vol    { fill: url(#g-vol); }
+.a2 .f-wallIn { fill: url(#g-door); }
+.a2 .f-lattice{ fill: url(#p-lattice); }
+.a2 .f-col    { fill: url(#g-col); }
+.a2 .f-paintB { fill: url(#g-paintB); }  .a2 .f-paintG { fill: url(#g-paintG); }
+.a2 .f-gold   { fill: url(#g-gold); }
+.a2 .f-stone  { fill: url(#g-stone); }   .a2 .f-stoneD { fill: #e2dacb; }
+.a2 .f-gable  { fill: #93402f; }
+.a2 .f-wall   { fill: url(#g-wall); }
+.a2 .f-brick  { fill: url(#g-brick); }   .a2 .f-brickP { fill: url(#p-brick); }
+.a2 .f-glass  { fill: url(#g-glass); }
+.a2 .f-dark   { fill: #3a302a; fill-opacity: .82; }
+.a2 .f-white  { fill: #fbf8f1; }
+.a2 .f-shadeL { fill: #2e2b26; fill-opacity: .1; }
+.a2 .f-ashlar { fill: url(#g-ashlar); }  .a2 .f-ashlarP { fill: url(#p-ashlar); }
+.a2 .f-facade { fill: url(#g-facade); }  .a2 .f-recess { fill: url(#g-recess); }
+.a2 .f-win { fill: #4f5a62; fill-opacity: .82; }
+.a2 .f-cwall { fill: url(#g-cwall); }
+/* 冬：屋面积雪 */
+.sc[data-season="winter"] .a2 .f-roofY { fill: url(#g-roofYW); }
+.sc[data-season="winter"] .a2 .f-roofB { fill: url(#g-roofBW); }
+.sc[data-season="winter"] .a2 .f-roofG { fill: url(#g-roofGW); }
+.sc[data-season="winter"] .a2 .f-roofGr { fill: url(#g-roofGW); }
+.sc[data-season="winter"] .a2 .kl { stroke-opacity: .15; }

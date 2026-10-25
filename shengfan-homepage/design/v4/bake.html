@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>首屏烘图</title></head>
+<body>
+<!-- 开发用：把首屏各静止层画成位图。tools/bake-hero.swift 打开这一页，调用 bakeAll() 取回图片。 -->
+<script src="../../assets/js/jh/core.js"></script>
+<script src="../../assets/js/jh/arch.js"></script>
+<script src="../../assets/js/jh/build.js"></script>
+<script src="../../assets/js/jh/qinian.js"></script>
+<script src="../../assets/js/jh/nature.js"></script>
+<script src="../../assets/js/jh/tower.js"></script>
+<script src="../../assets/js/jh/lm.js"></script>
+<script src="../../assets/js/jh/jinghua.js"></script>
+<script>
+window.bakeAll = async function (layout, season, scale, px) {
+  const css = await fetch('../../assets/css/jh.css', { cache: 'no-store' }).then(r => r.text());
+  const C = JH.JINGHUA;
+  const defsInner = JH.ARCH.defs().replace(/^[\s\S]*?<defs>|<\/defs>[\s\S]*$/g, '') + C.defs();
+  const S = C.compose(layout, px, { season });
+  const out = { layout, season, scale, px, W: S.W, H: S.H, planes: [], sprites: S.sprites, hits: S.hits, defs: defsInner };
+  for (const p of S.planes) {
+    const [x0, y0, x1, y1] = p.rect, w = Math.round((x1 - x0) * scale), h = Math.round((y1 - y0) * scale);
+    const str = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}"><defs>${defsInner}</defs><style>${css}${C.SEASON_CSS[season] || ''}</style><g class="s-${season}">${p.svg}</g></svg>`;
+    const url = URL.createObjectURL(new Blob([str], { type: 'image/svg+xml' }));
+    const img = new Image(); img.src = url; await img.decode();
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    cv.getContext('2d').drawImage(img, 0, 0, w, h);
+    URL.revokeObjectURL(url);
+    out.planes.push({ id: p.id, depth: p.depth, rect: p.rect, w, h, png: cv.toDataURL('image/png') });
+  }
+  return JSON.stringify(out);
+};
+</script></body></html>
